@@ -30,15 +30,7 @@ const UserSchema = new mongoose.Schema({
 
         type: Boolean,
 
-    },
-
-    Characters: [{
-
-        type: mongoose.Schema.Types.ObjectId,
-
-        ref: 'Character',
-
-    }],
+    }
 
 }, { timestamps: true });
 
