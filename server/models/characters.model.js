@@ -110,9 +110,19 @@ const CharacterSchema = new mongoose.Schema({
     },
     Scars: {
         type: [String],
+        validation: {
+            validator: function(strings) {
+                return strings.every((string) => key.length >= 0 && key.length <= 250)
+            }
+        }
     },
     Relationships: {
-        type: [String]
+        type: [String],
+        validation: {
+            validator: function(strings) {
+                return strings.every((string) => key.length >= 0 && key.length <= 250)
+            }
+        }
     },
 
 }, { timestamps: true });
