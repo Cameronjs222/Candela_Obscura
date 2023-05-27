@@ -1,17 +1,19 @@
 const CharactersController = require('../controllers/characters.controller');
 
-  
+
 
 module.exports = app => {
 
-app.get("/api/characters", CharactersController.findAllCharacters);
+app.get("/api/characters/all", CharactersController.findAllCharacters);
 
-app.post("/api/characters", CharactersController.createNewCharacter);
+app.post("/api/character/add", CharactersController.createNewCharacter);
 
-app.get("/api/characters/:_id", CharactersController.findOneSingleCharacter);
+app.get("/api/character/:_id", CharactersController.findOneSingleCharacter);
 
-app.patch("/api/characters/:_id", CharactersController.updateExistingCharacter);
+app.get("/api/characters/:User_id", CharactersController.findAllUsersCharacters)
 
-app.delete("/api/characters/:_id", CharactersController.deleteAnExistingCharacter);
+app.patch("/api/character/:_id", CharactersController.updateExistingCharacter);
+
+app.delete("/api/character/:_id", CharactersController.deleteAnExistingCharacter);
 
 };

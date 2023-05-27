@@ -19,10 +19,31 @@ module.exports.findAllCharacters = (req, res) => {
         });
 
 }
+module.exports.findAllUsersCharacters = (req, res) => {
+
+    console.log(req.params.User)
+
+    Characters.find({User: req.params.User_id})
+
+        .then((allCharacters) => {
+
+            res.json(allCharacters)
+
+        })
+
+        .catch((err) => {
+
+            res.json({ message: 'Something went wrong', error: err })
+
+        });
+
+}
 
 
 
-module.exports.findOneSingleCharacter= (req, res) => {
+module.exports.findOneSingleCharacter= (req, res) => { //need to create system to find characters based on their own id as well as their user's id
+
+    console.log(req.params)
 
     Characters.findOne({ _id: req.params })
 
