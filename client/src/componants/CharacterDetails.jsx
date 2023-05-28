@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const CharacterDetails = () => {
     const [character, setCharacter] = useState(null);
+
+    let { charId } = useParams();
+
+    console.log(charId + " id")
 
     useEffect(() => {
         const fetchCharacterData = async () => {
