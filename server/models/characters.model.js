@@ -6,61 +6,64 @@ const CharacterSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
-    Name: {
-        type: String,
-        maxlength: [35, "Please keep your character name to under 35 characters"],
-        required: [true, "Character name is required"],
+    Information: {
+        Name: {
+            type: String,
+            maxlength: [35, "Please keep your character name to under 35 characters"],
+            required: [true, "Character name is required"],
+        },
+        Pronouns: {
+            type: String,
+            maxlength: [35, "Please keep pronouns to under 35 characters."]
+        },
+        Circle: {
+            type: String,
+            maxlength: [70, "Please keep the name of your circle to under 70 characters"]
+        },
+        Style: {
+            type: String,
+            maxlength: [250, "Please keep your style to under 250 characters"]
+        },
+        Catalyst: {
+            type: String,
+            maxlength: [250, "Please keep your Catalyst to under 250 characters"]
+        },
+        Question: {
+            type: String,
+            maxlength: [250, "Please keep your question to under 250 characters"]
+        },
     },
-    Pronouns: {
-        type: String,
-        maxlength: [35, "Please keep pronouns to under 35 characters."]
-    },
-    Circle: {
-        type: String,
-        maxlength: [70, "Please keep the name of your circle to under 70 characters"]
-    },
-    Style: {
-        type: String,
-        maxlength: [250, "Please keep your style to under 250 characters"]
-    },
-    Catalyst: {
-        type: String,
-        maxlength: [250, "Please keep your Catalyst to under 250 characters"]
-    },
-    Question: {
-        type: String,
-        maxlength: [250, "Please keep your question to under 250 characters"]
-    },
-    Nerve: {
-        move: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-        strike: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-        control: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-        nerveDrive: {
-            value: { type: Number, default: 0, max: 9 },
-            maximum: { type: Number, default: 0, max: 9 }
-        }
-    },
-    Cunning: {
-        sway: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-        read: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-        hide: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-        cunningDrive: {
-            value: { type: Number, default: 0, max: 9 },
-            maximum: { type: Number, default: 0, max: 9 }
-        }
-    },
-    Intuition: {
-        survey: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-        focus: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-        sense: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-        intuitionDrive: {
-            value: { type: Number, default: 0, max: 9 },
-            maximum: { type: Number, default: 0, max: 9 }
-        }
+    Stats: {
+        Nerve: {
+            move: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
+            strike: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
+            control: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
+            nerveDrive: {
+                value: { type: Number, default: 0, max: 9 },
+                maximum: { type: Number, default: 0, max: 9 }
+            }
+        },
+        Cunning: {
+            sway: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
+            read: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
+            hide: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
+            cunningDrive: {
+                value: { type: Number, default: 0, max: 9 },
+                maximum: { type: Number, default: 0, max: 9 }
+            }
+        },
+        Intuition: {
+            survey: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
+            focus: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
+            sense: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
+            intuitionDrive: {
+                value: { type: Number, default: 0, max: 9 },
+                maximum: { type: Number, default: 0, max: 9 }
+            }
+        },
     },
     Role: {
         type: String,
-        required: true,
         enum: ["Slink", "Scholar", "Face", "Weird", "Muscle"],
         abilities: [
             {
@@ -98,9 +101,9 @@ const CharacterSchema = new mongoose.Schema({
         ],
     },
     Marks: {
-        body: { value: { type: Number, default: 0, max: 3 } },
-        brain: { value: { type: Number, default: 0, max: 3 } },
-        bleed: { value: { type: Number, default: 0, max: 3 } }
+        body: { type: Number, default: 0, max: 3 },
+        brain:{ type: Number, default: 0, max: 3 },
+        bleed:{ type: Number, default: 0, max: 3 }
     },
     Scars: {
         type: [String],
