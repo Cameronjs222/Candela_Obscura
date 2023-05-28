@@ -33,7 +33,7 @@ const CharacterDetails = () => {
 
             <h2>Stats</h2>
             <p>Nerve Move Value: {character.Stats.Nerve.move.value}</p>
-            <p>Nerve Strike Value: {character.Stats.Nerve.strike.value}</p>
+   https://chat.openai.com/?model=text-davinci-002-render-sha         <p>Nerve Strike Value: {character.Stats.Nerve.strike.value}</p>
             <p>Nerve Control Value: {character.Stats.Nerve.control.value}</p>
             <p>Nerve Drive Value: {character.Stats.Nerve.nerveDrive.value}</p>
 
