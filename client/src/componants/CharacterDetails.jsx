@@ -12,7 +12,7 @@ const CharacterDetails = () => {
     useEffect(() => {
         const fetchCharacterData = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/character/6472c7d9d26127ccf14d1deb');
+                const response = await axios.get('http://localhost:8000/api/character/' + charId);
                 setCharacter(response.data);
             } catch (error) {
                 console.log(error);

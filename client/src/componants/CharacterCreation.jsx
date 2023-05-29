@@ -37,18 +37,24 @@ const CharacterCreation = () => {
       Question: question
     },
     Stats: {
-      move: move,
-      strike: strike,
-      control: control,
-      nerveDrive: nerveDrive,
-      sway: sway,
-      read: read,
-      hide: hide,
-      cunningDrive: cunningDrive,
-      survey: survey,
-      focus: focus,
-      sense: sense,
-      intuitionDrive: intuitionDrive
+      Nerve: {
+        move: move,
+        strike: strike,
+        control: control,
+        nerveDrive: nerveDrive
+      },
+      Cunning: {
+        sway: sway,
+        read: read,
+        hide: hide,
+        cunningDrive: cunningDrive
+      },
+      Intuition: {
+        survey: survey,
+        focus: focus,
+        sense: sense,
+        intuitionDrive: intuitionDrive
+      }
     },
     Role: role,
     Specialty: specialty
