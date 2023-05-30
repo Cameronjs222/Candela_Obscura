@@ -67,8 +67,8 @@ const CharacterSchema = new mongoose.Schema({
         enum: ["Slink", "Scholar", "Face", "Weird", "Muscle"],
         abilities: [
             {
-                name: { type: String, required: true },
-                description: { type: String, required: true },
+                name: { type: String },
+                description: { type: String },
             },
         ],
     },
@@ -78,27 +78,14 @@ const CharacterSchema = new mongoose.Schema({
         maxlength: [10, "Specialty must be 10 characters or less"],
         abilities: [
             {
-                name: { type: String, required: true },
-                description: { type: String, required: true },
+                name: { type: String, },
+                description: { type: String },
             },
         ],
     },
     IlluminationKeys: {
-        type: [String],
-        validate: [
-            {
-                validator: function (keys) {
-                    return keys.length < 4;
-                },
-                message: "You cannot have more than 3 Illumination Keys",
-            },
-            {
-                validator: function (keys) {
-                    return keys.every((key) => key.length >= 5 && key.length <= 30);
-                },
-                message: "Each Illumination key must be between 5 and 30 characters long.",
-            },
-        ],
+        type: String,
+        maxlength: 100
     },
     Marks: {
         body: { type: Number, default: 0, max: 3 },
@@ -121,6 +108,9 @@ const CharacterSchema = new mongoose.Schema({
             }
         }
     },
+    Notes: {
+        type: String
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Character', CharacterSchema);
