@@ -13,18 +13,18 @@ const CharacterCreation = () => {
   const [question, setQuestion] = useState('');
   const [role, setRole] = useState('');
   const [specialty, setSpecialty] = useState('');
-  const [move, setMove] = useState(0);
-  const [strike, setStrike] = useState(0);
-  const [control, setControl] = useState(0);
-  const [nerveDrive, setNerveDrive] = useState(0);
-  const [sway, setSway] = useState(0);
-  const [read, setRead] = useState(0);
-  const [hide, setHide] = useState(0);
-  const [cunningDrive, setCunningDrive] = useState(0);
-  const [survey, setSurvey] = useState(0);
-  const [focus, setFocus] = useState(0);
-  const [sense, setSense] = useState(0);
-  const [intuitionDrive, setIntuitionDrive] = useState(0);
+  const [moveValue, setMoveValue] = useState(0);
+  const [strikeValue, setStrikeValue] = useState(0);
+  const [controlValue, setControlValue] = useState(0);
+  const [nerveDriveValue, setNerveDriveValue] = useState(0);
+  const [swayValue, setSwayValue] = useState(0);
+  const [readValue, setReadValue] = useState(0);
+  const [hideValue, setHideValue] = useState(0);
+  const [cunningDriveValue, setCunningDriveValue] = useState(0);
+  const [surveyValue, setSurveyValue] = useState(0);
+  const [focusValue, setFocusValue] = useState(0);
+  const [senseValue, setSenseValue] = useState(0);
+  const [intuitionDriveValue, setIntuitionDriveValue] = useState(0);
 
   const characterData = {
     User: userId,
@@ -38,98 +38,95 @@ const CharacterCreation = () => {
     },
     Stats: {
       Nerve: {
-        move: move,
-        strike: strike,
-        control: control,
-        nerveDrive: nerveDrive
+        move: { value: moveValue, Gilded: false },
+        strike: { value: strikeValue, Gilded: false },
+        controlValue: { value: controlValue, Gilded: false },
+        nerveDrive: { value: nerveDriveValue, maximum: nerveDriveValue }
       },
       Cunning: {
-        sway: sway,
-        read: read,
-        hide: hide,
-        cunningDrive: cunningDrive
+        sway: { value: swayValue, Gilded: false },
+        read: { value: readValue, Gilded: false },
+        hide: { value: hideValue, Gilded: false },
+        cunningDrive: { value: cunningDriveValue, maximum: cunningDriveValue }
       },
       Intuition: {
-        survey: survey,
-        focus: focus,
-        sense: sense,
-        intuitionDrive: intuitionDrive
+        survey: { value: surveyValue, Gilded: false },
+        focus: { value: focusValue, Gilded: false },
+        sense: { value: senseValue, Gilded: false },
+        intuitionDrive: { value: intuitionDriveValue, maximum: cunningDriveValue }
       }
     },
     Role: role,
     Specialty: specialty
   };
 
-  console.log(characterData);
-
   const pregenRoles = {
     Slink: {
       stats: {
-        move: {value: 1, Gilded: false},
-        strike: {value: 1, Gilded: false},
-        control: {value: 1, Gilded: false},
-        sway: {value: 1, Gilded: false},
-        read: {value: 1, Gilded: false},
-        hide: {value: 2, Gilded: true},
-        survey: {value: 1, gilded: true},
-        focus: {value: 1, Gilded: false},
-        sense: {value: 0, Gilded: false}
-      },
+        moveValue: { value: 1, Gilded: false },
+        strikeValue: { value: 1, Gilded: false },
+        controlValue: { value: 1, Gilded: false },
+        swayValue: { value: 1, Gilded: false },
+        readValue: { value: 1, Gilded: false },
+        hideValue: { value: 2, Gilded: true },
+        surveyValue: { value: 1, Gilded: true },
+        focusValue: { value: 1, Gilded: false },
+        senseValue: { value: 0, Gilded: false }
+      }
     },
     Scholar: {
       stats: {
-        move: {value: 0, Gilded: false},
-        strike: {value: 0, Gilded: false},
-        control: {value: 1, Gilded: true},
-        sway: {value: 2, Gilded: false},
-        read: {value: 1, Gilded: false},
-        hide: {value: 0, Gilded: false},
-        survey: {value: 2, gilded: false},
-        focus: {value: 2, Gilded: true},
-        sense: {value: 1, Gilded: false}
-      },
+        moveValue: { value: 1, Gilded: false },
+        strikeValue: { value: 0, Gilded: false },
+        controlValue: { value: 1, Gilded: true },
+        swayValue: { value: 2, Gilded: false },
+        readValue: { value: 1, Gilded: false },
+        hideValue: { value: 0, Gilded: false },
+        surveyValue: { value: 2, Gilded: false },
+        focusValue: { value: 2, Gilded: true },
+        senseValue: { value: 1, Gilded: false }
+      }
     },
     Face: {
       stats: {
-        move: {value: 0, Gilded: false},
-        strike: {value: 0, Gilded: false},
-        control: {value: 1, Gilded: false},
-        sway: {value: 2, Gilded: true},
-        read: {value: 1, Gilded: false},
-        hide: {value: 2, Gilded: true},
-        survey: {value: 0, gilded: false},
-        focus: {value: 1, Gilded: false},
-        sense: {value: 2, Gilded: false}
-      },
+        moveValue: { value: 1, Gilded: false },
+        strikeValue: { value: 0, Gilded: false },
+        controlValue: { value: 1, Gilded: false },
+        swayValue: { value: 2, Gilded: true },
+        readValue: { value: 1, Gilded: false },
+        hideValue: { value: 2, Gilded: true },
+        surveyValue: { value: 0, Gilded: false },
+        focusValue: { value: 1, Gilded: false },
+        senseValue: { value: 2, Gilded: false }
+      }
     },
     Weird: {
       stats: {
-        move: {value: 0, Gilded: false},
-        strike: {value: 1, Gilded: false},
-        control: {value: 1, Gilded: false},
-        sway: {value: 0, Gilded: false},
-        read: {value: 2, Gilded: false},
-        hide: {value: 1, Gilded: false},
-        survey: {value: 0, gilded: false},
-        focus: {value: 2, Gilded: true},
-        sense: {value: 2, Gilded: true}
+        moveValue: { value: 1, Gilded: false },
+        strikeValue: { value: 1, Gilded: false },
+        controlValue: { value: 1, Gilded: false },
+        swayValue: { value: 0, Gilded: false },
+        readValue: { value: 2, Gilded: false },
+        hideValue: { value: 1, Gilded: false },
+        surveyValue: { value: 0, Gilded: false },
+        focusValue: { value: 2, Gilded: true },
+        senseValue: { value: 2, Gilded: true }
       }
     },
     Muscle: {
       stats: {
-        move: {value: 2, Gilded: true},
-        strike: {value: 2, Gilded: true},
-        control: {value: 0, Gilded: false},
-        sway: {value: 0, Gilded: false},
-        read: {value: 1, Gilded: false},
-        hide: {value: 1, Gilded: false},
-        survey: {value: 2, gilded: false},
-        focus: {value: 1, Gilded: false},
-        sense: {value: 0, Gilded: false}
+        moveValue: { value: 1, Gilded: true },
+        strikeValue: { value: 2, Gilded: true },
+        controlValue: { value: 0, Gilded: false },
+        swayValue: { value: 0, Gilded: false },
+        readValue: { value: 1, Gilded: false },
+        hideValue: { value: 1, Gilded: false },
+        surveyValue: { value: 2, Gilded: false },
+        focusValue: { value: 1, Gilded: false },
+        senseValue: { value: 0, Gilded: false }
       }
-    },
-  
-  }
+    }
+  };
 
   const submitEvent = (event) => {
     event.preventDefault();
@@ -147,49 +144,71 @@ const CharacterCreation = () => {
 
   return (
     <div>
-      CharacterCreation
-      <form action="" onSubmit={submitEvent}>
-        <label htmlFor="Name">Characters name:</label>
+      <h1>Character Creation</h1>
+      <form onSubmit={submitEvent}>
+        <h2>General Information</h2>
+        <label htmlFor="Name">Character's Name:</label>
         <input type="text" name="Name" value={name} onChange={(event) => setName(event.target.value)} /><br />
+  
         <label htmlFor="Pronouns">Character's Pronouns:</label>
         <input type="text" name="Pronouns" value={pronouns} onChange={(event) => setPronouns(event.target.value)} /><br />
+  
+        <h2>Character Details</h2>
         <label htmlFor="Style">Style:</label>
         <input type="text" name="Style" value={style} onChange={(event) => setStyle(event.target.value)} /><br />
+  
         <label htmlFor="Catalyst">Character's Catalyst:</label>
         <input type="text" name="Catalyst" value={catalyst} onChange={(event) => setCatalyst(event.target.value)} /><br />
+  
         <label htmlFor="Question">Question:</label>
         <input type="text" name="Question" value={question} onChange={(event) => setQuestion(event.target.value)} /><br />
-        <label htmlFor="Circle">Circle:</label>
-        <input type="text" name="Circle" value={circle} onChange={(event) => setCircle(event.target.value)} /><br />
+  
+        <h2>Role and Specialty</h2>
         <label htmlFor="Role">Role:</label>
         <input type="text" name="Role" value={role} onChange={(event) => setRole(event.target.value)} /><br />
+  
         <label htmlFor="Specialty">Specialty:</label>
         <input type="text" name="Specialty" value={specialty} onChange={(event) => setSpecialty(event.target.value)} /><br />
-        <label htmlFor="move">Move:</label>
-        <input type="number" name="move" value={move} onChange={(event) => setMove(parseInt(event.target.value))} /><br />
-        <label htmlFor="strike">Strike:</label>
-        <input type="number" name="strike" value={strike} onChange={(event) => setStrike(parseInt(event.target.value))} /><br />
-        <label htmlFor="control">Control:</label>
-        <input type="number" name="control" value={control} onChange={(event) => setControl(parseInt(event.target.value))} /><br />
-        <label htmlFor="nerveDrive">Nerve's maximum drive:</label>
-<input type="number" name="nerveDrive" value={nerveDrive} onChange={(event) => setNerveDrive(parseInt(event.target.value))} /><br />
-<label htmlFor="sway">Characters sway:</label>
-<input type="number" name="sway" value={sway} onChange={(event) => setSway(parseInt(event.target.value))} /><br />
-<label htmlFor="read">Characters read:</label>
-<input type="number" name="read" value={read} onChange={(event) => setRead(parseInt(event.target.value))} /><br />
-<label htmlFor="hide">Characters hide:</label>
-<input type="number" name="hide" value={hide} onChange={(event) => setHide(parseInt(event.target.value))} /><br />
-<label htmlFor="cunningDrive">Cunning maximum drive:</label>
-<input type="number" name="cunningDrive" value={cunningDrive} onChange={(event) => setCunningDrive(parseInt(event.target.value))} /><br />
-<label htmlFor="survey">Characters survey:</label>
-<input type="number" name="survey" value={survey} onChange={(event) => setSurvey(parseInt(event.target.value))} /><br />
-<label htmlFor="focus">Characters focus:</label>
-<input type="number" name="focus" value={focus} onChange={(event) => setFocus(parseInt(event.target.value))} /><br />
-<label htmlFor="sense">Characters sense:</label>
-<input type="number" name="sense" value={sense} onChange={(event) => setSense(parseInt(event.target.value))} /><br />
-<label htmlFor="intuitionDrive">Intuition maximum drive:</label>
-<input type="number" name="intuitionDrive" value={intuitionDrive} onChange={(event) => setIntuitionDrive(parseInt(event.target.value))} /><br />
-        <button type="submit">Submit</button>
+  
+        <h2>Stats</h2>
+        <label htmlFor="moveValue">Move:</label>
+        <input type="number" name="move" value={moveValue} onChange={(event) => setMoveValue(parseInt(event.target.value))} /><br />
+  
+        <label htmlFor="strikeValue">Strike:</label>
+        <input type="number" name="strikeValue" value={strikeValue} onChange={(event) => setStrikeValue(parseInt(event.target.value))} /><br />
+  
+        <label htmlFor="controlValue">Control Value:</label>
+        <input type="number" name="controlValue" value={controlValue} onChange={(event) => setControlValue(parseInt(event.target.value))} /><br />
+  
+      {/* Rest of the input fields for stats */}
+      <label htmlFor="nerveDriveValue">Nerve's Maximum Drive:</label>
+      <input type="number" name="nerveDriveValue" value={nerveDriveValue} onChange={(event) => setNerveDriveValue(parseInt(event.target.value))} /><br />
+
+      <label htmlFor="swayValue">Character's Sway Value:</label>
+      <input type="number" name="swayValue" value={swayValue} onChange={(event) => setSwayValue(parseInt(event.target.value))} /><br />
+
+      <label htmlFor="readValue">Character's Read Value:</label>
+      <input type="number" name="readValue" value={readValue} onChange={(event) => setReadValue(parseInt(event.target.value))} /><br />
+
+      <label htmlFor="hideValue">Character's Hide Value:</label>
+      <input type="number" name="hideValue" value={hideValue} onChange={(event) => setHideValue(parseInt(event.target.value))} /><br />
+
+      <label htmlFor="cunningDriveValue">Cunning's Maximum Drive:</label>
+      <input type="number" name="cunningDriveValue" value={cunningDriveValue} onChange={(event) => setCunningDriveValue(parseInt(event.target.value))} /><br />
+
+      <label htmlFor="surveyValue">Character's Survey Value:</label>
+      <input type="number" name="surveyValue" value={surveyValue} onChange={(event) => setSurveyValue(parseInt(event.target.value))} /><br />
+
+      <label htmlFor="focusValue">Character's Focus Value:</label>
+      <input type="number" name="focusValue" value={focusValue} onChange={(event) => setFocusValue(parseInt(event.target.value))} /><br />
+
+      <label htmlFor="senseValue">Character's Sense Value:</label>
+      <input type="number" name="senseValue" value={senseValue} onChange={(event) => setSenseValue(parseInt(event.target.value))} /><br />
+
+      <label htmlFor="intuitionDriveValue">Intuition's Maximum Drive:</label>
+      <input type="number" name="intuitionDriveValue" value={intuitionDriveValue} onChange={(event) => setIntuitionDriveValue(parseInt(event.target.value))} /><br />
+
+      <button type="submit">Submit</button> 
       </form>
     </div>
   );
