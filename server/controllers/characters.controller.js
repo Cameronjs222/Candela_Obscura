@@ -64,6 +64,8 @@ module.exports.findOneSingleCharacter= (req, res) => { //need to create system t
 
 module.exports.createNewCharacter = (req, res) => {
 
+    console.log(req.body)
+
     Characters.create(req.body)
 
         .then((newlyCreateCharacter) =>
