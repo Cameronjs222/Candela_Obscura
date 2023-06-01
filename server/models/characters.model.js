@@ -63,7 +63,8 @@ const CharacterSchema = new mongoose.Schema({
         },
     },
     Role: {
-        title: {type: String, enum: ["Slink", "Scholar", "Face", "Weird", "Muscle"], required: true},
+        type: String,
+        enum: ["Slink", "Scholar", "Face", "Weird", "Muscle"],
         abilities: [
             {
                 name: { type: String },
@@ -72,7 +73,9 @@ const CharacterSchema = new mongoose.Schema({
         ],
     },
     Specialty: {
-        title: {type: String, required: true, maxlength: [10, "Specialty must be 10 characters or less"]},
+        type: String,
+        required: true,
+        maxlength: [10, "Specialty must be 10 characters or less"],
         abilities: [
             {
                 name: { type: String, },
