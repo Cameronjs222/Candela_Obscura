@@ -57,19 +57,25 @@ const CharacterDetails = () => {
                                     Drives {character.Stats.Nerve.nerveDrive.value}
                                 </div>
                             </div>
-                            <p className='statItem'>Move: </p>
+                            <p className='statItem'>Move: {
+                                character.Stats.Nerve.move.value
+                            }</p>
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
                                 <div className="statValue third"></div>
                             </div>
-                            <p className='statItem'>Strike: </p>
+                            <p className='statItem'>Strike: {
+                                character.Stats.Nerve.strike.value
+                            }</p>
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
                                 <div className="statValue third"></div>
                             </div>
-                            <p className='statItem'>Control: </p>
+                            <p className='statItem'>Control: {
+                                character.Stats.Nerve.control.value
+                            }</p>
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
@@ -87,19 +93,25 @@ const CharacterDetails = () => {
                                     Drives {character.Stats.Cunning.cunningDrive.value}
                                 </div>
                             </div>
-                            <p className='statItem'>Sway:</p>
+                            <p className='statItem'>Sway: {
+                                character.Stats.Cunning.sway.value
+                            }</p>
                             <div className='statValueContainer'>
                                 <div className="statValue 1"></div>
                                 <div className="statValue 2"></div>
                                 <div className="statValue 3"></div>
                             </div>
-                            <p className='statItem'>Read:</p>
+                            <p className='statItem'>Read: {
+                                character.Stats.Cunning.read.value
+                            }</p>
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
                                 <div className="statValue third"></div>
                             </div>
-                            <p className='statItem'>Hide:</p>
+                            <p className='statItem'>Hide: {
+                                character.Stats.Cunning.hide.value
+                            }</p>
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
@@ -117,19 +129,25 @@ const CharacterDetails = () => {
                                     Drives {character.Stats.Intuition.intuitionDrive.value}
                                 </div>
                             </div>
-                            <p className='statItem'>Survey: </p>
+                            <p className='statItem'>Survey: {
+                                character.Stats.Intuition.survey.value
+                            }</p>
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
                                 <div className="statValue third"></div>
                             </div>
-                            <p className='statItem'>Focus: </p>
+                            <p className='statItem'>Focus: {
+                                character.Stats.Intuition.focus.value
+                            }</p>
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
                                 <div className="statValue third"></div>
                             </div>
-                            <p className='statItem'>Sense: </p>
+                            <p className='statItem'>Sense: {
+                                character.Stats.Intuition.sense.value
+                            }</p>
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
