@@ -25,6 +25,8 @@ const CharacterCreation = () => {
   const [focusValue, setFocusValue] = useState(0);
   const [senseValue, setSenseValue] = useState(0);
   const [intuitionDriveValue, setIntuitionDriveValue] = useState(0);
+  const [roleAbilities, setRoleAbilities] = useState({});
+  const [specialtyAbilities, setSpecialtyAbilities] = useState({});
 
   useEffect(() => {
     switch (role) {
@@ -41,6 +43,10 @@ const CharacterCreation = () => {
         setNerveDriveValue(3);
         setCunningDriveValue(6);
         setIntuitionDriveValue(0);
+        setRoleAbilities({
+          "Title": "Scout",
+          "Description": "If you have time to observe a location, you can spend 1 Intuition to ask a question: What do I notice here that others do not see? What in this place might be of use to us? What path should we follow?",
+        });
         break;
       }
       case 'Scholar': {
@@ -56,6 +62,10 @@ const CharacterCreation = () => {
         setNerveDriveValue(2);
         setCunningDriveValue(3);
         setIntuitionDriveValue(4);
+        setRoleAbilities({
+          "Title": "Well-Read",
+          "Description": "You’re highly educated and retain knowledge better than most. When you use Intuition while making a roll, if you fail the roll, earn back any Intuition you used"
+        });
         break;
       }
       case 'Face': {
@@ -71,6 +81,10 @@ const CharacterCreation = () => {
         setNerveDriveValue(3);
         setCunningDriveValue(3);
         setIntuitionDriveValue(3);
+        setRoleAbilities({
+          "Title": "I know a guy",
+          "Description": "Once per assignment, ask the GM who you know nearby that could help you. They will give you a temporary contact, and explain why they might have insight into the investigation."
+        });
         break;
       }
       case 'Weird': {
@@ -86,6 +100,10 @@ const CharacterCreation = () => {
         setNerveDriveValue(0);
         setCunningDriveValue(3);
         setIntuitionDriveValue(6);
+        setRoleAbilities({
+          "Title": "The Sight",
+          "Description": "Whenever you take one or more Bleed marks, you also gain additional information about the phenomenon that harmed you. Ask the GM a question about the source of the bleed."
+        });
         break;
       }
       case 'Muscle': {
@@ -101,10 +119,76 @@ const CharacterCreation = () => {
         setNerveDriveValue(6);
         setCunningDriveValue(3);
         setIntuitionDriveValue(0);
+        setRoleAbilities({
+          "Title": "Brawler",
+          "Description": "Spend 1 Nerve to choose an ally in the same area as you who is about to take a mark from a phenomenon. Describe what you do that allows you to take the mark instead."
+        });
         break;
       }
     }
+    switch (specialty) {
+      case 'Criminal': {
+        setSpecialtyAbilities([{
+          "Title": "Street Smarts",
+          "Description": " You know how to keep an eye on your surroundings. Whenever you make a Survey roll, you may spend any drive instead of only using Intuition."
+        },
+        {
+          "Title": "Leverage",
+          "Description": "On a successful Read roll, you may ask the GM what your target truly wants. On any Sway rolls you make using this information, also add your current Cunning resistance"
+        }
+        ]);
+        break;
+      }
+      case 'Professor': {
+        setSpecialtyAbilities([{
+          "Title": "Steal mind",
+          "Description": "Once per assignment, when you should take a Brain mark, you may instead spend 2 Intuition to negate it."
+        },
+        {
+          "Title": "Chemical Concoction",
+          "Description": "You know how to mix chemicals together to achieve particular effects. When you take Laboratory Equipment as gear, you may spend a few minutes concocting a mixture that is: acidic, explosive, flammable, loud, sleep-inducing, sticky, or toxic."
+        }
+        ]);
+        break;
+      }
+      case 'Magician': {
+        setSpecialtyAbilities([{
+          "Title": "Misdirection",
+          "Description": "When you use your words or actions to distract a target from what is actually happening, make a Hide roll. The first Cunning you or an ally spends on this roll is worth +2d instead of +1d."
+        },
+        {
+          "Title": "The Prestige",
+          "Description": " Your magic is usually all smoke and mirrors, but you do have one trick you’ve learned that’s real. Roll Sense when you perform it, and on a success, take a Bleed mark. Circle one option when you take this ability: change appearance, levitate, summon mundane object, teleport a short distance, throw your voice.."
+        }
+        ]);
+        break;
+      }
+      case 'Occultist': {
+        setSpecialtyAbilities([{
+          "Title": "Ghostblade",
+          "Description": "You can attune a ritual knife to yourself. If you coat it in your blood (take a Body mark), it can wound magickal beings and strike invisible or ethereal enemies."
+        },
+        {
+          "Title": "Extend Your Senses",
+          "Description": "When you roll with Sense to understand more about a phenomenon you’ve encountered, also add a number of dice equal to your current Intuition resistance to the roll."
+        }
+        ]);
+        break;
+      }
+      case 'Explorer': {
+        setSpecialtyAbilities([{
+          "Title": "Tenacious",
+          "Description": "When you have one or more Bleed marks, gild an additional die on Move, Strike, or Control rolls while in danger"
+        },
+        {
+          "Title": "Field Experience",
+          "Description": "You’ve traveled the world and been in many dangerous positions before. Once per assignment, describe to the group how a previous adventure is similar to your current situation and refresh 1 Nerve for everyone in your circle."
+        }
+        ]);
+        break;
+      }
 
+    }
   }, [role, specialty]);
 
 
@@ -142,73 +226,6 @@ const CharacterCreation = () => {
     Specialty: specialty
   };
 
-  const pregenRoles = {
-    Slink: {
-      stats: {
-        moveValue: { value: 1, Gilded: false },
-        strikeValue: { value: 1, Gilded: false },
-        controlValue: { value: 1, Gilded: false },
-        swayValue: { value: 1, Gilded: false },
-        readValue: { value: 1, Gilded: false },
-        hideValue: { value: 2, Gilded: true },
-        surveyValue: { value: 1, Gilded: true },
-        focusValue: { value: 1, Gilded: false },
-        senseValue: { value: 0, Gilded: false }
-      }
-    },
-    Scholar: {
-      stats: {
-        moveValue: { value: 1, Gilded: false },
-        strikeValue: { value: 0, Gilded: false },
-        controlValue: { value: 1, Gilded: true },
-        swayValue: { value: 2, Gilded: false },
-        readValue: { value: 1, Gilded: false },
-        hideValue: { value: 0, Gilded: false },
-        surveyValue: { value: 2, Gilded: false },
-        focusValue: { value: 2, Gilded: true },
-        senseValue: { value: 1, Gilded: false }
-      }
-    },
-    Face: {
-      stats: {
-        moveValue: { value: 1, Gilded: false },
-        strikeValue: { value: 0, Gilded: false },
-        controlValue: { value: 1, Gilded: false },
-        swayValue: { value: 2, Gilded: true },
-        readValue: { value: 1, Gilded: false },
-        hideValue: { value: 2, Gilded: true },
-        surveyValue: { value: 0, Gilded: false },
-        focusValue: { value: 1, Gilded: false },
-        senseValue: { value: 2, Gilded: false }
-      }
-    },
-    Weird: {
-      stats: {
-        moveValue: { value: 1, Gilded: false },
-        strikeValue: { value: 1, Gilded: false },
-        controlValue: { value: 1, Gilded: false },
-        swayValue: { value: 0, Gilded: false },
-        readValue: { value: 2, Gilded: false },
-        hideValue: { value: 1, Gilded: false },
-        surveyValue: { value: 0, Gilded: false },
-        focusValue: { value: 2, Gilded: true },
-        senseValue: { value: 2, Gilded: true }
-      }
-    },
-    Muscle: {
-      stats: {
-        moveValue: { value: 1, Gilded: true },
-        strikeValue: { value: 2, Gilded: true },
-        controlValue: { value: 0, Gilded: false },
-        swayValue: { value: 0, Gilded: false },
-        readValue: { value: 1, Gilded: false },
-        hideValue: { value: 1, Gilded: false },
-        surveyValue: { value: 2, Gilded: false },
-        focusValue: { value: 1, Gilded: false },
-        senseValue: { value: 0, Gilded: false }
-      }
-    }
-  };
 
   const submitEvent = (event) => {
     event.preventDefault();
