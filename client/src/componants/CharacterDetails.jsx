@@ -4,8 +4,6 @@ import axios from 'axios';
 
 const CharacterDetails = () => {
     const [character, setCharacter] = useState(null);
-    const [activeElement, setActiveElement] = useState(null);
-
     let { charId } = useParams();
 
     useEffect(() => {
@@ -25,64 +23,140 @@ const CharacterDetails = () => {
         return <div>Loading...</div>;
     }
 
-    const handleButtonClick = (element) => {
-
-        console.log(element);
-        setActiveElement(element === activeElement ? null : element);
-    };
 
     return (
-        <div>
-            <h1>Character Details</h1>
-            <div className="characterInformation bg-danger">
-                <button onClick={() => handleButtonClick('details')}>View Character details</button>
-                <button onClick={() => handleButtonClick('style')}>View Character Style</button>
-                <button onClick={() => handleButtonClick('catalyst')}>View Character Catalyst</button>
-                <button onClick={() => handleButtonClick('question')}>View Character Question</button>
+        <div className='wholeContainer'>
+            <div className="CharacterHeader">
 
-                {activeElement === 'details' && (
-                    <>
-                        <h2>Name: {character.Information.Name}</h2>
-                        <h2>Pronouns: {character.Information.Pronouns}</h2>
-                        <h2>Circle: {character.Information.Circle}</h2>
-                    </>
-                )}
-                {activeElement === 'style' && <h2>Style: {character.Information.Style}</h2>}
-                {activeElement === 'catalyst' && <h2>Catalyst: {character.Information.Catalyst}</h2>}
-                {activeElement === 'question' && <h2>Question: {character.Information.Question}</h2>}
-            </div>
-            <h2>Stats</h2>
 
-            <div className="characterStats">
-            <p>Nerve Move Value: {character.Stats.Nerve.move.value}</p>
-            <p>Nerve Strike Value: {character.Stats.Nerve.strike.value}</p>
-            <p>Nerve Control Value: {character.Stats.Nerve.control.value}</p>
-            <p>Nerve Drive Value: {character.Stats.Nerve.nerveDrive.value}</p>
 
-            <p>Cunning Sway Value: {character.Stats.Cunning.sway.value}</p>
-            <p>Cunning Read Value: {character.Stats.Cunning.read.value}</p>
-            <p>Cunning Hide Value: {character.Stats.Cunning.hide.value}</p>
-            <p>Cunning Drive Value: {character.Stats.Cunning.cunningDrive.value}</p>
-
-            <p>Intuition Survey Value: {character.Stats.Intuition.survey.value}</p>
-            <p>Intuition Focus Value: {character.Stats.Intuition.focus.value}</p>
-            <p>Intuition Sense Value: {character.Stats.Intuition.sense.value}</p>
-            <p>Intuition Drive Value: {character.Stats.Intuition.intuitionDrive.value}</p>
             </div>
 
-            <div className='characterMarks'></div>
-            <h2>Marks</h2>
-            <p>Body: {character.Marks.body}</p>
-            <p>Brain: {character.Marks.brain}</p>
-            <p>Bleed: {character.Marks.bleed}</p>
-            <p>Relationships: {character.Relationships.join(', ')}</p>
-            <p>Scars: {character.Scars}</p>
+            <div className='mainContainer'>
 
-            <div className='characterAbilities'>
-            <h2>Other Details</h2>
-            <p>Role: {character.Role}</p>
-            <p>Specialty: {character.Specialty}</p>
+                <div className="characterInformation" >
+
+                    <p>Name: {character.Information.Name}</p>
+                    <p>Pronouns: {character.Information.Pronouns}</p>
+                    <p>Circle: {character.Information.Circle}</p>
+                    <p>Style: {character.Information.Style}</p>
+                    <p>Catalyst: {character.Information.Catalyst}</p>
+                    <p>Question: {character.Information.Question}</p>
+                </div>
+                <div className='characterStatContainer' >
+
+                    <div className="characterStats">
+                        <div className="nerve statContainer">
+                            <div className="statHeader">
+                                <div className="nerveHeaderTitle">
+                                    <h3>
+                                        Nerve
+                                    </h3>
+                                </div>
+                                <div>
+                                    Drives {character.Stats.Nerve.nerveDrive.value}
+                                </div>
+                            </div>
+                            <p className='statItem'>Move: </p>
+                            <div className='statValueContainer'>
+                                <div className="statValue first"></div>
+                                <div className="statValue second"></div>
+                                <div className="statValue third"></div>
+                            </div>
+                            <p className='statItem'>Strike: </p>
+                            <div className='statValueContainer'>
+                                <div className="statValue first"></div>
+                                <div className="statValue second"></div>
+                                <div className="statValue third"></div>
+                            </div>
+                            <p className='statItem'>Control: </p>
+                            <div className='statValueContainer'>
+                                <div className="statValue first"></div>
+                                <div className="statValue second"></div>
+                                <div className="statValue third"></div>
+                            </div>
+                        </div>
+                        <div className="cunning statContainer">
+                            <div className="statHeader">
+                                <div className="nerveHeaderTitle">
+                                    <h3>
+                                        Cunning
+                                    </h3>
+                                </div>
+                                <div>
+                                    Drives {character.Stats.Cunning.cunningDrive.value}
+                                </div>
+                            </div>
+                            <p className='statItem'>Sway:</p>
+                            <div className='statValueContainer'>
+                                <div className="statValue 1"></div>
+                                <div className="statValue 2"></div>
+                                <div className="statValue 3"></div>
+                            </div>
+                            <p className='statItem'>Read:</p>
+                            <div className='statValueContainer'>
+                                <div className="statValue first"></div>
+                                <div className="statValue second"></div>
+                                <div className="statValue third"></div>
+                            </div>
+                            <p className='statItem'>Hide:</p>
+                            <div className='statValueContainer'>
+                                <div className="statValue first"></div>
+                                <div className="statValue second"></div>
+                                <div className="statValue third"></div>
+                            </div>
+                        </div>
+                        <div className="intuition statContainer">
+                            <div className="statHeader">
+                                <div className="nerveHeaderTitle">
+                                    <h3>
+                                        Intuition
+                                    </h3>
+                                </div>
+                                <div>
+                                    Drives {character.Stats.Intuition.intuitionDrive.value}
+                                </div>
+                            </div>
+                            <p className='statItem'>Survey: </p>
+                            <div className='statValueContainer'>
+                                <div className="statValue first"></div>
+                                <div className="statValue second"></div>
+                                <div className="statValue third"></div>
+                            </div>
+                            <p className='statItem'>Focus: </p>
+                            <div className='statValueContainer'>
+                                <div className="statValue first"></div>
+                                <div className="statValue second"></div>
+                                <div className="statValue third"></div>
+                            </div>
+                            <p className='statItem'>Sense: </p>
+                            <div className='statValueContainer'>
+                                <div className="statValue first"></div>
+                                <div className="statValue second"></div>
+                                <div className="statValue third"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div className='rightContainer' >
+                    <div className='characterAbilities'>
+                        <h2>Other Details</h2>
+                        <p>Role: {character.Role}</p>
+                        <p>Specialty: {character.Specialty}</p>
+                    </div>
+                </div>
+                <div className='characterMarks'>
+                    <p>Body: {character.Marks.body}</p>
+                    <p>Brain: {character.Marks.brain}</p>
+                    <p>Bleed: {character.Marks.bleed}</p>
+                    <p>Relationships: {character.Relationships.join(', ')}</p>
+                    <p>Scars: {character.Scars}</p>
+                </div>
             </div>
+
+
+
 
         </div>
     );
