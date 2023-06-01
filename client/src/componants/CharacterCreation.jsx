@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const CharacterCreation = () => {
-  
+
+  const Navigate = useNavigate();
+
   const { userId } = useParams();
-  
+
   const [name, setName] = useState('');
   const [pronouns, setPronouns] = useState('');
   const [circle, setCircle] = useState('');
@@ -28,7 +30,7 @@ const CharacterCreation = () => {
   const [intuitionDriveValue, setIntuitionDriveValue] = useState(0);
   const [roleAbilities, setRoleAbilities] = useState({});
   const [specialtyAbilities, setSpecialtyAbilities] = useState({});
-  
+
   console.log(specialty)
   useEffect(() => {
     switch (role) {
@@ -238,8 +240,8 @@ const CharacterCreation = () => {
     axios
       .post('http://localhost:8000/api/character/add', characterData)
       .then((response) => {
-        console.log(response.data); // Optional: Handle the response data
-        // Additional logic or redirect upon successful submission
+        console.log(response.data);
+        Navigate('/characters/' + response.data._id);
       })
       .catch((error) => {
         console.error(error); // Optional: Handle the error
@@ -253,82 +255,82 @@ const CharacterCreation = () => {
         <h2>General Information</h2>
         <label htmlFor="Name">Character's Name:</label>
         <input type="text" name="Name" value={name} onChange={(event) => setName(event.target.value)} /><br />
-  
+
         <label htmlFor="Pronouns">Character's Pronouns:</label>
         <input type="text" name="Pronouns" value={pronouns} onChange={(event) => setPronouns(event.target.value)} /><br />
-  
-        <h2>Character Details</h2>
+
         <label htmlFor="Style">Style:</label>
         <input type="text" name="Style" value={style} onChange={(event) => setStyle(event.target.value)} /><br />
+        
+        <h2>Character Details</h2>
 
         <label htmlFor="Circle">Circle:</label>
         <input type="text" name="Circle" value={circle} onChange={(event) => setCircle(event.target.value)} /><br />
-  
+
         <label htmlFor="Catalyst">Character's Catalyst:</label>
         <input type="text" name="Catalyst" value={catalyst} onChange={(event) => setCatalyst(event.target.value)} /><br />
-  
+
         <label htmlFor="Question">Question:</label>
         <input type="text" name="Question" value={question} onChange={(event) => setQuestion(event.target.value)} /><br />
-  
+
         <h2>Role and Specialty</h2>
         <label htmlFor="Role">Role:</label>
         <select type="text" name="Role" value={role} onChange={(event) => setRole(event.target.value)}>
-        <option value="None">None</option>
-        <option value="Slink">Slink</option>
-        <option value="Scholar">Scholar</option>
-        <option value="Face">Face</option>
-        <option value="Weird">Weird</option>
-        <option value="Muscle">Muscle</option>
+          <option value="None">None</option>
+          <option value="Slink">Slink</option>
+          <option value="Scholar">Scholar</option>
+          <option value="Face">Face</option>
+          <option value="Weird">Weird</option>
+          <option value="Muscle">Muscle</option>
         </select><br />
-  
+
         <label htmlFor="Specialty">Specialty:</label>
         <select type="text" name="Specialty" value={specialty} onChange={(event) => setSpecialty(event.target.value)}>
-        <option value="None">None</option>
-        {role === "Slink" ? <option value="Criminal">Criminal</option> : null}
-        {role === "Scholar" ? <option value="Professor">Professor</option> : null}
-        {role === "Face" ? <option value="Magician">Magician</option> : null}
-        {role === "Weird" ? <option value="Occultist">Occultist</option> : null}
-        {role === "Muscle" ? <option value="Explorer">Explorer</option> : null}
+          <option value="None">None</option>
+          {role === "Slink" ? <option value="Criminal">Criminal</option> : null}
+          {role === "Scholar" ? <option value="Professor">Professor</option> : null}
+          {role === "Face" ? <option value="Magician">Magician</option> : null}
+          {role === "Weird" ? <option value="Occultist">Occultist</option> : null}
+          {role === "Muscle" ? <option value="Explorer">Explorer</option> : null}
         </select><br />
         <h2>Stats</h2>
         <label htmlFor="moveValue">Move:</label>
         <input type="number" name="move" value={moveValue} onChange={(event) => setMoveValue(parseInt(event.target.value))} /><br />
-  
+
         <label htmlFor="strikeValue">Strike:</label>
         <input type="number" name="strikeValue" value={strikeValue} onChange={(event) => setStrikeValue(parseInt(event.target.value))} /><br />
-  
+
         <label htmlFor="controlValue">Control Value:</label>
         <input type="number" name="controlValue" value={controlValue} onChange={(event) => setControlValue(parseInt(event.target.value))} /><br />
-  
-      {/* Rest of the input fields for stats */}
-      <label htmlFor="nerveDriveValue">Nerve's Maximum Drive:</label>
-      <input type="number" name="nerveDriveValue" value={nerveDriveValue} onChange={(event) => setNerveDriveValue(parseInt(event.target.value))} /><br />
 
-      <label htmlFor="swayValue">Character's Sway Value:</label>
-      <input type="number" name="swayValue" value={swayValue} onChange={(event) => setSwayValue(parseInt(event.target.value))} /><br />
+        <label htmlFor="nerveDriveValue">Nerve's Maximum Drive:</label>
+        <input type="number" name="nerveDriveValue" value={nerveDriveValue} onChange={(event) => setNerveDriveValue(parseInt(event.target.value))} /><br />
 
-      <label htmlFor="readValue">Character's Read Value:</label>
-      <input type="number" name="readValue" value={readValue} onChange={(event) => setReadValue(parseInt(event.target.value))} /><br />
+        <label htmlFor="swayValue">Character's Sway Value:</label>
+        <input type="number" name="swayValue" value={swayValue} onChange={(event) => setSwayValue(parseInt(event.target.value))} /><br />
 
-      <label htmlFor="hideValue">Character's Hide Value:</label>
-      <input type="number" name="hideValue" value={hideValue} onChange={(event) => setHideValue(parseInt(event.target.value))} /><br />
+        <label htmlFor="readValue">Character's Read Value:</label>
+        <input type="number" name="readValue" value={readValue} onChange={(event) => setReadValue(parseInt(event.target.value))} /><br />
 
-      <label htmlFor="cunningDriveValue">Cunning's Maximum Drive:</label>
-      <input type="number" name="cunningDriveValue" value={cunningDriveValue} onChange={(event) => setCunningDriveValue(parseInt(event.target.value))} /><br />
+        <label htmlFor="hideValue">Character's Hide Value:</label>
+        <input type="number" name="hideValue" value={hideValue} onChange={(event) => setHideValue(parseInt(event.target.value))} /><br />
 
-      <label htmlFor="surveyValue">Character's Survey Value:</label>
-      <input type="number" name="surveyValue" value={surveyValue} onChange={(event) => setSurveyValue(parseInt(event.target.value))} /><br />
+        <label htmlFor="cunningDriveValue">Cunning's Maximum Drive:</label>
+        <input type="number" name="cunningDriveValue" value={cunningDriveValue} onChange={(event) => setCunningDriveValue(parseInt(event.target.value))} /><br />
 
-      <label htmlFor="focusValue">Character's Focus Value:</label>
-      <input type="number" name="focusValue" value={focusValue} onChange={(event) => setFocusValue(parseInt(event.target.value))} /><br />
+        <label htmlFor="surveyValue">Character's Survey Value:</label>
+        <input type="number" name="surveyValue" value={surveyValue} onChange={(event) => setSurveyValue(parseInt(event.target.value))} /><br />
 
-      <label htmlFor="senseValue">Character's Sense Value:</label>
-      <input type="number" name="senseValue" value={senseValue} onChange={(event) => setSenseValue(parseInt(event.target.value))} /><br />
+        <label htmlFor="focusValue">Character's Focus Value:</label>
+        <input type="number" name="focusValue" value={focusValue} onChange={(event) => setFocusValue(parseInt(event.target.value))} /><br />
 
-      <label htmlFor="intuitionDriveValue">Intuition's Maximum Drive:</label>
-      <input type="number" name="intuitionDriveValue" value={intuitionDriveValue} onChange={(event) => setIntuitionDriveValue(parseInt(event.target.value))} /><br />
+        <label htmlFor="senseValue">Character's Sense Value:</label>
+        <input type="number" name="senseValue" value={senseValue} onChange={(event) => setSenseValue(parseInt(event.target.value))} /><br />
 
-      <button type="submit">Submit</button> 
+        <label htmlFor="intuitionDriveValue">Intuition's Maximum Drive:</label>
+        <input type="number" name="intuitionDriveValue" value={intuitionDriveValue} onChange={(event) => setIntuitionDriveValue(parseInt(event.target.value))} /><br />
+
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
