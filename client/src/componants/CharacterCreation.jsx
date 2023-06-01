@@ -16,18 +16,18 @@ const CharacterCreation = () => {
   const [question, setQuestion] = useState('');
   const [role, setRole] = useState('');
   const [specialty, setSpecialty] = useState('');
-  const [moveValue, setMoveValue] = useState(0);
-  const [strikeValue, setStrikeValue] = useState(0);
-  const [controlValue, setControlValue] = useState(0);
-  const [nerveDriveValue, setNerveDriveValue] = useState(0);
-  const [swayValue, setSwayValue] = useState(0);
-  const [readValue, setReadValue] = useState(0);
-  const [hideValue, setHideValue] = useState(0);
-  const [cunningDriveValue, setCunningDriveValue] = useState(0);
-  const [surveyValue, setSurveyValue] = useState(0);
-  const [focusValue, setFocusValue] = useState(0);
-  const [senseValue, setSenseValue] = useState(0);
-  const [intuitionDriveValue, setIntuitionDriveValue] = useState(0);
+  const [moveValue, setMoveValue] = useState({ value: 0, Gilded: false });
+  const [strikeValue, setStrikeValue] = useState({ value: 0, Gilded: false });
+  const [controlValue, setControlValue] = useState({ value: 0, Gilded: false });
+  const [nerveDriveValue, setNerveDriveValue] = useState({ value: 0, Gilded: false });
+  const [swayValue, setSwayValue] = useState({ value: 0, Gilded: false });
+  const [readValue, setReadValue] = useState({ value: 0, Gilded: false });
+  const [hideValue, setHideValue] = useState({ value: 0, Gilded: false });
+  const [cunningDriveValue, setCunningDriveValue] = useState({ value: 0, Gilded: false });
+  const [surveyValue, setSurveyValue] = useState({ value: 0, Gilded: false });
+  const [focusValue, setFocusValue] = useState({ value: 0, Gilded: false });
+  const [senseValue, setSenseValue] = useState({ value: 0, Gilded: false });
+  const [intuitionDriveValue, setIntuitionDriveValue] = useState({ value: 0, Gilded: false });
   const [roleAbilities, setRoleAbilities] = useState({});
   const [specialtyAbilities, setSpecialtyAbilities] = useState({});
 
@@ -35,18 +35,18 @@ const CharacterCreation = () => {
   useEffect(() => {
     switch (role) {
       case 'Slink': {
-        setMoveValue(1);
-        setStrikeValue(1);
-        setControlValue(1);
-        setSwayValue(1);
-        setReadValue(1);
-        setHideValue(2);
-        setSurveyValue(1);
-        setFocusValue(1);
-        setSenseValue(0);
-        setNerveDriveValue(3);
-        setCunningDriveValue(6);
-        setIntuitionDriveValue(0);
+        setMoveValue({ value: 1, Gilded: false });
+        setStrikeValue({ value: 1, Gilded: false });
+        setControlValue({ value: 1, Gilded: false });
+        setSwayValue({ value: 1, Gilded: false });
+        setReadValue({ value: 1, Gilded: false });
+        setHideValue({ value: 2, Gilded: false });
+        setSurveyValue({ value: 1, Gilded: false });
+        setFocusValue({ value: 1, Gilded: false });
+        setSenseValue({ value: 0, Gilded: false });
+        setNerveDriveValue({ value: 3, Gilded: false });
+        setCunningDriveValue({ value: 6, Gilded: false });
+        setIntuitionDriveValue({ value: 0, Gilded: false });
         setRoleAbilities({
           "Title": "Scout",
           "Description": "If you have time to observe a location, you can spend 1 Intuition to ask a question: What do I notice here that others do not see? What in this place might be of use to us? What path should we follow?",
@@ -54,18 +54,18 @@ const CharacterCreation = () => {
         break;
       }
       case 'Scholar': {
-        setMoveValue(0);
-        setStrikeValue(0);
-        setControlValue(1);
-        setSwayValue(2);
-        setReadValue(1);
-        setHideValue(0);
-        setSurveyValue(2);
-        setFocusValue(2);
-        setSenseValue(1);
-        setNerveDriveValue(2);
-        setCunningDriveValue(3);
-        setIntuitionDriveValue(4);
+        setMoveValue({ value: 0, Gilded: false });
+        setStrikeValue({ value: 0, Gilded: false });
+        setControlValue({ value: 1, Gilded: false });
+        setSwayValue({ value: 2, Gilded: false });
+        setReadValue({ value: 1, Gilded: false });
+        setHideValue({ value: 0, Gilded: false });
+        setSurveyValue({ value: 2, Gilded: false });
+        setFocusValue({ value: 2, Gilded: false });
+        setSenseValue({ value: 1, Gilded: false });
+        setNerveDriveValue({ value: 2, Gilded: false });
+        setCunningDriveValue({ value: 3, Gilded: false });
+        setIntuitionDriveValue({ value: 4, Gilded: false });
         setRoleAbilities({
           "Title": "Well-Read",
           "Description": "You’re highly educated and retain knowledge better than most. When you use Intuition while making a roll, if you fail the roll, earn back any Intuition you used"
@@ -73,18 +73,18 @@ const CharacterCreation = () => {
         break;
       }
       case 'Face': {
-        setMoveValue(0);
-        setStrikeValue(0);
-        setControlValue(1);
-        setSwayValue(2);
-        setReadValue(1);
-        setHideValue(2);
-        setSurveyValue(0);
-        setFocusValue(1);
-        setSenseValue(2);
-        setNerveDriveValue(3);
-        setCunningDriveValue(3);
-        setIntuitionDriveValue(3);
+        setMoveValue({ value: 0, Gilded: false });
+        setStrikeValue({ value: 0, Gilded: false });
+        setControlValue({ value: 1, Gilded: false });
+        setSwayValue({ value: 2, Gilded: false });
+        setReadValue({ value: 1, Gilded: false });
+        setHideValue({ value: 2, Gilded: false });
+        setSurveyValue({ value: 0, Gilded: false });
+        setFocusValue({ value: 1, Gilded: false });
+        setSenseValue({ value: 2, Gilded: false });
+        setNerveDriveValue({ value: 3, Gilded: false });
+        setCunningDriveValue({ value: 3, Gilded: false });
+        setIntuitionDriveValue({ value: 3, Gilded: false });
         setRoleAbilities({
           "Title": "I know a guy",
           "Description": "Once per assignment, ask the GM who you know nearby that could help you. They will give you a temporary contact, and explain why they might have insight into the investigation."
@@ -92,18 +92,18 @@ const CharacterCreation = () => {
         break;
       }
       case 'Weird': {
-        setMoveValue(0);
-        setStrikeValue(1);
-        setControlValue(1);
-        setSwayValue(0);
-        setReadValue(2);
-        setHideValue(1);
-        setSurveyValue(0);
-        setFocusValue(2);
-        setSenseValue(2);
-        setNerveDriveValue(0);
-        setCunningDriveValue(3);
-        setIntuitionDriveValue(6);
+        setMoveValue({ value: 0, Gilded: false });
+        setStrikeValue({ value: 1, Gilded: false });
+        setControlValue({ value: 1, Gilded: false });
+        setSwayValue({ value: 0, Gilded: false });
+        setReadValue({ value: 2, Gilded: false });
+        setHideValue({ value: 1, Gilded: false });
+        setSurveyValue({ value: 0, Gilded: false });
+        setFocusValue({ value: 2, Gilded: false });
+        setSenseValue({ value: 2, Gilded: false });
+        setNerveDriveValue({ value: 0, Gilded: false });
+        setCunningDriveValue({ value: 3, Gilded: false });
+        setIntuitionDriveValue({ value: 6, Gilded: false });
         setRoleAbilities({
           "Title": "The Sight",
           "Description": "Whenever you take one or more Bleed marks, you also gain additional information about the phenomenon that harmed you. Ask the GM a question about the source of the bleed."
@@ -111,18 +111,18 @@ const CharacterCreation = () => {
         break;
       }
       case 'Muscle': {
-        setMoveValue(2);
-        setStrikeValue(2);
-        setControlValue(0);
-        setSwayValue(0);
-        setReadValue(1);
-        setHideValue(1);
-        setSurveyValue(2);
-        setFocusValue(1);
-        setSenseValue(0);
-        setNerveDriveValue(6);
-        setCunningDriveValue(3);
-        setIntuitionDriveValue(0);
+        setMoveValue({ value: 2, Gilded: false });
+        setStrikeValue({ value: 2, Gilded: false });
+        setControlValue({ value: 0, Gilded: false });
+        setSwayValue({ value: 0, Gilded: false });
+        setReadValue({ value: 1, Gilded: false });
+        setHideValue({ value: 1, Gilded: false });
+        setSurveyValue({ value: 2, Gilded: false });
+        setFocusValue({ value: 1, Gilded: false });
+        setSenseValue({ value: 0, Gilded: false });
+        setNerveDriveValue({ value: 6, Gilded: false });
+        setCunningDriveValue({ value: 3, Gilded: false });
+        setIntuitionDriveValue({ value: 0, Gilded: false });
         setRoleAbilities({
           "Title": "Brawler",
           "Description": "Spend 1 Nerve to choose an ally in the same area as you who is about to take a mark from a phenomenon. Describe what you do that allows you to take the mark instead."
@@ -211,26 +211,32 @@ const CharacterCreation = () => {
     },
     Stats: {
       Nerve: {
-        move: { value: moveValue, Gilded: false },
-        strike: { value: strikeValue, Gilded: false },
-        controlValue: { value: controlValue, Gilded: false },
-        nerveDrive: { value: nerveDriveValue, maximum: nerveDriveValue }
+        move: moveValue,
+        strike: strikeValue,
+        controlValue: controlValue,
+        nerveDrive: { value: nerveDriveValue.value, maximum: nerveDriveValue.value }
       },
       Cunning: {
-        sway: { value: swayValue, Gilded: false },
-        read: { value: readValue, Gilded: false },
-        hide: { value: hideValue, Gilded: false },
-        cunningDrive: { value: cunningDriveValue, maximum: cunningDriveValue }
+        sway: swayValue,
+        read: readValue,
+        hide: hideValue,
+        cunningDrive: { value: cunningDriveValue.value, maximum: cunningDriveValue.value }
       },
       Intuition: {
-        survey: { value: surveyValue, Gilded: false },
-        focus: { value: focusValue, Gilded: false },
-        sense: { value: senseValue, Gilded: false },
-        intuitionDrive: { value: intuitionDriveValue, maximum: cunningDriveValue }
+        survey: surveyValue,
+        focus: focusValue,
+        sense: senseValue,
+        intuitionDrive: { value: intuitionDriveValue.value, maximum: intuitionDriveValue.value }
       }
     },
-    Role: role,
-    Specialty: specialty
+    Role: {
+      title: role,
+      abilities: roleAbilities
+    },
+    Specialty: {
+      title: specialty,
+      abilities: specialtyAbilities
+    }
   };
 
 
@@ -244,7 +250,7 @@ const CharacterCreation = () => {
         Navigate('/characters/' + response.data._id);
       })
       .catch((error) => {
-        console.error(error); // Optional: Handle the error
+        console.error(error);
       });
   };
 
@@ -261,7 +267,7 @@ const CharacterCreation = () => {
 
         <label htmlFor="Style">Style:</label>
         <input type="text" name="Style" value={style} onChange={(event) => setStyle(event.target.value)} /><br />
-        
+
         <h2>Character Details</h2>
 
         <label htmlFor="Circle">Circle:</label>
@@ -295,40 +301,187 @@ const CharacterCreation = () => {
         </select><br />
         <h2>Stats</h2>
         <label htmlFor="moveValue">Move:</label>
-        <input type="number" name="move" value={moveValue} onChange={(event) => setMoveValue(parseInt(event.target.value))} /><br />
+        <input type="number" name="move" value={moveValue.value} onChange={(event) => setMoveValue({ ...moveValue, value: parseInt(event.target.value) })} />
+        <label>
+          Gilded:
+          <input
+            type="radio"
+            name="moveGilded"
+            checked={moveValue.Gilded}
+            onChange={() => setMoveValue({ ...moveValue, Gilded: true })}
+          />
+          Not Gilded:
+          <input
+            type="radio"
+            name="moveGilded"
+            checked={!moveValue.Gilded}
+            onChange={() => setMoveValue({ ...moveValue, Gilded: false })}
+          />
+        </label>
+        <br />
 
         <label htmlFor="strikeValue">Strike:</label>
-        <input type="number" name="strikeValue" value={strikeValue} onChange={(event) => setStrikeValue(parseInt(event.target.value))} /><br />
+        <input type="number" name="strikeValue" value={strikeValue.value} onChange={(event) => setStrikeValue({ ...strikeValue, value: parseInt(event.target.value) })} />
+        <label>
+          Gilded:
+          <input
+            type="radio"
+            name="strikeGilded"
+            checked={strikeValue.Gilded}
+            onChange={() => setStrikeValue({ ...strikeValue, Gilded: true })}
+          />
+          Not Gilded:
+          <input
+            type="radio"
+            name="strikeGilded"
+            checked={!strikeValue.Gilded}
+            onChange={() => setStrikeValue({ ...strikeValue, Gilded: false })}
+          />
+        </label>
+        <br />
 
         <label htmlFor="controlValue">Control Value:</label>
-        <input type="number" name="controlValue" value={controlValue} onChange={(event) => setControlValue(parseInt(event.target.value))} /><br />
+        <input type="number" name="controlValue" value={controlValue.value} onChange={(event) => setControlValue({ ...controlValue, value: parseInt(event.target.value) })} />
+        <label>
+          Gilded:
+          <input
+            type="radio"
+            name="controlGilded"
+            checked={controlValue.Gilded}
+            onChange={() => setControlValue({ ...controlValue, Gilded: true })}
+          />
+          Not Gilded:
+          <input
+            type="radio"
+            name="controlGilded"
+            checked={!controlValue.Gilded}
+            onChange={() => setControlValue({ ...controlValue, Gilded: false })}
+          />
+        </label>
+        <br />
 
         <label htmlFor="nerveDriveValue">Nerve's Maximum Drive:</label>
-        <input type="number" name="nerveDriveValue" value={nerveDriveValue} onChange={(event) => setNerveDriveValue(parseInt(event.target.value))} /><br />
+        <input type="number" name="nerveDriveValue" value={nerveDriveValue.value} onChange={(event) => setNerveDriveValue({...nerveDriveValue, value:parseInt(event.target.value)})} /><br />
 
         <label htmlFor="swayValue">Character's Sway Value:</label>
-        <input type="number" name="swayValue" value={swayValue} onChange={(event) => setSwayValue(parseInt(event.target.value))} /><br />
+        <input type="number" name="swayValue" value={swayValue.value} onChange={(event) => setSwayValue({ ...swayValue, value: parseInt(event.target.value) })} />
+        <label>
+          Gilded:
+          <input
+            type="radio"
+            name="swayGilded"
+            checked={swayValue.Gilded}
+            onChange={() => setControlValue({ ...swayValue, Gilded: true })}
+          />
+          Not Gilded:
+          <input
+            type="radio"
+            name="swayGilded"
+            checked={!swayValue.Gilded}
+            onChange={() => setSwayValue({ ...swayValue, Gilded: false })}
+          />
+        </label><br />
 
         <label htmlFor="readValue">Character's Read Value:</label>
-        <input type="number" name="readValue" value={readValue} onChange={(event) => setReadValue(parseInt(event.target.value))} /><br />
+        <input type="number" name="readValue" value={readValue.value} onChange={(event) => setReadValue({...readValue, value: parseInt(event.target.value)})} />
+        <label>
+          Gilded:
+          <input
+            type="radio"
+            name="readGilded"
+            checked={readValue.Gilded}
+            onChange={() => setReadValue({ ...readValue, Gilded: true })}
+          />
+          Not Gilded:
+          <input
+            type="radio"
+            name="readGilded"
+            checked={!readValue.Gilded}
+            onChange={() => setReadValue({ ...readValue, Gilded: false })}
+          />
+        </label><br />
 
         <label htmlFor="hideValue">Character's Hide Value:</label>
-        <input type="number" name="hideValue" value={hideValue} onChange={(event) => setHideValue(parseInt(event.target.value))} /><br />
+        <input type="number" name="hideValue" value={hideValue.value} onChange={(event) => setHideValue({...hideValue, value: parseInt(event.target.value)})} />
+        <label>
+          Gilded:
+          <input
+            type="radio"
+            name="hideGilded"
+            checked={hideValue.Gilded}
+            onChange={() => setHideValue({ ...hideValue, Gilded: true })}
+          />
+          Not Gilded:
+          <input
+            type="radio"
+            name="hideGilded"
+            checked={!hideValue.Gilded}
+            onChange={() => setHideValue({ ...hideValue, Gilded: false })}
+          />
+        </label><br />
 
         <label htmlFor="cunningDriveValue">Cunning's Maximum Drive:</label>
-        <input type="number" name="cunningDriveValue" value={cunningDriveValue} onChange={(event) => setCunningDriveValue(parseInt(event.target.value))} /><br />
+        <input type="number" name="cunningDriveValue" value={cunningDriveValue.value} onChange={(event) => setCunningDriveValue({...cunningDriveValue, value: parseInt(event.target.value)})} /><br />
 
         <label htmlFor="surveyValue">Character's Survey Value:</label>
-        <input type="number" name="surveyValue" value={surveyValue} onChange={(event) => setSurveyValue(parseInt(event.target.value))} /><br />
+        <input type="number" name="surveyValue" value={surveyValue.value} onChange={(event) => setSurveyValue({...surveyValue, value: parseInt(event.target.value)})} />
+        <label>
+          Gilded:
+          <input
+            type="radio"
+            name="surveyGilded"
+            checked={surveyValue.Gilded}
+            onChange={() => setSurveyValue({ ...surveyValue, Gilded: true })}
+          />
+          Not Gilded:
+          <input
+            type="radio"
+            name="surveyGilded"
+            checked={!surveyValue.Gilded}
+            onChange={() => setSurveyValue({ ...surveyValue, Gilded: false })}
+          />
+        </label><br />
 
         <label htmlFor="focusValue">Character's Focus Value:</label>
-        <input type="number" name="focusValue" value={focusValue} onChange={(event) => setFocusValue(parseInt(event.target.value))} /><br />
+        <input type="number" name="focusValue" value={focusValue.value} onChange={(event) => setFocusValue({...focusValue, value: parseInt(event.target.value)})} />
+        <label>
+          Gilded:
+          <input
+            type="radio"
+            name="focusGilded"
+            checked={focusValue.Gilded}
+            onChange={() => setFocusValue({ ...focusValue, Gilded: true })}
+          />
+          Not Gilded:
+          <input
+            type="radio"
+            name="focusGilded"
+            checked={!focusValue.Gilded}
+            onChange={() => setFocusValue({ ...focusValue, Gilded: false })}
+          />
+        </label><br />
 
         <label htmlFor="senseValue">Character's Sense Value:</label>
-        <input type="number" name="senseValue" value={senseValue} onChange={(event) => setSenseValue(parseInt(event.target.value))} /><br />
+        <input type="number" name="senseValue" value={senseValue.value} onChange={(event) => setSenseValue({...senseValue, value: parseInt(event.target.value)})} />
+        <label>
+          Gilded:
+          <input
+            type="radio"
+            name="senseGilded"
+            checked={senseValue.Gilded}
+            onChange={() => setSenseValue({ ...senseValue, Gilded: true })}
+          />
+          Not Gilded:
+          <input
+            type="radio"
+            name="senseGilded"
+            checked={!senseValue.Gilded}
+            onChange={() => setSenseValue({ ...senseValue, Gilded: false })}
+          />
+        </label><br />
 
         <label htmlFor="intuitionDriveValue">Intuition's Maximum Drive:</label>
-        <input type="number" name="intuitionDriveValue" value={intuitionDriveValue} onChange={(event) => setIntuitionDriveValue(parseInt(event.target.value))} /><br />
+        <input type="number" name="intuitionDriveValue" value={intuitionDriveValue.value} onChange={(event) => setIntuitionDriveValue({...intuitionDriveValue, value: parseInt(event.target.value)})} /><br />
 
         <button type="submit">Submit</button>
       </form>
