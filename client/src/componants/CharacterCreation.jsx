@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const CharacterCreation = () => {
+  
   const { userId } = useParams();
-
+  
   const [name, setName] = useState('');
   const [pronouns, setPronouns] = useState('');
   const [circle, setCircle] = useState('');
@@ -27,7 +28,8 @@ const CharacterCreation = () => {
   const [intuitionDriveValue, setIntuitionDriveValue] = useState(0);
   const [roleAbilities, setRoleAbilities] = useState({});
   const [specialtyAbilities, setSpecialtyAbilities] = useState({});
-
+  
+  console.log(specialty)
   useEffect(() => {
     switch (role) {
       case 'Slink': {
@@ -191,6 +193,9 @@ const CharacterCreation = () => {
     }
   }, [role, specialty]);
 
+  console.log(roleAbilities);
+  console.log(specialtyAbilities);
+
 
   const characterData = {
     User: userId,
@@ -255,6 +260,9 @@ const CharacterCreation = () => {
         <h2>Character Details</h2>
         <label htmlFor="Style">Style:</label>
         <input type="text" name="Style" value={style} onChange={(event) => setStyle(event.target.value)} /><br />
+
+        <label htmlFor="Circle">Circle:</label>
+        <input type="text" name="Circle" value={circle} onChange={(event) => setCircle(event.target.value)} /><br />
   
         <label htmlFor="Catalyst">Character's Catalyst:</label>
         <input type="text" name="Catalyst" value={catalyst} onChange={(event) => setCatalyst(event.target.value)} /><br />
@@ -282,7 +290,6 @@ const CharacterCreation = () => {
         {role === "Weird" ? <option value="Occultist">Occultist</option> : null}
         {role === "Muscle" ? <option value="Explorer">Explorer</option> : null}
         </select><br />
-  
         <h2>Stats</h2>
         <label htmlFor="moveValue">Move:</label>
         <input type="number" name="move" value={moveValue} onChange={(event) => setMoveValue(parseInt(event.target.value))} /><br />
