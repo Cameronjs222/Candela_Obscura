@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -25,6 +25,88 @@ const CharacterCreation = () => {
   const [focusValue, setFocusValue] = useState(0);
   const [senseValue, setSenseValue] = useState(0);
   const [intuitionDriveValue, setIntuitionDriveValue] = useState(0);
+
+  useEffect(() => {
+    switch (role) {
+      case 'Slink': {
+        setMoveValue(1);
+        setStrikeValue(1);
+        setControlValue(1);
+        setSwayValue(1);
+        setReadValue(1);
+        setHideValue(2);
+        setSurveyValue(1);
+        setFocusValue(1);
+        setSenseValue(0);
+        setNerveDriveValue(3);
+        setCunningDriveValue(6);
+        setIntuitionDriveValue(0);
+        break;
+      }
+      case 'Scholar': {
+        setMoveValue(0);
+        setStrikeValue(0);
+        setControlValue(1);
+        setSwayValue(2);
+        setReadValue(1);
+        setHideValue(0);
+        setSurveyValue(2);
+        setFocusValue(2);
+        setSenseValue(1);
+        setNerveDriveValue(2);
+        setCunningDriveValue(3);
+        setIntuitionDriveValue(4);
+        break;
+      }
+      case 'Face': {
+        setMoveValue(0);
+        setStrikeValue(0);
+        setControlValue(1);
+        setSwayValue(2);
+        setReadValue(1);
+        setHideValue(2);
+        setSurveyValue(0);
+        setFocusValue(1);
+        setSenseValue(2);
+        setNerveDriveValue(3);
+        setCunningDriveValue(3);
+        setIntuitionDriveValue(3);
+        break;
+      }
+      case 'Weird': {
+        setMoveValue(0);
+        setStrikeValue(1);
+        setControlValue(1);
+        setSwayValue(0);
+        setReadValue(2);
+        setHideValue(1);
+        setSurveyValue(0);
+        setFocusValue(2);
+        setSenseValue(2);
+        setNerveDriveValue(0);
+        setCunningDriveValue(3);
+        setIntuitionDriveValue(6);
+        break;
+      }
+      case 'Muscle': {
+        setMoveValue(2);
+        setStrikeValue(2);
+        setControlValue(0);
+        setSwayValue(0);
+        setReadValue(1);
+        setHideValue(1);
+        setSurveyValue(2);
+        setFocusValue(1);
+        setSenseValue(0);
+        setNerveDriveValue(6);
+        setCunningDriveValue(3);
+        setIntuitionDriveValue(0);
+        break;
+      }
+    }
+
+  }, [role, specialty]);
+
 
   const characterData = {
     User: userId,
@@ -165,10 +247,24 @@ const CharacterCreation = () => {
   
         <h2>Role and Specialty</h2>
         <label htmlFor="Role">Role:</label>
-        <input type="text" name="Role" value={role} onChange={(event) => setRole(event.target.value)} /><br />
+        <select type="text" name="Role" value={role} onChange={(event) => setRole(event.target.value)}>
+        <option value="None">None</option>
+        <option value="Slink">Slink</option>
+        <option value="Scholar">Scholar</option>
+        <option value="Face">Face</option>
+        <option value="Weird">Weird</option>
+        <option value="Muscle">Muscle</option>
+        </select><br />
   
         <label htmlFor="Specialty">Specialty:</label>
-        <input type="text" name="Specialty" value={specialty} onChange={(event) => setSpecialty(event.target.value)} /><br />
+        <select type="text" name="Specialty" value={specialty} onChange={(event) => setSpecialty(event.target.value)}>
+        <option value="None">None</option>
+        {role === "Slink" ? <option value="Criminal">Criminal</option> : null}
+        {role === "Scholar" ? <option value="Professor">Professor</option> : null}
+        {role === "Face" ? <option value="Magician">Magician</option> : null}
+        {role === "Weird" ? <option value="Occultist">Occultist</option> : null}
+        {role === "Muscle" ? <option value="Explorer">Explorer</option> : null}
+        </select><br />
   
         <h2>Stats</h2>
         <label htmlFor="moveValue">Move:</label>
