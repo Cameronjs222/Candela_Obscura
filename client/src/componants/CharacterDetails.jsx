@@ -160,8 +160,12 @@ const CharacterDetails = () => {
                 <div className='rightContainer' >
                     <div className='characterAbilities'>
                         <h2>Other Details</h2>
-                        <p>Role: {character.Role}</p>
-                        <p>Specialty: {character.Specialty}</p>
+                        <p>Role: {character.Role.title}</p>
+                        <p>Role Abilities: {character.Role.abilities.title}</p>
+                        <p>Description: {character.Role.abilities.description}</p>
+                        <p>Specialty: {character.Specialty.title}</p>
+                        <p>Specialty Abilities: {character.Specialty.abilities.title}</p>
+                        <p>Description: {character.Specialty.abilities.description}</p>
                     </div>
                 </div>
                 <div className='characterMarks'>
