@@ -30,8 +30,8 @@ const CharacterCreation = () => {
   const [intuitionDriveValue, setIntuitionDriveValue] = useState({ value: 0, Gilded: false });
   const [roleAbilitiesTitle, setRoleAbilitiesTitle] = useState("");
   const [roleAbilitiesDescription, setRoleAbilitiesDescription] = useState("");
-  const [specialtyAbilitiesTitle, setSpecialtyAbilitiesTitle] = useState("");
-  const [specialtyAbilitiesDescription, setSpecialtyAbilitiesDescription] = useState("");
+  const [specialtyAbilitiesTitle, setSpecialtyAbilitiesTitle] = useState([]);
+  const [specialtyAbilitiesDescription, setSpecialtyAbilitiesDescription] = useState([]);
 
   console.log(specialty)
   useEffect(() => {
@@ -145,8 +145,8 @@ const CharacterCreation = () => {
         break;
       }
       case 'Explorer': {
-        setSpecialtyAbilitiesTitle("Tenacious");
-        setSpecialtyAbilitiesDescription("When you have one or more Bleed marks, gild an additional die on Move, Strike, or Control rolls while in danger");
+        setSpecialtyAbilitiesTitle(["Tenacious", "Survivalist"]);
+        setSpecialtyAbilitiesDescription(["When you have one or more Bleed marks, gild an additional die on Move, Strike, or Control rolls while in danger", "When you have one or more Bleed marks, gild an additional die on Survey, Focus, or Sense rolls while in danger"]);
         break;
       }
     }
@@ -191,14 +191,13 @@ const CharacterCreation = () => {
     },
     Specialty: {
       title: specialty,
-      abilities: {
-        title: specialtyAbilitiesTitle,
-        description: specialtyAbilitiesDescription
-      }
+      abilities: specialtyAbilitiesTitle.map(
+        (title, index) => ({ title: title, description: specialtyAbilitiesDescription[index] })
+      )
     }
   };
 
-
+  console.log(characterData.Specialty.abilities);
   const submitEvent = (event) => {
     event.preventDefault();
 

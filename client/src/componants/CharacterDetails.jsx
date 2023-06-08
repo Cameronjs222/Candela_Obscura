@@ -19,6 +19,8 @@ const CharacterDetails = () => {
         fetchCharacterData();
     }, []);
 
+
+    console.log(character);
     if (!character) {
         return <div>Loading...</div>;
     }

@@ -72,11 +72,12 @@ const CharacterSchema = new mongoose.Schema({
     },
     Specialty: {
         title: { type: String, maxlength: [35, "Please keep your specialty title to under 35 characters"] },
-        abilities:
+        abilities: [
             {
                 title: { type: String, },
                 description: { type: String },
-            },
+            }
+        ],
     },
     IlluminationKeys: {
         type: String,
