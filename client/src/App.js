@@ -5,6 +5,7 @@ import SelectUser from './componants/SelectUser';
 import SelectCharacter from './componants/SelectCharacter';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { useState } from 'react';
+import UserForm from './componants/UserForm';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
             <Route path='/characters/all/:userId' element={<SelectCharacter/>}></Route>
             <Route path='/characters/:charId' element={<CharacterDetails/>}></Route>
             <Route path='/characters/new/:userId' element={<CharacterCreation/>}></Route>
+            <Route path='/users/new' element={<UserForm/>}></Route>
           </Routes>
         </BrowserRouter>
       </header>
