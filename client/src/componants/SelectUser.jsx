@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const UserList = () => {
     const [users, setUsers] = useState([]);
+    console.log(users)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,6 +27,9 @@ const UserList = () => {
                     <Link to={`/characters/all/${user._id}`}>{user.UserName}</Link>
                 </div>
             ))}
+
+        <Link to={`/users/new/`}>Create new user</Link>
+
         </div>
     );
 };
