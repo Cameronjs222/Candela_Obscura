@@ -35,27 +35,27 @@ const CharacterSchema = new mongoose.Schema({
     },
     Stats: {
         Nerve: {
-            move: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-            strike: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-            control: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
+            move: { value: { type: Number, default: 0 }, Gilded: { type: Boolean, default: false } },
+            strike: { value: { type: Number, default: 0 }, Gilded: { type: Boolean, default: false } },
+            control: { value: { type: Number, default: 0 }, Gilded: { type: Boolean, default: false } },
             nerveDrive: {
                 value: { type: Number, default: 0, max: 9 },
                 maximum: { type: Number, default: 0, max: 9 }
             }
         },
         Cunning: {
-            sway: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-            read: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-            hide: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
+            sway: { value: { type: Number, default: 0 }, Gilded: { type: Boolean, default: false } },
+            read: { value: { type: Number, default: 0 }, Gilded: { type: Boolean, default: false } },
+            hide: { value: { type: Number, default: 0 }, Gilded: { type: Boolean, default: false } },
             cunningDrive: {
                 value: { type: Number, default: 0, max: 9 },
                 maximum: { type: Number, default: 0, max: 9 }
             }
         },
         Intuition: {
-            survey: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-            focus: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
-            sense: { value: { type: Number, default: 0 }, Guilded: { type: Boolean, default: false } },
+            survey: { value: { type: Number, default: 0 }, Gilded: { type: Boolean, default: false } },
+            focus: { value: { type: Number, default: 0 }, Gilded: { type: Boolean, default: false } },
+            sense: { value: { type: Number, default: 0 }, Gilded: { type: Boolean, default: false } },
             intuitionDrive: {
                 value: { type: Number, default: 0, max: 9 },
                 maximum: { type: Number, default: 0, max: 9 }
