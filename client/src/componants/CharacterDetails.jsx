@@ -20,7 +20,7 @@ const CharacterDetails = () => {
     }, []);
 
 
-    console.log(character);
+    // console.log(character.Specialty.abilities[0].title);
     if (!character) {
         return <div>Loading...</div>;
     }
@@ -62,6 +62,7 @@ const CharacterDetails = () => {
                             <p className='statItem'>Move: {
                                 character.Stats.Nerve.move.value
                             }</p>
+                            {character.Stats.Nerve.move.Gilded ? "gilded" : null}
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
@@ -70,6 +71,7 @@ const CharacterDetails = () => {
                             <p className='statItem'>Strike: {
                                 character.Stats.Nerve.strike.value
                             }</p>
+                            {character.Stats.Nerve.strike.Gilded ? "gilded" : null}
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
@@ -78,6 +80,7 @@ const CharacterDetails = () => {
                             <p className='statItem'>Control: {
                                 character.Stats.Nerve.control.value
                             }</p>
+                            {character.Stats.Nerve.control.Gilded ? "gilded" : null}
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
@@ -98,6 +101,7 @@ const CharacterDetails = () => {
                             <p className='statItem'>Sway: {
                                 character.Stats.Cunning.sway.value
                             }</p>
+                            {character.Stats.Cunning.sway.Gilded ? "gilded" : null}
                             <div className='statValueContainer'>
                                 <div className="statValue 1"></div>
                                 <div className="statValue 2"></div>
@@ -106,6 +110,7 @@ const CharacterDetails = () => {
                             <p className='statItem'>Read: {
                                 character.Stats.Cunning.read.value
                             }</p>
+                            {character.Stats.Cunning.read.Gilded ? "gilded" : null}
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
@@ -114,6 +119,7 @@ const CharacterDetails = () => {
                             <p className='statItem'>Hide: {
                                 character.Stats.Cunning.hide.value
                             }</p>
+                            {character.Stats.Cunning.hide.Gilded ? "gilded" : null}
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
@@ -134,6 +140,7 @@ const CharacterDetails = () => {
                             <p className='statItem'>Survey: {
                                 character.Stats.Intuition.survey.value
                             }</p>
+                            {character.Stats.Intuition.survey.Gilded ? "gilded" : null}
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
@@ -142,6 +149,7 @@ const CharacterDetails = () => {
                             <p className='statItem'>Focus: {
                                 character.Stats.Intuition.focus.value
                             }</p>
+                            {character.Stats.Intuition.focus.Gilded ? "gilded" : null}
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
@@ -150,6 +158,7 @@ const CharacterDetails = () => {
                             <p className='statItem'>Sense: {
                                 character.Stats.Intuition.sense.value
                             }</p>
+                            {character.Stats.Intuition.sense.Gilded ? "gilded" : null}
                             <div className='statValueContainer'>
                                 <div className="statValue first"></div>
                                 <div className="statValue second"></div>
@@ -163,11 +172,26 @@ const CharacterDetails = () => {
                     <div className='characterAbilities'>
                         <h2>Other Details</h2>
                         <p>Role: {character.Role.title}</p>
-                        <p>Role Abilities: {character.Role.abilities.title}</p>
-                        <p>Description: {character.Role.abilities.description}</p>
-                        <p>Specialty: {character.Specialty.title}</p>
-                        <p>Specialty Abilities: {character.Specialty.abilities.title}</p>
-                        <p>Description: {character.Specialty.abilities.description}</p>
+                        <p>Role Abilities: </p>
+                        {character.Role.abilities.map((title, index) => {
+                            return (
+                                <div key={index}>
+                                    <p>
+                                    {title.title}: {title.description}
+                                    </p>
+                                    </div>
+                            )})}
+
+                        <span>Specialty: {character.Specialty.title}</span>
+                        <p>Specialty Abilities: </p>
+                        {character.Specialty.abilities.map((title, index) => {
+                            return (
+                                <div key={index}>
+                                    <p>
+                                    {title.title}: {title.description}
+                                    </p>
+                                    </div>
+                            )})}
                     </div>
                 </div>
                 <div className='characterMarks'>
