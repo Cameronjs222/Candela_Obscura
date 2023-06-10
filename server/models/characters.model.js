@@ -64,11 +64,12 @@ const CharacterSchema = new mongoose.Schema({
     },
     Role: {
         title: { type: String, maxlength: [35, "Please keep your role title to under 35 characters"], enum: ["Slink", "Scholar", "Face", "Weird", "Muscle"] },
-        abilities: 
+        abilities: [
             {
                 title: { type: String },
                 description: { type: String },
-            },
+            }
+        ],
     },
     Specialty: {
         title: { type: String, maxlength: [35, "Please keep your specialty title to under 35 characters"] },
