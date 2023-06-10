@@ -33,9 +33,6 @@ const CharacterCreation = () => {
   const [specialtyAbilitiesTitle, setSpecialtyAbilitiesTitle] = useState([]);
   const [specialtyAbilitiesDescription, setSpecialtyAbilitiesDescription] = useState([]);
 
-  console.log(specialtyAbilitiesTitle)
-  console.log(roleAbilitiesTitle)
-  console.log(roleAbilitiesDescription)
   useEffect(() => {
     switch (role) {
       case 'Slink': {
@@ -166,21 +163,21 @@ const CharacterCreation = () => {
     },
     Stats: {
       Nerve: {
-        move: moveValue,
-        strike: strikeValue,
-        controlValue: controlValue,
+        move: { value: moveValue.value, Gilded: moveValue.Gilded },
+        strike: { value: strikeValue.value, Gilded: strikeValue.Gilded },
+        controlValue: { value: controlValue.value, Gilded: controlValue.Gilded },
         nerveDrive: { value: nerveDriveValue.value, maximum: nerveDriveValue.value }
       },
       Cunning: {
-        sway: swayValue,
-        read: readValue,
-        hide: hideValue,
+        sway: { value: swayValue.value, Gilded: swayValue.Gilded },
+        read: { value: readValue.value, Gilded: readValue.Gilded },
+        hide: { value: hideValue.value, Gilded: hideValue.Gilded },
         cunningDrive: { value: cunningDriveValue.value, maximum: cunningDriveValue.value }
       },
       Intuition: {
-        survey: surveyValue,
-        focus: focusValue,
-        sense: senseValue,
+        survey: { value: surveyValue.value, Gilded: surveyValue.Gilded },
+        focus: { value: focusValue.value, Gilded: focusValue.Gilded },
+        sense: { value: senseValue.value, Gilded: senseValue.Gilded },
         intuitionDrive: { value: intuitionDriveValue.value, maximum: intuitionDriveValue.value }
       }
     },
@@ -198,7 +195,7 @@ const CharacterCreation = () => {
     }
   };
 
-  console.log(characterData.Specialty.abilities);
+  console.log(characterData);
   const submitEvent = (event) => {
     event.preventDefault();
 
