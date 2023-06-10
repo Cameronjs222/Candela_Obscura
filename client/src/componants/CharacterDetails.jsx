@@ -19,7 +19,7 @@ const CharacterDetails = () => {
         fetchCharacterData();
     }, []);
 
-
+    console.log(character);
     // console.log(character.Specialty.abilities[0].title);
     if (!character) {
         return <div>Loading...</div>;
