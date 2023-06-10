@@ -28,12 +28,14 @@ const CharacterCreation = () => {
   const [focusValue, setFocusValue] = useState({ value: 0, Gilded: false });
   const [senseValue, setSenseValue] = useState({ value: 0, Gilded: false });
   const [intuitionDriveValue, setIntuitionDriveValue] = useState({ value: 0, Gilded: false });
-  const [roleAbilitiesTitle, setRoleAbilitiesTitle] = useState("");
-  const [roleAbilitiesDescription, setRoleAbilitiesDescription] = useState("");
+  const [roleAbilitiesTitle, setRoleAbilitiesTitle] = useState([]);
+  const [roleAbilitiesDescription, setRoleAbilitiesDescription] = useState([]);
   const [specialtyAbilitiesTitle, setSpecialtyAbilitiesTitle] = useState([]);
   const [specialtyAbilitiesDescription, setSpecialtyAbilitiesDescription] = useState([]);
 
-  console.log(specialty)
+  console.log(specialtyAbilitiesTitle)
+  console.log(roleAbilitiesTitle)
+  console.log(roleAbilitiesDescription)
   useEffect(() => {
     switch (role) {
       case 'Slink': {
@@ -49,8 +51,8 @@ const CharacterCreation = () => {
         setNerveDriveValue({ value: 3, Gilded: false });
         setCunningDriveValue({ value: 6, Gilded: false });
         setIntuitionDriveValue({ value: 0, Gilded: false });
-        setRoleAbilitiesTitle("Scout");
-        setRoleAbilitiesDescription("If you have time to observe a location, you can spend 1 Intuition to ask a question: What do I notice here that others do not see? What in this place might be of use to us? What path should we follow?");
+        setRoleAbilitiesTitle(["Scout"]);
+        setRoleAbilitiesDescription(["If you have time to observe a location, you can spend 1 Intuition to ask a question: What do I notice here that others do not see? What in this place might be of use to us? What path should we follow?"]);
         break;
       }
       case 'Scholar': {
@@ -66,8 +68,8 @@ const CharacterCreation = () => {
         setNerveDriveValue({ value: 2, Gilded: false });
         setCunningDriveValue({ value: 3, Gilded: false });
         setIntuitionDriveValue({ value: 4, Gilded: false });
-        setRoleAbilitiesTitle("Well-Read");
-        setRoleAbilitiesDescription("You’re highly educated and retain knowledge better than most. When you use Intuition while making a roll, if you fail the roll, earn back any Intuition you used");
+        setRoleAbilitiesTitle(["Well-Read"]);
+        setRoleAbilitiesDescription(["You’re highly educated and retain knowledge better than most. When you use Intuition while making a roll, if you fail the roll, earn back any Intuition you used"]);
         break;
       }
       case 'Face': {
@@ -83,8 +85,8 @@ const CharacterCreation = () => {
         setNerveDriveValue({ value: 3, Gilded: false });
         setCunningDriveValue({ value: 3, Gilded: false });
         setIntuitionDriveValue({ value: 3, Gilded: false });
-        setRoleAbilitiesTitle("I know a guy");
-        setRoleAbilitiesDescription("Once per assignment, ask the GM who you know nearby that could help you. They will give you a temporary contact and explain why they might have insight into the investigation.");
+        setRoleAbilitiesTitle(["I know a guy"]);
+        setRoleAbilitiesDescription(["Once per assignment, ask the GM who you know nearby that could help you. They will give you a temporary contact and explain why they might have insight into the investigation."]);
         break;
       }
       case 'Weird': {
@@ -100,8 +102,8 @@ const CharacterCreation = () => {
         setNerveDriveValue({ value: 0, Gilded: false });
         setCunningDriveValue({ value: 3, Gilded: false });
         setIntuitionDriveValue({ value: 6, Gilded: false });
-        setRoleAbilitiesTitle("The Sight");
-        setRoleAbilitiesDescription("Whenever you take one or more Bleed marks, you also gain additional information about the phenomenon that harmed you. Ask the GM a question about the source of the bleed.");
+        setRoleAbilitiesTitle(["The Sight"]);
+        setRoleAbilitiesDescription(["Whenever you take one or more Bleed marks, you also gain additional information about the phenomenon that harmed you. Ask the GM a question about the source of the bleed."]);
         break;
       }
       case 'Muscle': {
@@ -117,31 +119,31 @@ const CharacterCreation = () => {
         setNerveDriveValue({ value: 6, Gilded: false });
         setCunningDriveValue({ value: 3, Gilded: false });
         setIntuitionDriveValue({ value: 0, Gilded: false });
-        setRoleAbilitiesTitle("Brawler");
-        setRoleAbilitiesDescription("Spend 1 Nerve to choose an ally in the same area as you who is about to take a mark from a phenomenon. Describe what you do that allows you to take the mark instead.");
+        setRoleAbilitiesTitle(["Brawler"]);
+        setRoleAbilitiesDescription(["Spend 1 Nerve to choose an ally in the same area as you who is about to take a mark from a phenomenon. Describe what you do that allows you to take the mark instead.", "Spend 1 Nerve to choose an ally in the same area as you who is about to take a mark from a phenomenon. Describe what you do that allows you to take the mark instead."]);
         break;
       }
     }
     
     switch (specialty) {
       case 'Criminal': {
-        setSpecialtyAbilitiesTitle("Street Smarts");
-        setSpecialtyAbilitiesDescription(" You know how to keep an eye on your surroundings. Whenever you make a Survey roll, you may spend any drive instead of only using Intuition.");
+        setSpecialtyAbilitiesTitle(["Street Smarts"]);
+        setSpecialtyAbilitiesDescription([" You know how to keep an eye on your surroundings. Whenever you make a Survey roll, you may spend any drive instead of only using Intuition."]);
         break;
       }
       case 'Professor': {
-        setSpecialtyAbilitiesTitle("Steal mind");
-        setSpecialtyAbilitiesDescription("Once per assignment, when you should take a Brain mark, you may instead spend 2 Intuition to negate it.");
+        setSpecialtyAbilitiesTitle(["Steal mind"]);
+        setSpecialtyAbilitiesDescription(["Once per assignment, when you should take a Brain mark, you may instead spend 2 Intuition to negate it."]);
         break;
       }
       case 'Magician': {
-        setSpecialtyAbilitiesTitle("Misdirection");
-        setSpecialtyAbilitiesDescription("When you use your words or actions to distract a target from what is actually happening, make a Hide roll. The first Cunning you or an ally spends on this roll is worth +2d instead of +1d.");
+        setSpecialtyAbilitiesTitle(["Misdirection"]);
+        setSpecialtyAbilitiesDescription(["When you use your words or actions to distract a target from what is actually happening, make a Hide roll. The first Cunning you or an ally spends on this roll is worth +2d instead of +1d."]);
         break;
       }
       case 'Occultist': {
-        setSpecialtyAbilitiesTitle("Ghostblade");
-        setSpecialtyAbilitiesDescription("You can attune a ritual knife to yourself. If you coat it in your blood (take a Body mark), it can wound magickal beings and strike invisible or ethereal enemies.");
+        setSpecialtyAbilitiesTitle(["Ghostblade"]);
+        setSpecialtyAbilitiesDescription(["You can attune a ritual knife to yourself. If you coat it in your blood (take a Body mark), it can wound magickal beings and strike invisible or ethereal enemies."]);
         break;
       }
       case 'Explorer': {
@@ -184,10 +186,9 @@ const CharacterCreation = () => {
     },
     Role: {
       title: role,
-      abilities: { 
-        title: roleAbilitiesTitle,
-        description: roleAbilitiesDescription
-      }
+      abilities: roleAbilitiesTitle.map(
+        (title, index) => ({ title: title, description: roleAbilitiesDescription[index] })
+      )
     },
     Specialty: {
       title: specialty,
