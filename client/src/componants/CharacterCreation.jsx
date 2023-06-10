@@ -44,8 +44,8 @@ const CharacterCreation = () => {
         setControlValue({ value: 1, Gilded: false });
         setSwayValue({ value: 1, Gilded: false });
         setReadValue({ value: 1, Gilded: false });
-        setHideValue({ value: 2, Gilded: false });
-        setSurveyValue({ value: 1, Gilded: false });
+        setHideValue({ value: 2, Gilded: true });
+        setSurveyValue({ value: 1, Gilded: true });
         setFocusValue({ value: 1, Gilded: false });
         setSenseValue({ value: 0, Gilded: false });
         setNerveDriveValue({ value: 3, Gilded: false });
@@ -58,12 +58,12 @@ const CharacterCreation = () => {
       case 'Scholar': {
         setMoveValue({ value: 0, Gilded: false });
         setStrikeValue({ value: 0, Gilded: false });
-        setControlValue({ value: 1, Gilded: false });
+        setControlValue({ value: 1, Gilded: true });
         setSwayValue({ value: 2, Gilded: false });
         setReadValue({ value: 1, Gilded: false });
         setHideValue({ value: 0, Gilded: false });
         setSurveyValue({ value: 2, Gilded: false });
-        setFocusValue({ value: 2, Gilded: false });
+        setFocusValue({ value: 2, Gilded: true });
         setSenseValue({ value: 1, Gilded: false });
         setNerveDriveValue({ value: 2, Gilded: false });
         setCunningDriveValue({ value: 3, Gilded: false });
@@ -76,9 +76,9 @@ const CharacterCreation = () => {
         setMoveValue({ value: 0, Gilded: false });
         setStrikeValue({ value: 0, Gilded: false });
         setControlValue({ value: 1, Gilded: false });
-        setSwayValue({ value: 2, Gilded: false });
+        setSwayValue({ value: 2, Gilded: true });
         setReadValue({ value: 1, Gilded: false });
-        setHideValue({ value: 2, Gilded: false });
+        setHideValue({ value: 2, Gilded: true });
         setSurveyValue({ value: 0, Gilded: false });
         setFocusValue({ value: 1, Gilded: false });
         setSenseValue({ value: 2, Gilded: false });
@@ -100,15 +100,15 @@ const CharacterCreation = () => {
         setFocusValue({ value: 2, Gilded: false });
         setSenseValue({ value: 2, Gilded: false });
         setNerveDriveValue({ value: 0, Gilded: false });
-        setCunningDriveValue({ value: 3, Gilded: false });
-        setIntuitionDriveValue({ value: 6, Gilded: false });
+        setCunningDriveValue({ value: 3, Gilded: true });
+        setIntuitionDriveValue({ value: 6, Gilded: true });
         setRoleAbilitiesTitle(["The Sight"]);
         setRoleAbilitiesDescription(["Whenever you take one or more Bleed marks, you also gain additional information about the phenomenon that harmed you. Ask the GM a question about the source of the bleed."]);
         break;
       }
       case 'Muscle': {
-        setMoveValue({ value: 2, Gilded: false });
-        setStrikeValue({ value: 2, Gilded: false });
+        setMoveValue({ value: 2, Gilded: true });
+        setStrikeValue({ value: 2, Gilded: true });
         setControlValue({ value: 0, Gilded: false });
         setSwayValue({ value: 0, Gilded: false });
         setReadValue({ value: 1, Gilded: false });
