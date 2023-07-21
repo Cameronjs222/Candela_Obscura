@@ -94,8 +94,8 @@ const CharacterCreation = () => {
         setReadValue({ value: 2, Gilded: false });
         setHideValue({ value: 1, Gilded: false });
         setSurveyValue({ value: 0, Gilded: false });
-        setFocusValue({ value: 2, Gilded: false });
-        setSenseValue({ value: 2, Gilded: false });
+        setFocusValue({ value: 2, Gilded: true });
+        setSenseValue({ value: 2, Gilded: true });
         setNerveDriveValue({ value: 0, Gilded: false });
         setCunningDriveValue({ value: 3, Gilded: true });
         setIntuitionDriveValue({ value: 6, Gilded: true });
@@ -202,7 +202,7 @@ const CharacterCreation = () => {
     axios
       .post('http://localhost:8000/api/character/add', characterData)
       .then((response) => {
-        console.log(response.data);
+        console.log(response.data._id + 'Character Created');
         Navigate('/characters/' + response.data._id);
       })
       .catch((error) => {
