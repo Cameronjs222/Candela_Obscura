@@ -1,7 +1,10 @@
 import axios from 'axios';
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const UserForm = () => {
+
+  const Navigate = useNavigate();
 
     const [formState, setFormState] = useState({
         Email: '',
@@ -14,6 +17,10 @@ const UserForm = () => {
     const SubmitEvent = (e) => {
         e.preventDefault();
         axios.post('http://localhost:8000/api/users', formState)
+        .then((res) => {
+            console.log(res.data._id + "User Created")
+            Navigate('/characters/all/' + res.data._id)
+        })
     }
 
   return (
