@@ -1,0 +1,42 @@
+.characterInfoContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px; /* You can adjust the max-width to your preference */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.characterInformation {
+    width: 30%;
+    padding: 10px;
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+    display: block;
+
+}
+
+.titleHeader {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: xx-large;
+    margin: 0 100px;
+}
+
+.titleHeader h2 {
+    margin: 0;
+}
+
+/* Additional styling, you can customize the colors and fonts as needed */
+
+.characterInformation span {
+    display: block;
+    margin-bottom: 8px;
+    font-family: "Arial", sans-serif;
+    color: white;
+    font-size: 16px;
+}

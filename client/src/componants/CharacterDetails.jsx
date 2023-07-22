@@ -36,15 +36,23 @@ const CharacterDetails = () => {
 
             <div className='mainContainer'>
 
-                <div className="characterInformation" >
-
-                    <p>Name: {character.Information.Name}</p>
-                    <p>Pronouns: {character.Information.Pronouns}</p>
-                    <p>Circle: {character.Information.Circle}</p>
-                    <p>Style: {character.Information.Style}</p>
-                    <p>Catalyst: {character.Information.Catalyst}</p>
-                    <p>Question: {character.Information.Question}</p>
+                <div className="characterInfoContainer">
+                    <div className="characterInformation" >
+                        <span>Name: {character.Information.Name}</span>
+                        <span>Pronouns: {character.Information.Pronouns}</span>
+                        <span>Circle: {character.Information.Circle}</span>
+                    </div>
+                    <div class="titleHeader">
+                        <span>Candela</span>
+                        <span>Obscura</span>
+                    </div>
+                    <div className='characterInformation'>
+                        <span>Style: {character.Information.Style}</span>
+                        <span>Catalyst: {character.Information.Catalyst}</span>
+                        <span>Question: {character.Information.Question}</span>
+                    </div>
                 </div>
+
                 <div className='characterStatContainer' >
 
                     <div className="characterStats">
@@ -177,10 +185,11 @@ const CharacterDetails = () => {
                             return (
                                 <div key={index}>
                                     <p>
-                                    {title.title}: {title.description}
+                                        {title.title}: {title.description}
                                     </p>
-                                    </div>
-                            )})}
+                                </div>
+                            )
+                        })}
 
                         <span>Specialty: {character.Specialty.title}</span>
                         <p>Specialty Abilities: </p>
@@ -188,10 +197,11 @@ const CharacterDetails = () => {
                             return (
                                 <div key={index}>
                                     <p>
-                                    {title.title}: {title.description}
+                                        {title.title}: {title.description}
                                     </p>
-                                    </div>
-                            )})}
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
                 <div className='characterMarks'>
