@@ -33,6 +33,11 @@ const CharacterDetails = () => {
         return divs;
     };
 
+    const DriveActivation = (stat) => {
+
+        return alert("Drive Activated")
+    }
+
 
     return (
         <div className='wholeContainer'>
@@ -73,7 +78,7 @@ const CharacterDetails = () => {
                                             Nerve
                                         </h3>
                                     </div>
-                                    <div>
+                                    <div class  ="drives" onClick={() => DriveActivation("Nerve")}>
                                         Drives {character.Stats.Nerve.nerveDrive.value}
                                     </div>
                                 </div>
@@ -139,11 +144,6 @@ const CharacterDetails = () => {
                                 {generateDivs(character.Stats.Cunning.read.value)}
                                 </div>
                                 {character.Stats.Cunning.read.Gilded ? "gilded" : null}
-                                <div className='statValueContainer'>
-                                    <div className="statValue first"></div>
-                                    <div className="statValue second"></div>
-                                    <div className="statValue third"></div>
-                                </div>
                                 <span className='statItem'>Hide: {
                                     character.Stats.Cunning.hide.value
                                 }</span>
