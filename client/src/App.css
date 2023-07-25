@@ -40,3 +40,27 @@
     color: white;
     font-size: 16px;
 }
+
+.characterSheet {
+    border: 2px solid black;
+}
+.statValueDiv {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.statValueDivBlank{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.statValueDivContainer{
+    display: flex;
+    width: 100%;
+    background-color: red;
+}
+
