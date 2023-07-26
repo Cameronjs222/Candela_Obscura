@@ -34,8 +34,29 @@ const CharacterDetails = () => {
     };
 
     const DriveActivation = (stat) => {
+        const statDrive = `${stat.toLowerCase()}Drive`
+        if(character.Stats[stat][statDrive].value > 0){
+            setCharacter ({
+                ...character, Stats: {
+                    ...character.Stats, [stat]: {
+                        ...character.Stats[stat], [statDrive]: {
+                            ...character.Stats[stat][statDrive], value: character.Stats[stat][statDrive].value - 1
+                        }
+                    }
+                }
+            })
+            axios.patch('http://localhost:8000/api/character/' + charId, {
+                ...character, Stats: {
 
-        return alert("Drive Activated")
+                    ...character.Stats, [stat]: {
+                        ...character.Stats[stat], [statDrive]: {
+                            ...character.Stats[stat][statDrive], value: character.Stats[stat][statDrive].value - 1
+                        }
+                    }
+                }
+            })
+        }
+
     }
 
 
@@ -122,7 +143,7 @@ const CharacterDetails = () => {
                                             Cunning
                                         </h3>
                                     </div>
-                                    <div>
+                                    <div class  ="drives" onClick={() => DriveActivation("Cunning")}>
                                         Drives {character.Stats.Cunning.cunningDrive.value}
                                     </div>
                                 </div>
@@ -164,7 +185,7 @@ const CharacterDetails = () => {
                                             Intuition
                                         </h3>
                                     </div>
-                                    <div>
+                                    <div class  ="drives" onClick={() => DriveActivation("Intuition")}>
                                         Drives {character.Stats.Intuition.intuitionDrive.value}
                                     </div>
                                 </div>
