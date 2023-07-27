@@ -85,26 +85,26 @@ const CharacterDetails = () => {
 
             <div className="characterSheet">
                 <div className="characterStats">
-                    <div className="nerve statContainer">
-                        <div className="statHeader">
-                            <div className="HeaderTitle">
-                                <h3>
-                                    Nerve
-                                </h3>
-                            </div>
-                            <div class="drives" onClick={() => DriveActivation("Nerve")}>
-                                Drives {character.Stats.Nerve.nerveDrive.value}
-                            </div>
+                    <div className="statHeader">
+                        <div className="HeaderTitle">
+                            <h3>
+                                Nerve
+                            </h3>
                         </div>
+                        <div class="drives" onClick={() => DriveActivation("Nerve")}>
+                            Drives {character.Stats.Nerve.nerveDrive.value}
+                        </div>
+                    </div>
+                    <div className="nerve statContainer">
                         <div className="statName">
-                            {character.Stats.Nerve.move.Gilded ? <div className="Gilded"></div> : null}
+                            {character.Stats.Nerve.move.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
                             <span className='statItem'>Move: {character.Stats.Nerve.move.value}</span>
                         </div>
                         <div className="statValueDivContainer">
                             {generateDivs(character.Stats.Nerve.move.value)}
                         </div>
                         <div className="statName">
-                            {character.Stats.Nerve.strike.Gilded ? <div className="Gilded"></div> : null}
+                            {character.Stats.Nerve.strike.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
                             <span className='statItem'>Strike: {
                                 character.Stats.Nerve.strike.value
                             }</span>
@@ -114,7 +114,7 @@ const CharacterDetails = () => {
                         </div>
                         {character.Stats.Nerve.strike.Gilded ? "gilded" : null}
                         <div className="statName">
-                            {character.Stats.Nerve.control.Gilded ? <div className="Gilded"></div> : null}
+                            {character.Stats.Nerve.control.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
                             <span className='statItem'>Control: {
                                 character.Stats.Nerve.control.value
                             }</span>
@@ -124,20 +124,19 @@ const CharacterDetails = () => {
                         </div>
                         {character.Stats.Nerve.control.Gilded ? "gilded" : null}
                     </div>
-                    <div className="cunning statContainer">
-                        <div className="statHeader">
-                            <div className="HeaderTitle">
-                                <h3>
-                                    Cunning
-                                </h3>
-                            </div>
-                            <div class="drives" onClick={() => DriveActivation("Cunning")}>
-                                Drives {character.Stats.Cunning.cunningDrive.value}
-                            </div>
+                    <div className="statHeader">
+                        <div className="HeaderTitle">
+                            <h3>
+                                Cunning
+                            </h3>
                         </div>
+                        <div class="drives" onClick={() => DriveActivation("Cunning")}>
+                            Drives {character.Stats.Cunning.cunningDrive.value}
+                        </div>
+                    </div>
+                    <div className="cunning statContainer">
                         <div className="statName">
-                            {character.Stats.Cunning.sway.Gilded ? <div className="Gilded"></div> : null}
-
+                            {character.Stats.Cunning.sway.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
                             <span className='statItem'>Sway: {
                                 character.Stats.Cunning.sway.value
                             }</span>
@@ -145,8 +144,8 @@ const CharacterDetails = () => {
                         <div className="statValueDivContainer">
                             {generateDivs(character.Stats.Cunning.sway.value)}
                         </div>
-                        {character.Stats.Cunning.sway.Gilded ? "gilded" : null}
                         <div className="statName">
+                            {character.Stats.Cunning.read.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
                             <span className='statItem'>Read: {
                                 character.Stats.Cunning.read.value
                             }</span>
@@ -154,8 +153,8 @@ const CharacterDetails = () => {
                         <div className="statValueDivContainer">
                             {generateDivs(character.Stats.Cunning.read.value)}
                         </div>
-                        {character.Stats.Cunning.read.Gilded ? "gilded" : null}
                         <div className="statName">
+                        {character.Stats.Cunning.hide.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
                             <span className='statItem'>Hide: {
                                 character.Stats.Cunning.hide.value
                             }</span>
@@ -163,25 +162,20 @@ const CharacterDetails = () => {
                         <div className="statValueDivContainer">
                             {generateDivs(character.Stats.Cunning.hide.value)}
                         </div>
-                        {character.Stats.Cunning.hide.Gilded ? "gilded" : null}
-                        <div className='statValueContainer'>
-                            <div className="statValue first"></div>
-                            <div className="statValue second"></div>
-                            <div className="statValue third"></div>
+                    </div>
+                    <div className="statHeader">
+                        <div className="HeaderTitle">
+                            <h3>
+                                Intuition
+                            </h3>
+                        </div>
+                        <div class="drives" onClick={() => DriveActivation("Intuition")}>
+                            Drives {character.Stats.Intuition.intuitionDrive.value}
                         </div>
                     </div>
                     <div className="intuition statContainer">
-                        <div className="statHeader">
-                            <div className="HeaderTitle">
-                                <h3>
-                                    Intuition
-                                </h3>
-                            </div>
-                            <div class="drives" onClick={() => DriveActivation("Intuition")}>
-                                Drives {character.Stats.Intuition.intuitionDrive.value}
-                            </div>
-                        </div>
                         <div className="statName">
+                            {character.Stats.Intuition.survey.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
                             <span className='statItem'>Survey: {
                                 character.Stats.Intuition.survey.value
                             }</span>
@@ -189,8 +183,8 @@ const CharacterDetails = () => {
                         <div className="statValueDivContainer">
                             {generateDivs(character.Stats.Intuition.survey.value)}
                         </div>
-                        {character.Stats.Intuition.survey.Gilded ? "gilded" : null}
                         <div className="statName">
+                            {character.Stats.Intuition.focus.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
                             <span className='statItem'>Focus: {
                                 character.Stats.Intuition.focus.value
                             }</span>
@@ -198,20 +192,14 @@ const CharacterDetails = () => {
                         <div className="statValueDivContainer">
                             {generateDivs(character.Stats.Intuition.focus.value)}
                         </div>
-                        {character.Stats.Intuition.focus.Gilded ? "gilded" : null}
                         <div className="statName">
+                            {character.Stats.Intuition.sense.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
                             <span className='statItem'>Sense: {
                                 character.Stats.Intuition.sense.value
                             }</span>
                         </div>
                         <div className="statValueDivContainer">
                             {generateDivs(character.Stats.Intuition.sense.value)}
-                        </div>
-                        {character.Stats.Intuition.sense.Gilded ? "gilded" : null}
-                        <div className='statValueContainer'>
-                            <div className="statValue first"></div>
-                            <div className="statValue second"></div>
-                            <div className="statValue third"></div>
                         </div>
 
                     </div>
