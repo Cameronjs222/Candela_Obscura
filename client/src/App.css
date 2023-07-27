@@ -1,3 +1,10 @@
+.mainContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+}
+
 .characterInfoContainer {
     display: flex;
     flex-wrap: wrap;
@@ -5,16 +12,24 @@
     max-width: 1200px; /* You can adjust the max-width to your preference */
     margin: 0 auto;
     padding: 20px;
+    align-items: end;
 }
 
 .characterInformation {
-    width: 30%;
+    max-width: 30%;
     padding: 10px;
     color: white;
     background-color: black;
     border-radius: 10px;
-    display: block;
+    flex-direction: column;
+    display: none;
 
+}
+
+.characterInformation span {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .titleHeader {
@@ -27,40 +42,97 @@
     margin: 0 100px;
 }
 
-.titleHeader h2 {
-    margin: 0;
-}
-
-/* Additional styling, you can customize the colors and fonts as needed */
-
-.characterInformation span {
-    display: block;
-    margin-bottom: 8px;
-    font-family: "Arial", sans-serif;
-    color: white;
-    font-size: 16px;
-}
-
 .characterSheet {
-    border: 2px solid black;
-}
-.statValueDiv {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: black;
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: bisque;
+    margin: 0 auto;
 }
 
-.statValueDivBlank{
+.characterStats {
+    max-width: 400px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: #f5f5f5;
+    border: 2px solid black;
+    padding: 0 10px;
+
+}
+
+.characterAbilities {
+    max-width: 400px;
+    width: 30%;
+    border: 2px solid black;
+    padding: 0 10px;
+
+}
+
+.characterMarks {
+    max-width: 400px;
+    width: 30%;
+    border: 2px solid black;
+    padding: 0 10px;
+}
+
+.statContainer {
+    width: 100%;
+    border: 1px solid pink;
+
+    
+}
+
+.statHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background-color: black;
+    color: white;
+    border-end-end-radius: 20px;
+    border-end-start-radius: 20px;
+    border-bottom: 1px solid black;
+}
+
+.HeaderTitle {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.drives {
+
+}
+
+.statName {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.statValueDivContainer {
+    display: flex;
+    gap: 5px;
+}
+
+.statValueDiv {
+    border: 2px solid gray
+    ;
     width: 15px;
     height: 15px;
-    border-radius: 50%;
-    border: 2px solid black;
+    border-radius: 10px;
+    background-color: black;
+    margin: 5px 0;
 }
 
-.statValueDivContainer{
-    display: flex;
-    width: 100%;
-    background-color: red;
+.statValueDivBlank {
+    border: 2px solid gray
+    ;
+    width: 15px;
+    height: 15px;
+    border-radius: 10px;
+    background-color: white;
+    margin: 5px 0;
 }
-
