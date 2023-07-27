@@ -122,7 +122,6 @@ const CharacterDetails = () => {
                         <div className="statValueDivContainer">
                             {generateDivs(character.Stats.Nerve.control.value)}
                         </div>
-                        {character.Stats.Nerve.control.Gilded ? "gilded" : null}
                     </div>
                     <div className="statHeader">
                         <div className="HeaderTitle">
