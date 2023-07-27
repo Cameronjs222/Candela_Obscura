@@ -165,7 +165,7 @@ const CharacterCreation = () => {
       Nerve: {
         move: { value: moveValue.value, Gilded: moveValue.Gilded },
         strike: { value: strikeValue.value, Gilded: strikeValue.Gilded },
-        controlValue: { value: controlValue.value, Gilded: controlValue.Gilded },
+        control: { value: controlValue.value, Gilded: controlValue.Gilded },
         nerveDrive: { value: nerveDriveValue.value, maximum: nerveDriveValue.value }
       },
       Cunning: {
