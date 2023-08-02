@@ -5,9 +5,9 @@ import axios from 'axios';
 const CharacterCreation = () => {
 
   const Navigate = useNavigate();
-
+  const { charId } = useParams();
   const { userId } = useParams();
-
+  const [idOfUser, setIdOfUser] = useState(userId);
   const [name, setName] = useState('');
   const [pronouns, setPronouns] = useState('');
   const [circle, setCircle] = useState('');
@@ -32,6 +32,29 @@ const CharacterCreation = () => {
   const [roleAbilitiesDescription, setRoleAbilitiesDescription] = useState([]);
   const [specialtyAbilitiesTitle, setSpecialtyAbilitiesTitle] = useState([]);
   const [specialtyAbilitiesDescription, setSpecialtyAbilitiesDescription] = useState([]);
+
+  useEffect(() => {
+    if (charId) {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`http://localhost:8000/api/character/${charId}`);
+          console.log(response.data.Specialty.title + " is the response data");
+          setName(response.data.Information.Name);
+          setPronouns(response.data.Information.Pronouns);
+          setCircle(response.data.Information.Circle);
+          setStyle(response.data.Information.Style);
+          setCatalyst(response.data.Information.Catalyst);
+          setQuestion(response.data.Information.Question);
+          setRole(response.data.Role.title);
+          setSpecialty(response.data.Specialty.title);
+          setIdOfUser(response.data.User);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchData();
+    }
+  }, []);
 
   useEffect(() => {
     switch (role) {
@@ -152,7 +175,7 @@ const CharacterCreation = () => {
   }, [role, specialty]);
 
   const characterData = {
-    User: userId,
+    User: idOfUser,
     Information: {
       Name: name,
       Pronouns: pronouns,
@@ -199,7 +222,19 @@ const CharacterCreation = () => {
   const submitEvent = (event) => {
     event.preventDefault();
 
-    axios
+    if (charId) { 
+      axios
+        .patch('http://localhost:8000/api/character/' + charId, characterData)
+        .then((response) => {
+          console.log(response.data._id + 'Character Updated');
+          Navigate('/characters/' + response.data._id);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+    else {
+      axios
       .post('http://localhost:8000/api/character/add', characterData)
       .then((response) => {
         console.log(response.data._id + 'Character Created');
@@ -208,9 +243,10 @@ const CharacterCreation = () => {
       .catch((error) => {
         console.error(error);
       });
-  };
-
-  return (
+    }
+    };
+    
+    return (
     <div>
       <h1>Character Creation</h1>
       <form onSubmit={submitEvent}>
