@@ -5,7 +5,10 @@ import { Link, useParams } from 'react-router-dom';
 const SelectCharacter = () => {
   const [characters, setCharacters] = useState([]);
   const { userId } = useParams();
+  const [userName, setUserName] = useState('');
   console.log(characters)
+  console.log(userId + " is the user id")
+  console.log(userName + " is the user name")
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,18 +20,53 @@ const SelectCharacter = () => {
       }
     };
 
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/api/users/${userId}`);
+        console.log(response.data + " is the user data")
+        setUserName(response.data.UserName);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
     fetchData();
+    fetchUser();
   }, []);
+
+  const deleteCharacter = async (characterId) => {
+    console.log(characterId + " is the character id")
+    try {
+      await axios.delete(`http://localhost:8000/api/character/${characterId}`);
+      console.log(`Character with ID: ${characterId} deleted successfully`);
+      const newCharacters = characters.filter((character) => character._id !== characterId);
+      setCharacters(newCharacters);
+    } catch (error) {
+      console.error(`Error deleting character with ID: ${characterId}`, error);
+    }
+  };
+
 
   return (
     <div>
-      <h1>Character List</h1>
+      <h1>{userName}'s Characters</h1>
+      <div className="listOfUsersCharacters">
+
       {characters.map(character => (
-        <div key={character._id}>
-          <Link to={`/characters/${character._id}`}>{character.Information.Name}</Link>
+        <div key={character._id} className='characterCard' style={{backgroundColor: "red", border: "2px solid black"}}>
+          <div className="characterCardCharacterName">
+            <h3>{character.Information.Name}</h3><br/>
+          </div>
+          <div className="charactersCardLinks">
+            
+          <Link to={`/characters/${character._id}`}>View</Link> <span> | </span>
+          <Link to={`/characters/edit/${character._id}`}>Edit</Link> <span> | </span>
+          <button onClick={() => deleteCharacter(character._id)}>Delete</button>
+          </div>
         </div>
       ))}
 
+      </div>
       <Link to={`/characters/new/${userId}`}>Create new character</Link>
     </div>
   );
