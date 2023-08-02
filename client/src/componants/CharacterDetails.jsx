@@ -58,14 +58,26 @@ const CharacterDetails = () => {
         }
 
     }
-
+    
+    const showCharacterInfo = () => {
+        const elements = document.getElementsByClassName('characterInformation');
+        for (let i = 0; i < elements.length; i++) {
+            if (elements[i].style.display === 'flex') {
+                elements[i].style.display = 'none';
+            }
+            else {
+                elements[i].style.display = 'flex';
+                
+            } 
+        }
+    };
 
     return (
         <div className='mainContainer'>
 
 
             <div className="characterInfoContainer">
-                <div className="characterInformation" >
+                <div className="characterInformation left" >
                     <span>Name: {character.Information.Name}</span>
                     <span>Pronouns: {character.Information.Pronouns}</span>
                     <span>Circle: {character.Information.Circle}</span>
@@ -74,7 +86,7 @@ const CharacterDetails = () => {
                     <span>Candela</span>
                     <span>Obscura</span>
                 </div>
-                <div className='characterInformation'>
+                <div className='characterInformation right'>
                     <span>Style: {character.Information.Style}</span>
                     <span>Catalyst: {character.Information.Catalyst}</span>
                     <span>Question: {character.Information.Question}</span>
@@ -85,6 +97,7 @@ const CharacterDetails = () => {
 
             <div className="characterSheet">
                 <div className="characterStats">
+            <button className="showName" onClick={() => showCharacterInfo()}>Show Info</button>
                     <div className="statHeader">
                         <div className="HeaderTitle">
                             <h3>
