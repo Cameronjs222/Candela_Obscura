@@ -21,6 +21,7 @@ function App() {
             <Route path='/characters/:charId' element={<CharacterDetails/>}></Route>
             <Route path='/characters/new/:userId' element={<CharacterCreation/>}></Route>
             <Route path='/users/new' element={<UserForm/>}></Route>
+            <Route path='/characters/edit/:charId' element={<CharacterCreation/>}></Route>
           </Routes>
         </BrowserRouter>
       </header>
