@@ -57,10 +57,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: #f5f5f5;
+    background-color: white;
     border: 2px solid black;
-    padding: 0 10px;
-
 }
 
 .characterAbilities {
@@ -80,9 +78,7 @@
 
 .statContainer {
     width: 100%;
-    border: 1px solid pink;
-
-    
+    margin: 10px
 }
 
 .statHeader {
@@ -110,11 +106,15 @@
     font-weight: bold;
     font-size: 20px;
     margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .statValueDivContainer {
     display: flex;
-    gap: 5px;
+    gap: 15px;
+    margin-left: 12px;
 }
 
 .statValueDiv {
@@ -135,4 +135,22 @@
     border-radius: 10px;
     background-color: white;
     margin: 5px 0;
+}
+
+.Gilded {
+    background-color: gold;
+    height: 15px;
+    width: 14px;
+    rotate: 45deg;
+    margin-top: 3px;
+}
+
+.GildedBlank {
+    background-color: white;
+    height: 15px;
+    width: 14px;
+    rotate: 45deg;
+    border: 1px solid gold;
+    margin-top: 3px;
+
 }
