@@ -179,15 +179,15 @@
 .listOfUsersCharacters {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-
+    justify-content: center;
+    gap: 50px; 
 }
 
 .characterCard {
     background-color: red;
     width: 200px;
     height: 200px;
-    margin: 10px;
+    margin: 50px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
