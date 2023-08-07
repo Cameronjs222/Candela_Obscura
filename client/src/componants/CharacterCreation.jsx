@@ -32,13 +32,13 @@ const CharacterCreation = () => {
   const [roleAbilitiesDescription, setRoleAbilitiesDescription] = useState([]);
   const [specialtyAbilitiesTitle, setSpecialtyAbilitiesTitle] = useState([]);
   const [specialtyAbilitiesDescription, setSpecialtyAbilitiesDescription] = useState([]);
-
+  const [errors, setErrors] = useState({});
+  console.log(errors);
   useEffect(() => {
     if (charId) {
       const fetchData = async () => {
         try {
           const response = await axios.get(`http://localhost:8000/api/character/${charId}`);
-          console.log(response.data.Specialty.title + " is the response data");
           setName(response.data.Information.Name);
           setPronouns(response.data.Information.Pronouns);
           setCircle(response.data.Information.Circle);
@@ -218,7 +218,6 @@ const CharacterCreation = () => {
     }
   };
 
-  console.log(characterData);
   const submitEvent = (event) => {
     event.preventDefault();
 
@@ -226,7 +225,6 @@ const CharacterCreation = () => {
       axios
         .patch('http://localhost:8000/api/character/' + charId, characterData)
         .then((response) => {
-          console.log(response.data._id + 'Character Updated');
           Navigate('/characters/' + response.data._id);
         })
         .catch((error) => {
@@ -237,11 +235,18 @@ const CharacterCreation = () => {
       axios
       .post('http://localhost:8000/api/character/add', characterData)
       .then((response) => {
-        console.log(response.data._id + 'Character Created');
         Navigate('/characters/' + response.data._id);
       })
       .catch((error) => {
         console.error(error);
+        const errorResponse = error.response.data.error.errors;
+        const errorObject  = {};
+        for (const key of Object.keys(errorResponse)) {
+          const path = errorResponse[key].path;
+          const message = errorResponse[key].message;
+          errorObject[path] = message;}
+        setErrors(errorObject );
+        Navigate('/characters/new/' + idOfUser);
       });
     }
     };
@@ -250,9 +255,16 @@ const CharacterCreation = () => {
     <div>
       <h1>Character Creation</h1>
       <form onSubmit={submitEvent}>
+      {/* {errors.map((err, index) => (
+                    <p key="{index}">{err}</p>
+                ))} */}
         <h2>General Information</h2>
+        <div className="Name">
         <label htmlFor="Name">Character's Name:</label>
         <input type="text" name="Name" value={name} onChange={(event) => setName(event.target.value)} /><br />
+        <span>{errors["Information.Name"] ? errors["Information.Name"] : ""}</span>
+        </div>
+
 
         <label htmlFor="Pronouns">Character's Pronouns:</label>
         <input type="text" name="Pronouns" value={pronouns} onChange={(event) => setPronouns(event.target.value)} /><br />
@@ -281,6 +293,8 @@ const CharacterCreation = () => {
           <option value="Weird">Weird</option>
           <option value="Muscle">Muscle</option>
         </select><br />
+        <span>{errors["Role.title"] ? errors["Role.title"] : ""}</span><br />
+
 
         <label htmlFor="Specialty">Specialty:</label>
         <select type="text" name="Specialty" value={specialty} onChange={(event) => setSpecialty(event.target.value)}>
@@ -291,6 +305,8 @@ const CharacterCreation = () => {
           {role === "Weird" ? <option value="Occultist">Occultist</option> : null}
           {role === "Muscle" ? <option value="Explorer">Explorer</option> : null}
         </select><br />
+        <span>{errors["Specialty.title"] ? errors["Specialty.title"] : ""}</span>
+
         <h2>Stats</h2>
         <label htmlFor="moveValue">Move:</label>
         <input type="number" name="move" value={moveValue.value} onChange={(event) => setMoveValue({ ...moveValue, value: parseInt(event.target.value) })} />
