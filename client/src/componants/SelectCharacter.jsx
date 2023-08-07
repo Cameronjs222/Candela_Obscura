@@ -49,7 +49,10 @@ const SelectCharacter = () => {
 
   return (
     <div>
+      <div className="characterSelectHeader">
+      
       <h1>{userName}'s Characters</h1>
+      </div>
       <div className="listOfUsersCharacters">
 
       {characters.map(character => (
