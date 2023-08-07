@@ -76,7 +76,7 @@ module.exports.createNewCharacter = (req, res) => {
 
         .catch((err) => {
 
-            res.json({ message: 'Something went wrong', error: err })
+            res.status(400).json({ message: 'Something went wrong', error: err })
 
         });
 }
