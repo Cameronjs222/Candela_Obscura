@@ -82,14 +82,6 @@
     padding: 0 10px;
 
 }
-
-.characterMarks {
-    max-width: 400px;
-    width: 30%;
-    border: 2px solid black;
-    padding: 0 10px;
-}
-
 .statContainer {
     width: 100%;
     margin: 10px
@@ -113,7 +105,7 @@
 }
 
 .drives {
-
+    
 }
 
 .statName {
@@ -166,7 +158,7 @@
     rotate: 45deg;
     border: 1px solid gold;
     margin-top: 3px;
-
+    
 }
 
 
@@ -205,4 +197,21 @@
     border-end-end-radius: 20px;
     border-end-start-radius: 20px;
     border-bottom: 1px solid black;
+}
+
+.characterMarks {
+    max-width: 400px;
+    width: 30%;
+    border: 2px solid black;
+}
+
+.characterMarksStats {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    background-color: black;
+    color: white;
+    border-end-end-radius: 20px;
+    border-end-start-radius: 20px;
 }

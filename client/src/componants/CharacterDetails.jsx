@@ -243,9 +243,12 @@ const CharacterDetails = () => {
                     })}
                 </div>
                 <div className='characterMarks'>
+                    <div className="characterMarksStats">
+
                     <p>Body: {character.Marks.body}</p>
                     <p>Brain: {character.Marks.brain}</p>
                     <p>Bleed: {character.Marks.bleed}</p>
+                    </div>
                     <p>Relationships: {character.Relationships.join(', ')}</p>
                     <p>Scars: {character.Scars}</p>
                 </div>
