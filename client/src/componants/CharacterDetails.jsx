@@ -4,6 +4,9 @@ import axios from 'axios';
 
 const CharacterDetails = () => {
     const [character, setCharacter] = useState(null);
+    const [gildedDice, setGildedDice] = useState(0);
+    const [standardDice, setStandardDice] = useState(0);
+    const [driveDice, setDriveDice] = useState(0);
     let { charId } = useParams();
 
     useEffect(() => {
@@ -34,7 +37,8 @@ const CharacterDetails = () => {
     };
 
     const DriveActivation = (stat) => {
-        const statDrive = `${stat.toLowerCase()}Drive`
+        const statDrive = `${stat.toLowerCase()}Drive` //Will come out as nerveDrive or cunningDrive or intuitionDrive
+        setDriveDice(driveDice + 1);
         if (character.Stats[stat][statDrive].value > 0) {
             setCharacter({
                 ...character, Stats: {
@@ -57,6 +61,16 @@ const CharacterDetails = () => {
             })
         }
 
+    }
+
+    const addDice = (stat, type) => {
+        if (character.Stats[stat][type].Gilded) {
+            setGildedDice(gildedDice + 1);
+            setStandardDice(character.Stats[stat][type].value - 1)
+        }
+        else {
+            setStandardDice(character.Stats[stat][type].value)
+        }
     }
     
     const showCharacterInfo = () => {
@@ -91,6 +105,11 @@ const CharacterDetails = () => {
                     <span>Catalyst: {character.Information.Catalyst}</span>
                     <span>Question: {character.Information.Question}</span>
                 </div>
+                <div className="test">
+                    <span>Drive dice: {driveDice}</span>
+                    <span>Standard dice: {standardDice}</span>
+                    <span>Gilded dice: {gildedDice}</span>
+                </div>
             </div>
 
 
@@ -109,7 +128,9 @@ const CharacterDetails = () => {
                         </div>
                     </div>
                     <div className="nerve statContainer">
-                        <div className="statName">
+                        <div className="statName" onClick={
+                            () => {addDice("Nerve", "move")}
+                        }>
                             {character.Stats.Nerve.move.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
                             <span className='statItem'>Move: {character.Stats.Nerve.move.value}</span>
                         </div>
@@ -165,7 +186,9 @@ const CharacterDetails = () => {
                         <div className="statValueDivContainer">
                             {generateDivs(character.Stats.Cunning.read.value)}
                         </div>
-                        <div className="statName">
+                        <div className="statName" onClick={
+                            () => {addDice("Cunning", "hide")}
+                        }>
                         {character.Stats.Cunning.hide.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
                             <span className='statItem'>Hide: {
                                 character.Stats.Cunning.hide.value
