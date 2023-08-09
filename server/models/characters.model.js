@@ -107,7 +107,12 @@ const CharacterSchema = new mongoose.Schema({
     },
     Notes: {
         type: String
-    }
+    },
+    Items: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Item',
+    }],
+
 }, { timestamps: true });
 
 module.exports = mongoose.model('Character', CharacterSchema);
