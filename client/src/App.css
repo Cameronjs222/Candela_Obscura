@@ -14,6 +14,32 @@
     margin: 0 auto;
     padding: 20px;
     align-items: end;
+    height: 100px;
+}
+
+.diceContainer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    width: 400px;
+    height: 100px;
+}
+
+.diceBox{
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
 }
 
 .characterInformation {
