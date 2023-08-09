@@ -92,9 +92,18 @@ const CharacterDetails = () => {
             {standardDice > 0 || gildedDice > 0 || driveDice > 0 
             ? 
             <div className="diceContainer">
-                    <span>Drive dice: {driveDice}</span>
-                    <span>Standard dice: {standardDice}</span>
-                    <span>Gilded dice: {gildedDice}</span>
+                <div className="diceBox">
+                    <span>Drive dice</span>
+                    <span>{driveDice}</span>
+                </div>
+                <div className="diceBox">
+                    <span>Standard dice</span>
+                    <span>{standardDice}</span>
+                </div>
+                <div className="diceBox">
+                    <span>Gilded dice</span>
+                    <span>{gildedDice}</span>
+                </div>
             </div> 
             :
             <div className="characterInfoContainer">
