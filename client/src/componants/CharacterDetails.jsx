@@ -89,7 +89,14 @@ const CharacterDetails = () => {
     return (
         <div className='mainContainer'>
 
-
+            {standardDice > 0 || gildedDice > 0 || driveDice > 0 
+            ? 
+            <div className="diceContainer">
+                    <span>Drive dice: {driveDice}</span>
+                    <span>Standard dice: {standardDice}</span>
+                    <span>Gilded dice: {gildedDice}</span>
+            </div> 
+            :
             <div className="characterInfoContainer">
                 <div className="characterInformation left" >
                     <span>Name: {character.Information.Name}</span>
@@ -105,12 +112,8 @@ const CharacterDetails = () => {
                     <span>Catalyst: {character.Information.Catalyst}</span>
                     <span>Question: {character.Information.Question}</span>
                 </div>
-                <div className="test">
-                    <span>Drive dice: {driveDice}</span>
-                    <span>Standard dice: {standardDice}</span>
-                    <span>Gilded dice: {gildedDice}</span>
-                </div>
             </div>
+}
 
 
 
