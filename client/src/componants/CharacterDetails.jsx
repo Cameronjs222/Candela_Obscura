@@ -72,7 +72,7 @@ const CharacterDetails = () => {
             setStandardDice(character.Stats[stat][type].value)
         }
     }
-    
+
     const showCharacterInfo = () => {
         const elements = document.getElementsByClassName('characterInformation');
         for (let i = 0; i < elements.length; i++) {
@@ -81,54 +81,54 @@ const CharacterDetails = () => {
             }
             else {
                 elements[i].style.display = 'flex';
-                
-            } 
+
+            }
         }
     };
 
     return (
         <div className='mainContainer'>
 
-            {standardDice > 0 || gildedDice > 0 || driveDice > 0 
-            ? 
-            <div className="diceContainer">
-                <div className="diceBox">
-                    <span>Drive dice</span>
-                    <span>{driveDice}</span>
+            {standardDice > 0 || gildedDice > 0 || driveDice > 0
+                ?
+                <div className="diceContainer">
+                    <div className="diceBox">
+                        <span>Drive dice</span>
+                        <span>{driveDice}</span>
+                    </div>
+                    <div className="diceBox">
+                        <span>Standard dice</span>
+                        <span>{standardDice}</span>
+                    </div>
+                    <div className="diceBox">
+                        <span>Gilded dice</span>
+                        <span>{gildedDice}</span>
+                    </div>
                 </div>
-                <div className="diceBox">
-                    <span>Standard dice</span>
-                    <span>{standardDice}</span>
+                :
+                <div className="characterInfoContainer">
+                    <div className="characterInformation left" >
+                        <span>Name: {character.Information.Name}</span>
+                        <span>Pronouns: {character.Information.Pronouns}</span>
+                        <span>Circle: {character.Information.Circle}</span>
+                    </div>
+                    <div class="titleHeader">
+                        <span>Candela</span>
+                        <span>Obscura</span>
+                    </div>
+                    <div className='characterInformation right'>
+                        <span>Style: {character.Information.Style}</span>
+                        <span>Catalyst: {character.Information.Catalyst}</span>
+                        <span>Question: {character.Information.Question}</span>
+                    </div>
                 </div>
-                <div className="diceBox">
-                    <span>Gilded dice</span>
-                    <span>{gildedDice}</span>
-                </div>
-            </div> 
-            :
-            <div className="characterInfoContainer">
-                <div className="characterInformation left" >
-                    <span>Name: {character.Information.Name}</span>
-                    <span>Pronouns: {character.Information.Pronouns}</span>
-                    <span>Circle: {character.Information.Circle}</span>
-                </div>
-                <div class="titleHeader">
-                    <span>Candela</span>
-                    <span>Obscura</span>
-                </div>
-                <div className='characterInformation right'>
-                    <span>Style: {character.Information.Style}</span>
-                    <span>Catalyst: {character.Information.Catalyst}</span>
-                    <span>Question: {character.Information.Question}</span>
-                </div>
-            </div>
-}
+            }
 
 
 
             <div className="characterSheet">
                 <div className="characterStats">
-            <button className="showName" onClick={() => showCharacterInfo()}>Show Info</button>
+                    <button className="showName" onClick={() => showCharacterInfo()}>Show Info</button>
                     <div className="statHeader">
                         <div className="HeaderTitle">
                             <h3>
@@ -141,7 +141,7 @@ const CharacterDetails = () => {
                     </div>
                     <div className="nerve statContainer">
                         <div className="statName" onClick={
-                            () => {addDice("Nerve", "move")}
+                            () => { addDice("Nerve", "move") }
                         }>
                             {character.Stats.Nerve.move.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
                             <span className='statItem'>Move: {character.Stats.Nerve.move.value}</span>
@@ -199,9 +199,9 @@ const CharacterDetails = () => {
                             {generateDivs(character.Stats.Cunning.read.value)}
                         </div>
                         <div className="statName" onClick={
-                            () => {addDice("Cunning", "hide")}
+                            () => { addDice("Cunning", "hide") }
                         }>
-                        {character.Stats.Cunning.hide.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
+                            {character.Stats.Cunning.hide.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
                             <span className='statItem'>Hide: {
                                 character.Stats.Cunning.hide.value
                             }</span>
@@ -280,12 +280,24 @@ const CharacterDetails = () => {
                 <div className='characterMarks'>
                     <div className="characterMarksStats">
 
-                    <p>Body: {character.Marks.body}</p>
-                    <p>Brain: {character.Marks.brain}</p>
-                    <p>Bleed: {character.Marks.bleed}</p>
+                        <p>Body: {character.Marks.body}</p>
+                        <p>Brain: {character.Marks.brain}</p>
+                        <p>Bleed: {character.Marks.bleed}</p>
                     </div>
-                    <p>Relationships: {character.Relationships.join(', ')}</p>
-                    <p>Scars: {character.Scars}</p>
+                    <div className="characterMarksInfoContainer">
+                        <div className="characterMarksInfoGear">
+                            <p>Relationships: {character.Relationships.join(', ')}</p>
+                        </div>
+                        <div className="characterMarksInfoGear">
+                            <p>Scars: {character.Scars}</p>
+                        </div>
+                        <div className="characterMarksInfoGear">
+                            <p>Notes: {character.Notes}</p>
+                        </div>
+                        <div className="characterMarksInfoGear">
+                            <p>Gear:</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
