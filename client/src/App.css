@@ -240,4 +240,24 @@
     color: white;
     border-end-end-radius: 20px;
     border-end-start-radius: 20px;
+    height: 5%;
+}
+
+.characterMarksInfoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1200px; /* You can adjust the max-width to your preference */
+    margin: 0 auto;
+    align-items: end;
+    height: 100px;
+    height: 95%;
+
+}
+
+.characterMarksInfoContainer div {
+    border-bottom: 2px solid black;
+    height: 25%;
+    width: 100%;
+    padding: 0;
 }
