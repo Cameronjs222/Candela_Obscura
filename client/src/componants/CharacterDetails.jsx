@@ -9,6 +9,7 @@ const CharacterDetails = () => {
     const [driveDice, setDriveDice] = useState(0);
     const [editing, setEditing] = useState("");
     const [notes, setNotes] = useState("");
+    const [scars, setScars] = useState("");
     let { charId } = useParams();
     
 
@@ -88,21 +89,40 @@ const CharacterDetails = () => {
         }
     };
 
-    const updateNotes = async (e) => {
+    const updateItem = async (e, item) => {
+        console.log(e, item);
+        if (item === "Notes") {
         try {
-            const response = await axios.patch('http://localhost:8000/api/character/' + charId, {
-                ...character, Notes: e
-            });
+            const updatedData = { ...character, [item]: e };
+            const response = await axios.patch('http://localhost:8000/api/character/' + charId, updatedData);
             setCharacter({
                 ...character,
-                Notes: response.data.Notes // Update local character state with the new notes value
+                [item]: response.data[item] // Update local character state with the new item value
             });
             setEditing("None");
-            setNotes(e);
+            setNotes(e); // If 'item' is 'Notes', you might want to set 'notes' here
         } catch (error) {
             console.log(error);
         }
     }
+    else {
+        try {   
+            const updatedData = { ...character, [item]: [...character[item], e] };
+            const response = await axios.patch('http://localhost:8000/api/character/' + charId, updatedData);
+            setCharacter({
+                ...character,
+                [item]: response.data[item] // Update local character state with the new item value
+            });
+            setEditing("None");
+            setScars(e); // If 'item' is 'Notes', you might want to set 'notes' here
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    };
+
+
     
 
     return (
@@ -311,7 +331,14 @@ const CharacterDetails = () => {
                             ))}
                     </div>
                         <div className="characterMarksInfoGear">
-                            <p>Scars: </p>
+                            <span>Scars: </span>
+                            {editing === "Scars" 
+                            ? <button onClick={() => { setEditing("None"); updateItem(scars, "Scars")}}>Save Scars</button> 
+                            : <button onClick={() => setEditing("Scars")}>Edit Scars</button>}
+
+                            {editing === "Scars"
+                            ? <input className='' onChange={(e) => setScars(e.target.value)}></input>
+                            : null}
                             {character.Scars.map((scar, index) => (
                                 <p key={index}><span>{scar}</span></p>
                             ))}
@@ -319,11 +346,15 @@ const CharacterDetails = () => {
                         <div className="characterMarksInfoGear">
                             <div className='characterMarksInfoHeader'>
                             <span>Notes: </span>
-                            {editing === "Notes" ? <button onClick={() => { setEditing("None"); updateNotes(notes) }}>Save Notes</button> : <button onClick={() => setEditing("Notes")}>Edit Notes</button>}
+                            {editing === "Notes" 
+                            ? <button onClick={() => { setEditing("None"); updateItem(notes, "Notes") }}>Save Notes</button> 
+                            : <button onClick={() => setEditing("Notes")}>Edit Notes</button>}
                             
                             </div>
 
-                            {editing === "Notes" ? <textarea className='noteTextArea' onChange={(e) => setNotes(e.target.value)} value={notes}></textarea> : <span>{character.Notes}</span>}
+                            {editing === "Notes" 
+                            ? <textarea className='noteTextArea' onChange={(e) => setNotes(e.target.value)} value={notes}></textarea> 
+                            : <span>{character.Notes}</span>}
 
                         </div>
                         <div className="characterMarksInfoGear">
