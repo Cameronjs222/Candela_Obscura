@@ -111,10 +111,11 @@ const CharacterDetails = () => {
         try {   
             const updatedData = { ...character, [item]: [...character[item], e] };
             const response = await axios.patch('http://localhost:8000/api/character/' + charId, updatedData);
+            if (editing !== "oneScar") {
             setCharacter({
                 ...character,
                 [item]: response.data[item] // Update local character state with the new item value
-            });
+            })};
             setEditing("None");
             setScars(e); // If 'item' is 'Notes', you might want to set 'notes' here
         }
@@ -135,18 +136,6 @@ const CharacterDetails = () => {
         } catch (error) {
             console.log(error);
         }
-    };
-
-
-
-
-    const handleScarChange = (e, index) => {
-        const updatedScars = [...character.Scars];
-        updatedScars[index] = e.target.value;
-        setCharacter(prevCharacter => ({
-            ...prevCharacter,
-            Scars: updatedScars
-        }));
     };
 
 
@@ -373,8 +362,7 @@ const CharacterDetails = () => {
                             ? <button onClick={() => { setEditing("None"); updateItem(scars, "Scars")}}>Save Scars</button> 
                             : <button onClick={() => setEditing("Scars")}>New Scar</button>}
 
-                            
-
+                    
                             {editing === "Scars"
                             ? <input className='' onChange={(e) => setScars(e.target.value)}></input>
                             : null}
@@ -388,7 +376,8 @@ const CharacterDetails = () => {
                             ? <input className='' value={character.Scars[editedScarIndex]}     onChange={(e) => {
                                 const updatedScars = [...character.Scars];
                                 updatedScars[editedScarIndex] = e.target.value;
-                                setCharacter({ ...character, Scars: updatedScars });
+                                setCharacter({ ...character, Scars: updatedScars })
+                                setScars(e.target.value);                   
                             }}></input>
                             : null}
                             {character.Scars.map((scar, index) => (
