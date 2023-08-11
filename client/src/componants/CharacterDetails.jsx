@@ -7,23 +7,25 @@ const CharacterDetails = () => {
     const [gildedDice, setGildedDice] = useState(0);
     const [standardDice, setStandardDice] = useState(0);
     const [driveDice, setDriveDice] = useState(0);
+    const [editing, setEditing] = useState("");
+    const [notes, setNotes] = useState("");
     let { charId } = useParams();
+    
 
     useEffect(() => {
         const fetchCharacterData = async () => {
             try {
                 const response = await axios.get('http://localhost:8000/api/character/' + charId);
                 setCharacter(response.data);
+                setNotes(response.data.Notes);
             } catch (error) {
                 console.log(error);
             }
         };
-
         fetchCharacterData();
     }, []);
-
+    
     console.log(character);
-    // console.log(character.Specialty.abilities[0].title);
     if (!character) {
         return <div>Loading...</div>;
     }
@@ -85,6 +87,15 @@ const CharacterDetails = () => {
             }
         }
     };
+
+    const updateNotes = (e) => {
+        console.log(e);
+        axios.patch('http://localhost:8000/api/character/' + charId, {
+            ...character, Notes: e
+        })
+        setEditing("None");
+        setNotes(e);
+    }
 
     return (
         <div className='mainContainer'>
@@ -298,8 +309,14 @@ const CharacterDetails = () => {
                             ))}
                         </div>
                         <div className="characterMarksInfoGear">
-                            <p>Notes: </p>
-                            <span>{character.Notes}</span>
+                            <div className='characterMarksInfoHeader'>
+                            <span>Notes: </span>
+                            {editing === "Notes" ? <button onClick={() => { setEditing("None"); updateNotes(notes) }}>Save Notes</button> : <button onClick={() => setEditing("Notes")}>Edit Notes</button>}
+                            
+                            </div>
+
+                            {editing === "Notes" ? <textarea onChange={(e) => setNotes(e.target.value)} value={notes}></textarea> : <span>{character.Notes}</span>}
+
                         </div>
                         <div className="characterMarksInfoGear">
                             <p>Gear:</p>
