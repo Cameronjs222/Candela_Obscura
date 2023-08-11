@@ -285,14 +285,21 @@ const CharacterDetails = () => {
                         <p>Bleed: {character.Marks.bleed}</p>
                     </div>
                     <div className="characterMarksInfoContainer">
+                    <div className="characterMarksInfoGear">
+                        <p>Relationships: </p>
+                            {character.Relationships.map((relationship, index) => (
+                                <p key={index}><span>{relationship}</span></p>
+                            ))}
+                    </div>
                         <div className="characterMarksInfoGear">
-                            <p>Relationships: {character.Relationships.join(', ')}</p>
+                            <p>Scars: </p>
+                            {character.Scars.map((scar, index) => (
+                                <p key={index}><span>{scar}</span></p>
+                            ))}
                         </div>
                         <div className="characterMarksInfoGear">
-                            <p>Scars: {character.Scars}</p>
-                        </div>
-                        <div className="characterMarksInfoGear">
-                            <p>Notes: {character.Notes}</p>
+                            <p>Notes: </p>
+                            <span>{character.Notes}</span>
                         </div>
                         <div className="characterMarksInfoGear">
                             <p>Gear:</p>
