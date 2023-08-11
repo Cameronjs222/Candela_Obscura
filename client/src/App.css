@@ -266,3 +266,14 @@
 .characterMarksInfoContainer div span {
     border-bottom: 1px dotted black;
 }
+
+.noteTextArea {
+    width: 100%;
+    height: 83%;
+    resize: none;
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    padding: 10px;
+    overflow: scroll;
+}

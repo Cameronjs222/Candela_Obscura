@@ -323,7 +323,7 @@ const CharacterDetails = () => {
                             
                             </div>
 
-                            {editing === "Notes" ? <textarea onChange={(e) => setNotes(e.target.value)} value={notes}></textarea> : <span>{character.Notes}</span>}
+                            {editing === "Notes" ? <textarea className='noteTextArea' onChange={(e) => setNotes(e.target.value)} value={notes}></textarea> : <span>{character.Notes}</span>}
 
                         </div>
                         <div className="characterMarksInfoGear">
