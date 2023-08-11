@@ -10,6 +10,8 @@ const CharacterDetails = () => {
     const [editing, setEditing] = useState("");
     const [notes, setNotes] = useState("");
     const [scars, setScars] = useState("");
+    const [relationships, setRelationships] = useState("");
+    const [editedScarIndex, setEditedScarIndex] = useState(null);
     let { charId } = useParams();
     
 
@@ -121,6 +123,34 @@ const CharacterDetails = () => {
         }
     }
     };
+
+    const deleteItem = async (item, index) => {
+        try {
+            const updatedData = { ...character, [item]: [...character[item].slice(0, index), ...character[item].slice(index + 1)] };
+            const response = await axios.patch('http://localhost:8000/api/character/' + charId, updatedData);
+            setCharacter({
+                ...character,
+                [item]: response.data[item] // Update local character state with the new item value
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
+
+
+    const handleScarChange = (e, index) => {
+        const updatedScars = [...character.Scars];
+        updatedScars[index] = e.target.value;
+        setCharacter(prevCharacter => ({
+            ...prevCharacter,
+            Scars: updatedScars
+        }));
+    };
+
+
+
 
 
     
@@ -325,7 +355,14 @@ const CharacterDetails = () => {
                     </div>
                     <div className="characterMarksInfoContainer">
                     <div className="characterMarksInfoGear">
-                        <p>Relationships: </p>
+                        <span>Relationships: </span>
+                        {editing === "Relationships"
+                            ? <button onClick={() => { setEditing("None"); updateItem(relationships, "Relationships") }}>Save Relationships</button>
+                            : <button onClick={() => setEditing("Relationships")}>Edit Relationships</button>}
+                        {editing === "Relationships"
+                            ? <input className='' onChange={(e) => setRelationships(e.target.value)}></input>
+                            : null}
+
                             {character.Relationships.map((relationship, index) => (
                                 <p key={index}><span>{relationship}</span></p>
                             ))}
@@ -334,14 +371,32 @@ const CharacterDetails = () => {
                             <span>Scars: </span>
                             {editing === "Scars" 
                             ? <button onClick={() => { setEditing("None"); updateItem(scars, "Scars")}}>Save Scars</button> 
-                            : <button onClick={() => setEditing("Scars")}>Edit Scars</button>}
+                            : <button onClick={() => setEditing("Scars")}>New Scar</button>}
+
+                            
 
                             {editing === "Scars"
                             ? <input className='' onChange={(e) => setScars(e.target.value)}></input>
                             : null}
+
+                            {editing === "oneScar"
+                            ? <div className='characterMarksInfoHeader'><button onClick={() => { setEditing("None"); updateItem(scars, "Scars") }}>Save Scar</button> 
+                            <button onClick={() => { setEditing("None"); deleteItem("Scars", editedScarIndex) }}>Delete Scar</button></div>
+                            : null}
+
+                            {editing === "oneScar"
+                            ? <input className='' value={character.Scars[editedScarIndex]}     onChange={(e) => {
+                                const updatedScars = [...character.Scars];
+                                updatedScars[editedScarIndex] = e.target.value;
+                                setCharacter({ ...character, Scars: updatedScars });
+                            }}></input>
+                            : null}
                             {character.Scars.map((scar, index) => (
-                                <p key={index}><span>{scar}</span></p>
+                                <p key={index} onClick={() => { setEditing("oneScar"); setEditedScarIndex(index); }}>
+                                <span>{scar}</span>
+                                </p>
                             ))}
+
                         </div>
                         <div className="characterMarksInfoGear">
                             <div className='characterMarksInfoHeader'>
