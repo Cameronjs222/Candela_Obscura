@@ -88,14 +88,22 @@ const CharacterDetails = () => {
         }
     };
 
-    const updateNotes = (e) => {
-        console.log(e);
-        axios.patch('http://localhost:8000/api/character/' + charId, {
-            ...character, Notes: e
-        })
-        setEditing("None");
-        setNotes(e);
+    const updateNotes = async (e) => {
+        try {
+            const response = await axios.patch('http://localhost:8000/api/character/' + charId, {
+                ...character, Notes: e
+            });
+            setCharacter({
+                ...character,
+                Notes: response.data.Notes // Update local character state with the new notes value
+            });
+            setEditing("None");
+            setNotes(e);
+        } catch (error) {
+            console.log(error);
+        }
     }
+    
 
     return (
         <div className='mainContainer'>
