@@ -108,10 +108,16 @@ const CharacterSchema = new mongoose.Schema({
     Notes: {
         type: String
     },
-    Items: [{
-        title: { type: String, maxlength: [35, "Please keep your item title to under 35 characters"] },
-        description: { type: String, maxlength: [250, "Please keep your item description to under 250 characters"] },
-    }],
+
+    Items: {
+        type: [String],
+        validate: {
+            validator: function (strings) {
+                return strings.every((string) => string.length >= 0 && string.length <= 250);
+            }
+        }
+    },
+
 
 }, { timestamps: true });
 
