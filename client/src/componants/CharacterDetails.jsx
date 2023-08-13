@@ -11,10 +11,13 @@ const CharacterDetails = () => {
     const [notes, setNotes] = useState("");
     const [scars, setScars] = useState("");
     const [relationships, setRelationships] = useState("");
+    const [gear, setGear] = useState("");
     const [editedScarIndex, setEditedScarIndex] = useState(null);
     const [editedRelationshipIndex, setEditedRelationshipIndex] = useState(null);
+    const [editedGearIndex, setEditedGearIndex] = useState(null);
     let { charId } = useParams();
     
+    console.log(character);
 
     useEffect(() => {
         const fetchCharacterData = async () => {
@@ -111,6 +114,7 @@ const CharacterDetails = () => {
         try {   
             const updatedData = { ...character, [item]: [...character[item], e] };
             console.log(updatedData);
+            console.log("^ is updatedData")
             const response = await axios.patch('http://localhost:8000/api/character/' + charId, updatedData);
             if (editing !== "oneScar") {
             setCharacter({
@@ -438,6 +442,33 @@ const CharacterDetails = () => {
                         </div>
                         <div className="characterMarksInfoGear">
                             <p>Gear:</p>
+                            {editing === "Items"
+                            ? <button onClick={() => { setEditing("None"); addItem(gear, "Items") }}>Save Gear</button>
+                            : <button onClick={() => setEditing("Items")}>Edit Gear</button>}
+                            {editing === "Items"
+                            ? <input className='' onChange={(e) => setGear(e.target.value)}></input>
+                            : null}
+
+                            {editing === "oneItem"
+                            ? <div className='characterMarksInfoHeader'><button onClick={() => { setEditing("None"); saveEdit() }}>Save Gear</button>
+                            <button onClick={() => { setEditing("None"); deleteItem("Gear", editedGearIndex) }}>Delete Gear</button></div>
+                            : null}
+
+                            {editing === "oneItem"
+                            ? <input className='' value={character.Items[editedGearIndex]} onChange={(e) => {
+                                const updatedGear = [...character.Items];
+                                updatedGear[editedGearIndex] = e.target.value;
+                                setCharacter({ ...character, Items: updatedGear })
+                                setGear(e.target.value);
+                            }}></input>
+                            : null}
+
+                            {character.Items.map((gear, index) => (
+                                <p key={index} onClick={() => { setEditing("oneItem"); setEditedGearIndex(index); }}>
+                                    <span>{gear}</span>
+                                </p>
+                            ))}
+
                         </div>
                     </div>
                 </div>
