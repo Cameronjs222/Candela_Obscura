@@ -12,6 +12,7 @@ const CharacterDetails = () => {
     const [scars, setScars] = useState("");
     const [relationships, setRelationships] = useState("");
     const [editedScarIndex, setEditedScarIndex] = useState(null);
+    const [editedRelationshipIndex, setEditedRelationshipIndex] = useState(null);
     let { charId } = useParams();
     
 
@@ -28,7 +29,6 @@ const CharacterDetails = () => {
         fetchCharacterData();
     }, []);
     
-    console.log(character);
     if (!character) {
         return <div>Loading...</div>;
     }
@@ -371,8 +371,24 @@ const CharacterDetails = () => {
                             ? <input className='' onChange={(e) => setRelationships(e.target.value)}></input>
                             : null}
 
+                        {editing === "oneRelationship"
+                            ? <div className='characterMarksInfoHeader'><button onClick={() => { setEditing("None"); saveEdit() }}>Save Relationship</button>
+                                <button onClick={() => { setEditing("None"); deleteItem("Relationships", editedRelationshipIndex) }}>Delete Relationship</button></div>
+                            : null}
+                            
+                        {editing === "oneRelationship"
+                            ? <input className='' 
+                            value={character.Relationships[editedRelationshipIndex]}
+                            onChange={(e) => {
+                                let uptatedRelationships = [...character.Relationships];
+                                uptatedRelationships[editedRelationshipIndex] = e.target.value;
+                                setCharacter({ ...character, Relationships: uptatedRelationships })
+                                setRelationships(e.target.value)
+                            }}></input>
+                            : null}
                             {character.Relationships.map((relationship, index) => (
-                                <p key={index}><span>{relationship}</span></p>
+                                <p key={index} onClick={() => { setEditing("oneRelationship"); setEditedRelationshipIndex(index)}}>
+                                    <span>{relationship}</span></p>
                             ))}
                     </div>
                         <div className="characterMarksInfoGear">
