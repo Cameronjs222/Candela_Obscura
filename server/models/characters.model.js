@@ -109,8 +109,8 @@ const CharacterSchema = new mongoose.Schema({
         type: String
     },
     Items: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Item',
+        title: { type: String, maxlength: [35, "Please keep your item title to under 35 characters"] },
+        description: { type: String, maxlength: [250, "Please keep your item description to under 250 characters"] },
     }],
 
 }, { timestamps: true });
