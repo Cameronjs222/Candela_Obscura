@@ -91,7 +91,7 @@ const CharacterDetails = () => {
         }
     };
 
-    const updateItem = async (e, item) => {
+    const addItem = async (e, item) => {
         console.log(e, item);
         if (item === "Notes") {
         try {
@@ -110,6 +110,7 @@ const CharacterDetails = () => {
     else {
         try {   
             const updatedData = { ...character, [item]: [...character[item], e] };
+            console.log(updatedData);
             const response = await axios.patch('http://localhost:8000/api/character/' + charId, updatedData);
             if (editing !== "oneScar") {
             setCharacter({
@@ -137,6 +138,24 @@ const CharacterDetails = () => {
             console.log(error);
         }
     };
+
+    const saveEdit = () => {
+        try {
+            const response = axios.patch('http://localhost:8000/api/character/' + charId, character);
+            setCharacter({
+                ...character,
+                [editing]: response.data[editing] // Update local character state with the new item value
+            });
+            setEditing("None");
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+
+        
+
 
 
 
@@ -346,7 +365,7 @@ const CharacterDetails = () => {
                     <div className="characterMarksInfoGear">
                         <span>Relationships: </span>
                         {editing === "Relationships"
-                            ? <button onClick={() => { setEditing("None"); updateItem(relationships, "Relationships") }}>Save Relationships</button>
+                            ? <button onClick={() => { setEditing("None"); addItem(relationships, "Relationships") }}>Save Relationships</button>
                             : <button onClick={() => setEditing("Relationships")}>Edit Relationships</button>}
                         {editing === "Relationships"
                             ? <input className='' onChange={(e) => setRelationships(e.target.value)}></input>
@@ -359,7 +378,7 @@ const CharacterDetails = () => {
                         <div className="characterMarksInfoGear">
                             <span>Scars: </span>
                             {editing === "Scars" 
-                            ? <button onClick={() => { setEditing("None"); updateItem(scars, "Scars")}}>Save Scars</button> 
+                            ? <button onClick={() => { setEditing("None"); addItem(scars, "Scars")}}>Save Scars</button> 
                             : <button onClick={() => setEditing("Scars")}>New Scar</button>}
 
                     
@@ -368,12 +387,12 @@ const CharacterDetails = () => {
                             : null}
 
                             {editing === "oneScar"
-                            ? <div className='characterMarksInfoHeader'><button onClick={() => { setEditing("None"); updateItem(scars, "Scars") }}>Save Scar</button> 
+                            ? <div className='characterMarksInfoHeader'><button onClick={() => { setEditing("None"); saveEdit() }}>Save Scar</button> 
                             <button onClick={() => { setEditing("None"); deleteItem("Scars", editedScarIndex) }}>Delete Scar</button></div>
                             : null}
 
                             {editing === "oneScar"
-                            ? <input className='' value={character.Scars[editedScarIndex]}     onChange={(e) => {
+                            ? <input className='' value={character.Scars[editedScarIndex]} onChange={(e) => {
                                 const updatedScars = [...character.Scars];
                                 updatedScars[editedScarIndex] = e.target.value;
                                 setCharacter({ ...character, Scars: updatedScars })
@@ -391,7 +410,7 @@ const CharacterDetails = () => {
                             <div className='characterMarksInfoHeader'>
                             <span>Notes: </span>
                             {editing === "Notes" 
-                            ? <button onClick={() => { setEditing("None"); updateItem(notes, "Notes") }}>Save Notes</button> 
+                            ? <button onClick={() => { setEditing("None"); addItem(notes, "Notes") }}>Save Notes</button> 
                             : <button onClick={() => setEditing("Notes")}>Edit Notes</button>}
                             
                             </div>
