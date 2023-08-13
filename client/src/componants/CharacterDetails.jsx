@@ -188,43 +188,45 @@ const CharacterDetails = () => {
             }
         };
         setCharacter(updatedCharacter);
-        axios.patch('http://localhost:8000/api/character/' + charId, updatedCharacter);
+        axios.patch('http://localhost:8000/api/character/' + charId, updatedCharacter)
+        setResting(false);
         };
 
 
 
     const resetMarks = () => {
-        setCharacter({
-            ...character, Stats: {
-                ...character.Stats, Nerve: {
-                    ...character.Stats.Nerve, NerveMark: {
-                        ...character.Stats.Nerve.NerveMark, value: 0
-                    }
-                }
+        const updatedCharacter = {
+            ...character,
+            Marks: {
+                Cunning: 0,
+                Intuition: 0,
+                Nerve: 0
             }
-        })
-        setCharacter({
-            ...character, Stats: {
-                ...character.Stats, Cunning: {
-                    ...character.Stats.Cunning, CunningMark: {
-                        ...character.Stats.Cunning.CunningMark, value: 0
-                    }
-                }
-            }
-        })
-        setCharacter({
-            ...character, Stats: {
-                ...character.Stats, Intuition: {
-                    ...character.Stats.Intuition, IntuitionMark: {
-                        ...character.Stats.Intuition.IntuitionMark, value: 0
-                    }
-                }
-            }
-        })
-        axios.patch('http://localhost:8000/api/character/' + charId, character)
+        };
+
+        setResting(false);
+        setCharacter(updatedCharacter);
+        axios.patch('http://localhost:8000/api/character/' + charId, updatedCharacter)
     }
 
+    const raiseMark = (stat) => {
+        if (character.Marks[stat] < 3) {
+        const updatedCharacter = {
+            ...character,
+            Marks: {
+                ...character.Marks,
+                [stat]: character.Marks[stat] + 1
+            }
+        };
     
+
+
+        setCharacter(updatedCharacter);
+        axios.patch('http://localhost:8000/api/character/' + charId, updatedCharacter)
+
+    }
+    }
+
 
 
         
@@ -428,6 +430,7 @@ const CharacterDetails = () => {
                     })}
                 </div>
                 <div className='characterMarks'>
+                    <button className="showName" onClick={() => setResting(true)}>Rest</button>
                     <div className="characterMarksStats">
 
                         {resting
@@ -437,13 +440,12 @@ const CharacterDetails = () => {
                             </div>
                             : 
                             <div className="resting">
-                            <p>Body: {character.Marks.body}</p>
-                            <p>Brain: {character.Marks.brain}</p>
-                            <p>Bleed: {character.Marks.bleed}</p>
+                            <p onClick={() => raiseMark("body")}>Body: {character.Marks.body}</p>
+                            <p onClick={() => raiseMark("brain")}>Brain: {character.Marks.brain}</p>
+                            <p onClick={() => raiseMark("bleed")}>Bleed: {character.Marks.bleed}</p>
                             </div>}
 
                         
-                    <button className="showName" onClick={() => setResting(true)}>Rest</button>
                     </div>
                     <div className="characterMarksInfoContainer">
                     <div className="characterMarksInfoGear">

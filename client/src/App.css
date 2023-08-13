@@ -189,9 +189,9 @@
 
 
 .showName {
-    position: relative;
     background-color: black;
     color: white;
+    width: 100%;
 }
 
 .listOfUsersCharacters {
@@ -276,4 +276,11 @@
     font-size: 20px;
     padding: 10px;
     overflow: scroll;
+}
+
+.resting {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
 }
