@@ -15,6 +15,7 @@ const CharacterDetails = () => {
     const [editedScarIndex, setEditedScarIndex] = useState(null);
     const [editedRelationshipIndex, setEditedRelationshipIndex] = useState(null);
     const [editedGearIndex, setEditedGearIndex] = useState(null);
+    const [resting, setResting] = useState(false);
     let { charId } = useParams();
     
     console.log(character);
@@ -156,6 +157,74 @@ const CharacterDetails = () => {
             console.log(error);
         }
     }
+
+    const resetDrives = () => {
+        const updatedCharacter = {
+            ...character,
+            Stats: {
+                ...character.Stats,
+                    Cunning: {
+                        ...character.Stats.Cunning,
+                            cunningDrive: {
+                                ...character.Stats.Cunning.cunningDrive,
+                                    value: character.Stats.Cunning.cunningDrive.maximum
+                                }
+                    },
+                    Intuition: {
+                        ...character.Stats.Intuition,
+                            intuitionDrive: {
+                                ...character.Stats.Intuition.intuitionDrive,
+                                    value: character.Stats.Intuition.intuitionDrive.maximum
+                            }
+                    },
+                    Nerve: {
+                        ...character.Stats.Nerve,
+
+                            nerveDrive: {
+                                ...character.Stats.Nerve.nerveDrive,
+                                    value: character.Stats.Nerve.nerveDrive.maximum
+                            }
+                    }
+            }
+        };
+        setCharacter(updatedCharacter);
+        axios.patch('http://localhost:8000/api/character/' + charId, updatedCharacter);
+        };
+
+
+
+    const resetMarks = () => {
+        setCharacter({
+            ...character, Stats: {
+                ...character.Stats, Nerve: {
+                    ...character.Stats.Nerve, NerveMark: {
+                        ...character.Stats.Nerve.NerveMark, value: 0
+                    }
+                }
+            }
+        })
+        setCharacter({
+            ...character, Stats: {
+                ...character.Stats, Cunning: {
+                    ...character.Stats.Cunning, CunningMark: {
+                        ...character.Stats.Cunning.CunningMark, value: 0
+                    }
+                }
+            }
+        })
+        setCharacter({
+            ...character, Stats: {
+                ...character.Stats, Intuition: {
+                    ...character.Stats.Intuition, IntuitionMark: {
+                        ...character.Stats.Intuition.IntuitionMark, value: 0
+                    }
+                }
+            }
+        })
+        axios.patch('http://localhost:8000/api/character/' + charId, character)
+    }
+
+    
 
 
         
@@ -361,9 +430,20 @@ const CharacterDetails = () => {
                 <div className='characterMarks'>
                     <div className="characterMarksStats">
 
-                        <p>Body: {character.Marks.body}</p>
-                        <p>Brain: {character.Marks.brain}</p>
-                        <p>Bleed: {character.Marks.bleed}</p>
+                        {resting
+                            ? <div className="resting">
+                                <button className="" onClick={() => resetDrives()}>Reset Drives</button>
+                                <button className="" onClick={() => resetMarks()}>Reset Marks</button>
+                            </div>
+                            : 
+                            <div className="resting">
+                            <p>Body: {character.Marks.body}</p>
+                            <p>Brain: {character.Marks.brain}</p>
+                            <p>Bleed: {character.Marks.bleed}</p>
+                            </div>}
+
+                        
+                    <button className="showName" onClick={() => setResting(true)}>Rest</button>
                     </div>
                     <div className="characterMarksInfoContainer">
                     <div className="characterMarksInfoGear">
