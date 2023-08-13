@@ -198,9 +198,9 @@ const CharacterDetails = () => {
         const updatedCharacter = {
             ...character,
             Marks: {
-                Cunning: 0,
-                Intuition: 0,
-                Nerve: 0
+                bleed: 0,
+                body: 0,
+                brain: 0
             }
         };
 
