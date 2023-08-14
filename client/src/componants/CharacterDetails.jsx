@@ -16,6 +16,7 @@ const CharacterDetails = () => {
     const [editedRelationshipIndex, setEditedRelationshipIndex] = useState(null);
     const [editedGearIndex, setEditedGearIndex] = useState(null);
     const [resting, setResting] = useState(false);
+    const [showCharacterInfo, setShowCharacterInfo] = useState(false);
     let { charId } = useParams();
     
     console.log(character);
@@ -82,18 +83,18 @@ const CharacterDetails = () => {
         }
     }
 
-    const showCharacterInfo = () => {
-        const elements = document.getElementsByClassName('characterInformation');
-        for (let i = 0; i < elements.length; i++) {
-            if (elements[i].style.display === 'flex') {
-                elements[i].style.display = 'none';
-            }
-            else {
-                elements[i].style.display = 'flex';
+    // const showCharacterInfo = () => {
+    //     const elements = document.getElementsByClassName('characterInformation');
+    //     for (let i = 0; i < elements.length; i++) {
+    //         if (elements[i].style.display === 'flex') {
+    //             elements[i].style.display = 'none';
+    //         }
+    //         else {
+    //             elements[i].style.display = 'flex';
 
-            }
-        }
-    };
+    //         }
+    //     }
+    // };
 
     const addItem = async (e, item) => {
         console.log(e, item);
@@ -259,19 +260,9 @@ const CharacterDetails = () => {
                 </div>
                 :
                 <div className="characterInfoContainer">
-                    <div className="characterInformation left" >
-                        <span>Name: {character.Information.Name}</span>
-                        <span>Pronouns: {character.Information.Pronouns}</span>
-                        <span>Circle: {character.Information.Circle}</span>
-                    </div>
                     <div class="titleHeader">
                         <span>Candela</span>
                         <span>Obscura</span>
-                    </div>
-                    <div className='characterInformation right'>
-                        <span>Style: {character.Information.Style}</span>
-                        <span>Catalyst: {character.Information.Catalyst}</span>
-                        <span>Question: {character.Information.Question}</span>
                     </div>
                 </div>
             }
@@ -280,7 +271,7 @@ const CharacterDetails = () => {
 
             <div className="characterSheet">
                 <div className="characterStats">
-                    <button className="showName" onClick={() => showCharacterInfo()}>Show Info</button>
+                <button className="showName" onClick={() => setShowCharacterInfo(prevState => !prevState)}>Show Info</button>
                     <div className="statHeader">
                         <div className="HeaderTitle">
                             <h3>
@@ -403,32 +394,46 @@ const CharacterDetails = () => {
 
                     </div>
                 </div>
-                <div className='characterAbilities'>
-                    <h2>Other Details</h2>
-                    <p>Role: {character.Role.title}</p>
-                    <p>Role Abilities: </p>
-                    {character.Role.abilities.map((title, index) => {
-                        return (
-                            <div key={index}>
-                                <p>
-                                    {title.title}: {title.description}
-                                </p>
-                            </div>
-                        )
-                    })}
+                {showCharacterInfo 
+                ? <div className="characterAbilities">
+                    <div className="characterInfo" >
+                        <span>Name: {character.Information.Name}</span>
+                        <span>Pronouns: {character.Information.Pronouns}</span>
+                        <span>Circle: {character.Information.Circle}</span>
 
-                    <span>Specialty: {character.Specialty.title}</span>
-                    <p>Specialty Abilities: </p>
-                    {character.Specialty.abilities.map((title, index) => {
-                        return (
-                            <div key={index}>
-                                <p>
-                                    {title.title}: {title.description}
-                                </p>
-                            </div>
-                        )
-                    })}
+                        <span>Style: {character.Information.Style}</span>
+                        <span>Catalyst: {character.Information.Catalyst}</span>
+                        <span>Question: {character.Information.Question}</span>
+                    </div>
                 </div>
+                : 
+                <div className="characterAbilities">
+                    <div className=''>
+                        <h2>Other Details</h2>
+        
+                        <p>Role: {character.Role.title}</p>
+                        <p>Role Abilities: </p>
+                            {character.Role.abilities.map((title, index) => {
+                                return (
+                                    <div key={index}>
+                                    <p>{title.title}: {title.description}</p>
+                                    </div>
+                                );
+                            })}
+
+                        <p>Specialty: {character.Specialty.title}</p>
+                        <p>Specialty Abilities: </p>
+                            {character.Specialty.abilities.map((title, index) => {
+                                return (
+                                    <div key={index}>
+                                        <p>{title.title}: {title.description}</p>
+                                    </div>
+                                );
+                            })}
+                    </div>  
+                </div>
+                }
+                
                 <div className='characterMarks'>
                     <button className="showName" onClick={() => setResting(true)}>Rest</button>
                     <div className="characterMarksStats">
@@ -556,7 +561,6 @@ const CharacterDetails = () => {
                 </div>
             </div>
         </div>
-
 
 
 
