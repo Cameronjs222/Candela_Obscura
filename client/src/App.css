@@ -1,8 +1,16 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+body {
+    background-image: url("https://wallpapercave.com/wp/wQub3px.jpg");
+}
+
 .mainContainer{
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: white;
     align-items: center;
 }
 
@@ -87,8 +95,18 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    background-color: white;
     margin: 0 auto;
+}
+
+.characterInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    background-color: white;
+    height: 50%;
+    gap: 10px;
+    padding-top: 10px;
+    
 }
 
 .characterStats {
@@ -97,7 +115,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: white;
     border: 2px solid black;
 }
 
@@ -118,8 +135,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    background-color: black;
-    color: white;
+    border: 2px solid black;
+    border-top: none;
     border-end-end-radius: 20px;
     border-end-start-radius: 20px;
     border-bottom: 1px solid black;
@@ -165,12 +182,12 @@
     width: 15px;
     height: 15px;
     border-radius: 10px;
-    background-color: white;
     margin: 5px 0;
 }
 
 .Gilded {
     background-color: gold;
+    border: 2px solid black;
     height: 15px;
     width: 14px;
     rotate: 45deg;
@@ -178,11 +195,10 @@
 }
 
 .GildedBlank {
-    background-color: white;
     height: 15px;
     width: 14px;
     rotate: 45deg;
-    border: 1px solid gold;
+    border: 2px solid black;
     margin-top: 3px;
     
 }
@@ -236,8 +252,7 @@
     justify-content: space-evenly;
     align-items: center;
     gap: 10px;
-    background-color: black;
-    color: white;
+    border: 2px solid black;
     border-end-end-radius: 20px;
     border-end-start-radius: 20px;
     height: 5%;
