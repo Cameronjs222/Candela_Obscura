@@ -105,12 +105,12 @@ module.exports.deleteAnExistingUser = (req, res) => {
         });
 }
 
-model.exports.findUserByEmail = (req, res) => {
-    Users.findOne({ email: req.params.email })
-        .then(user => {
-            res.json(user)
-        })
-        .catch(err => {
-            res.json({ message: 'Something went wrong', error: err })
-        })
-}
+// model.exports.findUserByEmail = (req, res) => {
+//     Users.findOne({ email: req.params.email })
+//         .then(user => {
+//             res.json(user)
+//         })
+//         .catch(err => {
+//             res.json({ message: 'Something went wrong', error: err })
+//         })
+// }

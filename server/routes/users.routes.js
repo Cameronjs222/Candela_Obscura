@@ -14,6 +14,6 @@ app.patch("/api/users/:_id", UsersController.updateExistingUser);
 
 app.delete("/api/users/:_id", UsersController.deleteAnExistingUser);
 
-app.get("/api/users/email/:email", UsersController.findUserByEmail);
+// app.get("/api/users/email/:email", UsersController.findUserByEmail);
 
 };
