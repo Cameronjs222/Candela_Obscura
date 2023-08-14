@@ -3,7 +3,6 @@ import CharacterDetails from './componants/CharacterDetails';
 import CharacterCreation from './componants/CharacterCreation';
 import SelectUser from './componants/SelectUser';
 import SelectCharacter from './componants/SelectCharacter';
-import Login from './componants/LoginForm';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { useState } from 'react';
 import UserForm from './componants/UserForm';
@@ -17,7 +16,6 @@ function App() {
       <header className="App-header">
         <BrowserRouter>
           <Routes>
-            <Route path='/login' element={<Login setActiveUser={setActiveUser}/>}></Route>
             <Route path='/' element={<SelectUser/>}></Route>
             <Route path='/characters/all/:userId' element={<SelectCharacter/>}></Route>
             <Route path='/characters/:charId' element={<CharacterDetails/>}></Route>
