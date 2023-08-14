@@ -271,7 +271,7 @@ const CharacterDetails = () => {
 
             <div className="characterSheet">
                 <div className="characterStats">
-                <button className="showName" onClick={() => setShowCharacterInfo(prevState => !prevState)}>Show Info</button>
+                <button className="custom-button showName" onClick={() => setShowCharacterInfo(prevState => !prevState)}>Show Info</button>
                     <div className="statHeader">
                         <div className="HeaderTitle">
                             <h3>
@@ -301,7 +301,6 @@ const CharacterDetails = () => {
                         <div className="statValueDivContainer">
                             {generateDivs(character.Stats.Nerve.strike.value)}
                         </div>
-                        {character.Stats.Nerve.strike.Gilded ? "gilded" : null}
                         <div className="statName">
                             {character.Stats.Nerve.control.Gilded ? <div className="Gilded"></div> : <div className="GildedBlank"></div>}
                             <span className='statItem'>Control: {
@@ -435,13 +434,13 @@ const CharacterDetails = () => {
                 }
                 
                 <div className='characterMarks'>
-                    <button className="showName" onClick={() => setResting(true)}>Rest</button>
+                    <button className="custom-button showName" onClick={() => setResting(true)}>Rest</button>
                     <div className="characterMarksStats">
 
                         {resting
                             ? <div className="resting">
-                                <button className="" onClick={() => resetDrives()}>Reset Drives</button>
-                                <button className="" onClick={() => resetMarks()}>Reset Marks</button>
+                                <button className="custom-button " onClick={() => resetDrives()}>Reset Drives</button>
+                                <button className="custom-button " onClick={() => resetMarks()}>Reset Marks</button>
                             </div>
                             : 
                             <div className="resting">
@@ -523,7 +522,7 @@ const CharacterDetails = () => {
                             </div>
 
                             {editing === "Notes" 
-                            ? <textarea className='noteTextArea' onChange={(e) => setNotes(e.target.value)} value={notes}></textarea> 
+                            ? <textarea className='noteTextArea input' onChange={(e) => setNotes(e.target.value)} value={notes}></textarea> 
                             : <span>{character.Notes}</span>}
 
                         </div>

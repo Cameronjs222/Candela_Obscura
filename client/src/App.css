@@ -306,3 +306,19 @@ body {
     padding: 8px; /* Add some padding for better appearance */
     color: black; /* Set the text color */
 }
+
+.custom-button {
+    background-color: rgba(234, 222, 205, 0.34); /* Dusty Rose with 80% opacity */
+    border: none;
+    padding: 10px 20px;
+    color: black; /* White text color */
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .custom-button:hover {
+    background-color: rgba(234, 222, 205, 0); /* Full opacity on hover */
+  }
+  
