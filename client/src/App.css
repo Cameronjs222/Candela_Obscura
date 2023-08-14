@@ -299,3 +299,10 @@ body {
     width: 100%;
     justify-content: space-evenly;
 }
+
+.input {
+    background-color: rgba(212, 161, 144, 0.1); /* Adjust the alpha value to control opacity */
+    border: 1px solid rgba(188, 143, 143, 0.6); /* Add a border for better contrast */
+    padding: 8px; /* Add some padding for better appearance */
+    color: black; /* Set the text color */
+}
