@@ -459,7 +459,7 @@ const CharacterDetails = () => {
                             ? <button onClick={() => { setEditing("None"); addItem(relationships, "Relationships") }}>Save Relationships</button>
                             : <button onClick={() => setEditing("Relationships")}>Edit Relationships</button>}
                         {editing === "Relationships"
-                            ? <input className='' onChange={(e) => setRelationships(e.target.value)}></input>
+                            ? <input className='input' onChange={(e) => setRelationships(e.target.value)}></input>
                             : null}
 
                         {editing === "oneRelationship"
@@ -468,7 +468,7 @@ const CharacterDetails = () => {
                             : null}
                             
                         {editing === "oneRelationship"
-                            ? <input className='' 
+                            ? <input className='input' 
                             value={character.Relationships[editedRelationshipIndex]}
                             onChange={(e) => {
                                 let uptatedRelationships = [...character.Relationships];
@@ -490,7 +490,7 @@ const CharacterDetails = () => {
 
                     
                             {editing === "Scars"
-                            ? <input className='' onChange={(e) => setScars(e.target.value)}></input>
+                            ? <input className='input' onChange={(e) => setScars(e.target.value)}></input>
                             : null}
 
                             {editing === "oneScar"
@@ -499,7 +499,7 @@ const CharacterDetails = () => {
                             : null}
 
                             {editing === "oneScar"
-                            ? <input className='' value={character.Scars[editedScarIndex]} onChange={(e) => {
+                            ? <input className='input' value={character.Scars[editedScarIndex]} onChange={(e) => {
                                 const updatedScars = [...character.Scars];
                                 updatedScars[editedScarIndex] = e.target.value;
                                 setCharacter({ ...character, Scars: updatedScars })
@@ -533,7 +533,7 @@ const CharacterDetails = () => {
                             ? <button onClick={() => { setEditing("None"); addItem(gear, "Items") }}>Save Gear</button>
                             : <button onClick={() => setEditing("Items")}>Edit Gear</button>}
                             {editing === "Items"
-                            ? <input className='' onChange={(e) => setGear(e.target.value)}></input>
+                            ? <input className='input' onChange={(e) => setGear(e.target.value)}></input>
                             : null}
 
                             {editing === "oneItem"
@@ -542,7 +542,7 @@ const CharacterDetails = () => {
                             : null}
 
                             {editing === "oneItem"
-                            ? <input className='' value={character.Items[editedGearIndex]} onChange={(e) => {
+                            ? <input className='input' value={character.Items[editedGearIndex]} onChange={(e) => {
                                 const updatedGear = [...character.Items];
                                 updatedGear[editedGearIndex] = e.target.value;
                                 setCharacter({ ...character, Items: updatedGear })
