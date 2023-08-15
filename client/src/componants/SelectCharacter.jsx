@@ -63,7 +63,7 @@ const SelectCharacter = () => {
           <div className="charactersCardLinks">
             
           <Link to={`/characters/${character._id}/${userId}`}>View</Link> <span> | </span>
-          <Link to={`/characters/edit/${character._id}`}>Edit</Link> <span> | </span>
+          <Link to={`/characters/edit/${character._id}/${userId}`}>Edit</Link> <span> | </span>
           <Link onClick={() => deleteCharacter(character._id)}>Delete</Link>
           </div>
         </div>
