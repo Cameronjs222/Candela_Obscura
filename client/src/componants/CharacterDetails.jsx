@@ -455,15 +455,15 @@ const CharacterDetails = () => {
                     <div className="characterMarksInfoGear">
                         <span>Relationships: </span>
                         {editing === "Relationships"
-                            ? <button onClick={() => { setEditing("None"); addItem(relationships, "Relationships") }}>Save Relationships</button>
-                            : <button onClick={() => setEditing("Relationships")}>Edit Relationships</button>}
+                            ? <button className='custom-button' onClick={() => { setEditing("None"); addItem(relationships, "Relationships") }}>Save Relationships</button>
+                            : <button className='custom-button' onClick={() => setEditing("Relationships")}>Edit Relationships</button>}
                         {editing === "Relationships"
                             ? <input className='input' onChange={(e) => setRelationships(e.target.value)}></input>
                             : null}
 
                         {editing === "oneRelationship"
-                            ? <div className='characterMarksInfoHeader'><button onClick={() => { setEditing("None"); saveEdit() }}>Save Relationship</button>
-                                <button onClick={() => { setEditing("None"); deleteItem("Relationships", editedRelationshipIndex) }}>Delete Relationship</button></div>
+                            ? <div className='characterMarksInfoHeader'><button className='custom-button' onClick={() => { setEditing("None"); saveEdit() }}>Save Relationship</button>
+                                <button className='custom-button' onClick={() => { setEditing("None"); deleteItem("Relationships", editedRelationshipIndex) }}>Delete Relationship</button></div>
                             : null}
                             
                         {editing === "oneRelationship"
@@ -484,8 +484,8 @@ const CharacterDetails = () => {
                         <div className="characterMarksInfoGear">
                             <span>Scars: </span>
                             {editing === "Scars" 
-                            ? <button onClick={() => { setEditing("None"); addItem(scars, "Scars")}}>Save Scars</button> 
-                            : <button onClick={() => setEditing("Scars")}>New Scar</button>}
+                            ? <button className='custom-button' onClick={() => { setEditing("None"); addItem(scars, "Scars")}}>Save Scars</button> 
+                            : <button className='custom-button' onClick={() => setEditing("Scars")}>New Scar</button>}
 
                     
                             {editing === "Scars"
@@ -493,8 +493,8 @@ const CharacterDetails = () => {
                             : null}
 
                             {editing === "oneScar"
-                            ? <div className='characterMarksInfoHeader'><button onClick={() => { setEditing("None"); saveEdit() }}>Save Scar</button> 
-                            <button onClick={() => { setEditing("None"); deleteItem("Scars", editedScarIndex) }}>Delete Scar</button></div>
+                            ? <div className='characterMarksInfoHeader'><button className='custom-button' onClick={() => { setEditing("None"); saveEdit() }}>Save Scar</button> 
+                            <button className='custom-button' onClick={() => { setEditing("None"); deleteItem("Scars", editedScarIndex) }}>Delete Scar</button></div>
                             : null}
 
                             {editing === "oneScar"
@@ -516,8 +516,8 @@ const CharacterDetails = () => {
                             <div className='characterMarksInfoHeader'>
                             <span>Notes: </span>
                             {editing === "Notes" 
-                            ? <button onClick={() => { setEditing("None"); addItem(notes, "Notes") }}>Save Notes</button> 
-                            : <button onClick={() => setEditing("Notes")}>Edit Notes</button>}
+                            ? <button className='custom-button' onClick={() => { setEditing("None"); addItem(notes, "Notes") }}>Save Notes</button> 
+                            : <button className='custom-button' onClick={() => setEditing("Notes")}>Edit Notes</button>}
                             
                             </div>
 
@@ -529,15 +529,15 @@ const CharacterDetails = () => {
                         <div className="characterMarksInfoGear">
                             <p>Gear:</p>
                             {editing === "Items"
-                            ? <button onClick={() => { setEditing("None"); addItem(gear, "Items") }}>Save Gear</button>
-                            : <button onClick={() => setEditing("Items")}>Edit Gear</button>}
+                            ? <button className='custom-button' onClick={() => { setEditing("None"); addItem(gear, "Items") }}>Save Gear</button>
+                            : <button className='custom-button' onClick={() => setEditing("Items")}>Edit Gear</button>}
                             {editing === "Items"
                             ? <input className='input' onChange={(e) => setGear(e.target.value)}></input>
                             : null}
 
                             {editing === "oneItem"
-                            ? <div className='characterMarksInfoHeader'><button onClick={() => { setEditing("None"); saveEdit() }}>Save Gear</button>
-                            <button onClick={() => { setEditing("None"); deleteItem("Gear", editedGearIndex) }}>Delete Gear</button></div>
+                            ? <div className='characterMarksInfoHeader'><button className='custom-button' onClick={() => { setEditing("None"); saveEdit() }}>Save Gear</button>
+                            <button className='custom-button' onClick={() => { setEditing("None"); deleteItem("Gear", editedGearIndex) }}>Delete Gear</button></div>
                             : null}
 
                             {editing === "oneItem"

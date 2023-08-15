@@ -310,12 +310,12 @@ body {
 .custom-button {
     background-color: rgba(234, 222, 205, 0.34); /* Dusty Rose with 80% opacity */
     border: none;
-    padding: 10px 20px;
     color: black; /* White text color */
     font-size: 16px;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+    border: 1px solid rgba(188, 143, 143, 0.6); /* Add a border for better contrast */
   }
   
   .custom-button:hover {
