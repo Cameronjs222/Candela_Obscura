@@ -48,7 +48,7 @@ const SelectCharacter = () => {
 
 
   return (
-    <div>
+    <div className='mainCharacterSelectContainer'>
       <div className="characterSelectHeader">
       
       <h1>{userName}'s Characters</h1>
@@ -56,21 +56,21 @@ const SelectCharacter = () => {
       <div className="listOfUsersCharacters">
 
       {characters.map(character => (
-        <div key={character._id} className='characterCard' style={{backgroundColor: "red", border: "2px solid black"}}>
+        <div key={character._id} className='characterCard'>
           <div className="characterCardCharacterName">
             <h3>{character.Information.Name}</h3><br/>
           </div>
           <div className="charactersCardLinks">
             
-          <Link to={`/characters/${character._id}`}>View</Link> <span> | </span>
+          <Link to={`/characters/${character._id}/${userId}`}>View</Link> <span> | </span>
           <Link to={`/characters/edit/${character._id}`}>Edit</Link> <span> | </span>
-          <button onClick={() => deleteCharacter(character._id)}>Delete</button>
+          <Link onClick={() => deleteCharacter(character._id)}>Delete</Link>
           </div>
         </div>
       ))}
 
       </div>
-      <Link to={`/characters/new/${userId}`}>Create new character</Link>
+      <Link className='newCharacterLink' to={`/characters/new/${userId}`}>Create new character</Link>
     </div>
   );
 };

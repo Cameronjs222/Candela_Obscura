@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const CharacterCreation = () => {
@@ -89,7 +89,7 @@ const CharacterCreation = () => {
         setCunningDriveValue({ value: 3, Gilded: false });
         setIntuitionDriveValue({ value: 4, Gilded: false });
         setRoleAbilitiesTitle(["Well-Read"]);
-        setRoleAbilitiesDescription(["You’re highly educated and retain knowledge better than most. When you use Intuition while making a roll, if you fail the roll, earn back any Intuition you used"]);
+        setRoleAbilitiesDescription(["You're highly educated and retain knowledge better than most. When you use Intuition while making a roll, if you fail the roll, earn back any Intuition you used"]);
         break;
       }
       case 'Face': {
@@ -229,6 +229,14 @@ const CharacterCreation = () => {
         })
         .catch((error) => {
           console.error(error);
+          const errorResponse = error.response.data.error.errors;
+          const errorObject  = {};
+          for (const key of Object.keys(errorResponse)) {
+            const path = errorResponse[key].path;
+            const message = errorResponse[key].message;
+            errorObject[path] = message;}
+          setErrors(errorObject );
+          Navigate('/characters/new/' + idOfUser);
         });
     }
     else {
@@ -252,7 +260,7 @@ const CharacterCreation = () => {
     };
     
     return (
-    <div>
+    <div className='creationContainer'>
       <h1>Character Creation</h1>
       <form onSubmit={submitEvent}>
       {/* {errors.map((err, index) => (
@@ -261,31 +269,32 @@ const CharacterCreation = () => {
         <h2>General Information</h2>
         <div className="Name">
         <label htmlFor="Name">Character's Name:</label>
-        <input type="text" name="Name" value={name} onChange={(event) => setName(event.target.value)} /><br />
-        <span>{errors["Information.Name"] ? errors["Information.Name"] : ""}</span>
+        <span className='errors'>{errors["Information.Name"] ? errors["Information.Name"] : ""}</span>
+        <input className='input' type="text" name="Name" value={name} onChange={(event) => setName(event.target.value)} /><br />
         </div>
 
 
         <label htmlFor="Pronouns">Character's Pronouns:</label>
-        <input type="text" name="Pronouns" value={pronouns} onChange={(event) => setPronouns(event.target.value)} /><br />
+        <input className='input' type="text" name="Pronouns" value={pronouns} onChange={(event) => setPronouns(event.target.value)} /><br />
 
         <label htmlFor="Style">Style:</label>
-        <input type="text" name="Style" value={style} onChange={(event) => setStyle(event.target.value)} /><br />
+        <input className='input' type="text" name="Style" value={style} onChange={(event) => setStyle(event.target.value)} /><br />
 
         <h2>Character Details</h2>
 
         <label htmlFor="Circle">Circle:</label>
-        <input type="text" name="Circle" value={circle} onChange={(event) => setCircle(event.target.value)} /><br />
+        <input className='input' type="text" name="Circle" value={circle} onChange={(event) => setCircle(event.target.value)} /><br />
 
         <label htmlFor="Catalyst">Character's Catalyst:</label>
-        <input type="text" name="Catalyst" value={catalyst} onChange={(event) => setCatalyst(event.target.value)} /><br />
+        <input className='input' type="text" name="Catalyst" value={catalyst} onChange={(event) => setCatalyst(event.target.value)} /><br />
 
         <label htmlFor="Question">Question:</label>
-        <input type="text" name="Question" value={question} onChange={(event) => setQuestion(event.target.value)} /><br />
+        <input className='input' type="text" name="Question" value={question} onChange={(event) => setQuestion(event.target.value)} /><br />
 
         <h2>Role and Specialty</h2>
         <label htmlFor="Role">Role:</label>
-        <select type="text" name="Role" value={role} onChange={(event) => setRole(event.target.value)}>
+        <span className='errors'>{errors["Role.title"] ? errors["Role.title"] : ""}</span><br />
+        <select className='input' type="text" name="Role" value={role} onChange={(event) => setRole(event.target.value)}>
           <option value="None">None</option>
           <option value="Slink">Slink</option>
           <option value="Scholar">Scholar</option>
@@ -293,11 +302,11 @@ const CharacterCreation = () => {
           <option value="Weird">Weird</option>
           <option value="Muscle">Muscle</option>
         </select><br />
-        <span>{errors["Role.title"] ? errors["Role.title"] : ""}</span><br />
 
 
         <label htmlFor="Specialty">Specialty:</label>
-        <select type="text" name="Specialty" value={specialty} onChange={(event) => setSpecialty(event.target.value)}>
+        <span className='errors'>{errors["Specialty.title"] ? errors["Specialty.title"] : ""}</span>
+        <select className='input' type="text" name="Specialty" value={specialty} onChange={(event) => setSpecialty(event.target.value)}>
           <option value="None">None</option>
           {role === "Slink" ? <option value="Criminal">Criminal</option> : null}
           {role === "Scholar" ? <option value="Professor">Professor</option> : null}
@@ -305,21 +314,20 @@ const CharacterCreation = () => {
           {role === "Weird" ? <option value="Occultist">Occultist</option> : null}
           {role === "Muscle" ? <option value="Explorer">Explorer</option> : null}
         </select><br />
-        <span>{errors["Specialty.title"] ? errors["Specialty.title"] : ""}</span>
 
-        <h2>Stats</h2>
+        {/* <h2>Stats</h2>
         <label htmlFor="moveValue">Move:</label>
-        <input type="number" name="move" value={moveValue.value} onChange={(event) => setMoveValue({ ...moveValue, value: parseInt(event.target.value) })} />
+        <input className='input' type="number" name="move" value={moveValue.value} onChange={(event) => setMoveValue({ ...moveValue, value: parseInt(event.target.value) })} />
         <label>
           Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="moveGilded"
             checked={moveValue.Gilded}
             onChange={() => setMoveValue({ ...moveValue, Gilded: true })}
           />
           Not Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="moveGilded"
             checked={!moveValue.Gilded}
@@ -329,17 +337,17 @@ const CharacterCreation = () => {
         <br />
 
         <label htmlFor="strikeValue">Strike:</label>
-        <input type="number" name="strikeValue" value={strikeValue.value} onChange={(event) => setStrikeValue({ ...strikeValue, value: parseInt(event.target.value) })} />
+        <input className='input' type="number" name="strikeValue" value={strikeValue.value} onChange={(event) => setStrikeValue({ ...strikeValue, value: parseInt(event.target.value) })} />
         <label>
           Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="strikeGilded"
             checked={strikeValue.Gilded}
             onChange={() => setStrikeValue({ ...strikeValue, Gilded: true })}
           />
           Not Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="strikeGilded"
             checked={!strikeValue.Gilded}
@@ -349,17 +357,17 @@ const CharacterCreation = () => {
         <br />
 
         <label htmlFor="controlValue">Control Value:</label>
-        <input type="number" name="controlValue" value={controlValue.value} onChange={(event) => setControlValue({ ...controlValue, value: parseInt(event.target.value) })} />
+        <input className='input' type="number" name="controlValue" value={controlValue.value} onChange={(event) => setControlValue({ ...controlValue, value: parseInt(event.target.value) })} />
         <label>
           Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="controlGilded"
             checked={controlValue.Gilded}
             onChange={() => setControlValue({ ...controlValue, Gilded: true })}
           />
           Not Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="controlGilded"
             checked={!controlValue.Gilded}
@@ -369,20 +377,20 @@ const CharacterCreation = () => {
         <br />
 
         <label htmlFor="nerveDriveValue">Nerve's Maximum Drive:</label>
-        <input type="number" name="nerveDriveValue" value={nerveDriveValue.value} onChange={(event) => setNerveDriveValue({...nerveDriveValue, value:parseInt(event.target.value)})} /><br />
+        <input className='input' type="number" name="nerveDriveValue" value={nerveDriveValue.value} onChange={(event) => setNerveDriveValue({...nerveDriveValue, value:parseInt(event.target.value)})} /><br />
 
         <label htmlFor="swayValue">Character's Sway Value:</label>
-        <input type="number" name="swayValue" value={swayValue.value} onChange={(event) => setSwayValue({ ...swayValue, value: parseInt(event.target.value) })} />
+        <input className='input' type="number" name="swayValue" value={swayValue.value} onChange={(event) => setSwayValue({ ...swayValue, value: parseInt(event.target.value) })} />
         <label>
           Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="swayGilded"
             checked={swayValue.Gilded}
             onChange={() => setControlValue({ ...swayValue, Gilded: true })}
           />
           Not Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="swayGilded"
             checked={!swayValue.Gilded}
@@ -391,17 +399,17 @@ const CharacterCreation = () => {
         </label><br />
 
         <label htmlFor="readValue">Character's Read Value:</label>
-        <input type="number" name="readValue" value={readValue.value} onChange={(event) => setReadValue({...readValue, value: parseInt(event.target.value)})} />
+        <input className='input' type="number" name="readValue" value={readValue.value} onChange={(event) => setReadValue({...readValue, value: parseInt(event.target.value)})} />
         <label>
           Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="readGilded"
             checked={readValue.Gilded}
             onChange={() => setReadValue({ ...readValue, Gilded: true })}
           />
           Not Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="readGilded"
             checked={!readValue.Gilded}
@@ -410,17 +418,17 @@ const CharacterCreation = () => {
         </label><br />
 
         <label htmlFor="hideValue">Character's Hide Value:</label>
-        <input type="number" name="hideValue" value={hideValue.value} onChange={(event) => setHideValue({...hideValue, value: parseInt(event.target.value)})} />
+        <input className='input' type="number" name="hideValue" value={hideValue.value} onChange={(event) => setHideValue({...hideValue, value: parseInt(event.target.value)})} />
         <label>
           Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="hideGilded"
             checked={hideValue.Gilded}
             onChange={() => setHideValue({ ...hideValue, Gilded: true })}
           />
           Not Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="hideGilded"
             checked={!hideValue.Gilded}
@@ -429,20 +437,20 @@ const CharacterCreation = () => {
         </label><br />
 
         <label htmlFor="cunningDriveValue">Cunning's Maximum Drive:</label>
-        <input type="number" name="cunningDriveValue" value={cunningDriveValue.value} onChange={(event) => setCunningDriveValue({...cunningDriveValue, value: parseInt(event.target.value)})} /><br />
+        <input className='input' type="number" name="cunningDriveValue" value={cunningDriveValue.value} onChange={(event) => setCunningDriveValue({...cunningDriveValue, value: parseInt(event.target.value)})} /><br />
 
         <label htmlFor="surveyValue">Character's Survey Value:</label>
-        <input type="number" name="surveyValue" value={surveyValue.value} onChange={(event) => setSurveyValue({...surveyValue, value: parseInt(event.target.value)})} />
+        <input className='input' type="number" name="surveyValue" value={surveyValue.value} onChange={(event) => setSurveyValue({...surveyValue, value: parseInt(event.target.value)})} />
         <label>
           Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="surveyGilded"
             checked={surveyValue.Gilded}
             onChange={() => setSurveyValue({ ...surveyValue, Gilded: true })}
           />
           Not Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="surveyGilded"
             checked={!surveyValue.Gilded}
@@ -451,17 +459,17 @@ const CharacterCreation = () => {
         </label><br />
 
         <label htmlFor="focusValue">Character's Focus Value:</label>
-        <input type="number" name="focusValue" value={focusValue.value} onChange={(event) => setFocusValue({...focusValue, value: parseInt(event.target.value)})} />
+        <input className='input' type="number" name="focusValue" value={focusValue.value} onChange={(event) => setFocusValue({...focusValue, value: parseInt(event.target.value)})} />
         <label>
           Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="focusGilded"
             checked={focusValue.Gilded}
             onChange={() => setFocusValue({ ...focusValue, Gilded: true })}
           />
           Not Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="focusGilded"
             checked={!focusValue.Gilded}
@@ -470,17 +478,17 @@ const CharacterCreation = () => {
         </label><br />
 
         <label htmlFor="senseValue">Character's Sense Value:</label>
-        <input type="number" name="senseValue" value={senseValue.value} onChange={(event) => setSenseValue({...senseValue, value: parseInt(event.target.value)})} />
+        <input className='input' type="number" name="senseValue" value={senseValue.value} onChange={(event) => setSenseValue({...senseValue, value: parseInt(event.target.value)})} />
         <label>
           Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="senseGilded"
             checked={senseValue.Gilded}
             onChange={() => setSenseValue({ ...senseValue, Gilded: true })}
           />
           Not Gilded:
-          <input
+          <input className='input'
             type="radio"
             name="senseGilded"
             checked={!senseValue.Gilded}
@@ -489,9 +497,14 @@ const CharacterCreation = () => {
         </label><br />
 
         <label htmlFor="intuitionDriveValue">Intuition's Maximum Drive:</label>
-        <input type="number" name="intuitionDriveValue" value={intuitionDriveValue.value} onChange={(event) => setIntuitionDriveValue({...intuitionDriveValue, value: parseInt(event.target.value)})} /><br />
+        <input className='input' type="number" name="intuitionDriveValue" value={intuitionDriveValue.value} onChange={(event) => setIntuitionDriveValue({...intuitionDriveValue, value: parseInt(event.target.value)})} /><br /> */}
+      <div className="links">
+
 
         <button type="submit">Submit</button>
+        {/* Create link to /characters/all/:userId */}
+        <Link to={`/characters/all/${userId}`}>Back to Characters</Link>
+      </div>
       </form>
     </div>
   );

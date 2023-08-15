@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const CharacterDetails = () => {
@@ -18,6 +18,7 @@ const CharacterDetails = () => {
     const [resting, setResting] = useState(false);
     const [showCharacterInfo, setShowCharacterInfo] = useState(false);
     let { charId } = useParams();
+    let { userId } = useParams();
     
     console.log(character);
 
@@ -260,10 +261,12 @@ const CharacterDetails = () => {
                 </div>
                 : */}
                 <div className="characterInfoContainer">
+                    <Link to={`/characters/all/${userId}`}>
                     <div class="titleHeader">
                         <span>Candela</span>
                         <span>Obscura</span>
                     </div>
+                        </Link>
                 </div>
             
 
