@@ -225,7 +225,7 @@ const CharacterCreation = () => {
       axios
         .patch('http://localhost:8000/api/character/' + charId, characterData)
         .then((response) => {
-          Navigate('/characters/' + response.data._id);
+          Navigate('/characters/' + response.data._id + '/' + userId);
         })
         .catch((error) => {
           console.error(error);
@@ -243,7 +243,7 @@ const CharacterCreation = () => {
       axios
       .post('http://localhost:8000/api/character/add', characterData)
       .then((response) => {
-        Navigate('/characters/' + response.data._id);
+        Navigate('/characters/' + response.data._id + '/' + userId);
       })
       .catch((error) => {
         console.error(error);
