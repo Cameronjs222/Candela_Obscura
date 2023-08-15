@@ -24,26 +24,26 @@ const UserForm = () => {
     }
 
   return (
-    <div>
+    <div className='creationContainer'>
         <form action="" onSubmit={SubmitEvent}>
         <h1>Create User</h1>
         <label htmlFor="Email">Email</label>
-        <input type="text" name='Email'
+        <input className='input' type="text" name='Email'
         onChange={(e) => setFormState({...formState, Email: e.target.value})}
         value={formState.Email}
         />
         <label htmlFor="UserName">Username</label>
-        <input type="text" name='UserName'
+        <input className='input' type="text" name='UserName'
         onChange={(e) => setFormState({...formState, UserName: e.target.value})}
         value={formState.UserName}
         />
         <label htmlFor="Password">Password</label>
-        <input type="text" name='Password'
+        <input className='input' type="text" name='Password'
         onChange={(e) => setFormState({...formState, Password: e.target.value})}
         value={formState.Password}
         />
         <label htmlFor="ConfirmPassword">Confirm Password</label>
-        <input type="text" name='ConfirmPassword'
+        <input className='input' type="text" name='ConfirmPassword'
         onChange={(e) => setFormState({...formState, ConfirmPassword: e.target.value})}
         value={formState.ConfirmPassword}
         />

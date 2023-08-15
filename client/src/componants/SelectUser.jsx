@@ -20,7 +20,7 @@ const UserList = () => {
     }, []);
 
     return (
-        <div>
+        <div className='userSelect'>
             <h1>User List</h1>
             {users.map(user => (
                 <div key={user._id}>

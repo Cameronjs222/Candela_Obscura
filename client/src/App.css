@@ -393,3 +393,13 @@ body {
     background-color: rgba(240, 248, 255, 0);
     color : rgba(0, 0, 0, 0);
 }
+
+/* Create div that holds list of users */
+
+.userSelect {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
