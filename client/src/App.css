@@ -102,7 +102,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    background-color: white;
     height: 50%;
     gap: 10px;
     padding-top: 10px;
@@ -275,7 +274,10 @@ body {
     height: 25%;
     width: 100%;
     padding: 0;
-    overflow: hidden;
+
+}
+.characterMarksInfoGear  {
+    overflow: scroll;
 }
 
 .characterMarksInfoContainer div span {
@@ -305,6 +307,7 @@ body {
     border: 1px solid rgba(188, 143, 143, 0.6); /* Add a border for better contrast */
     padding: 8px; /* Add some padding for better appearance */
     color: black; /* Set the text color */
+    width: 100%; /* Set a default width */
 }
 
 .custom-button {
@@ -322,3 +325,7 @@ body {
     background-color: rgba(234, 222, 205, 0); /* Full opacity on hover */
   }
   
+  .relationShipButton {
+    display: flex;
+    justify-content: space-between;
+  }

@@ -242,7 +242,7 @@ const CharacterDetails = () => {
     return (
         <div className='mainContainer'>
 
-            {standardDice > 0 || gildedDice > 0 || driveDice > 0
+            {/* {standardDice > 0 || gildedDice > 0 || driveDice > 0
                 ?
                 <div className="diceContainer">
                     <div className="diceBox">
@@ -258,14 +258,14 @@ const CharacterDetails = () => {
                         <span>{gildedDice}</span>
                     </div>
                 </div>
-                :
+                : */}
                 <div className="characterInfoContainer">
                     <div class="titleHeader">
                         <span>Candela</span>
                         <span>Obscura</span>
                     </div>
                 </div>
-            }
+            
 
 
 
@@ -454,9 +454,10 @@ const CharacterDetails = () => {
                     <div className="characterMarksInfoContainer">
                     <div className="characterMarksInfoGear">
                         <span>Relationships: </span>
+
                         {editing === "Relationships"
                             ? <button className='custom-button' onClick={() => { setEditing("None"); addItem(relationships, "Relationships") }}>Save Relationships</button>
-                            : <button className='custom-button' onClick={() => setEditing("Relationships")}>Edit Relationships</button>}
+                            : <button className='custom-button' onClick={() => setEditing("Relationships")}>Edit Relationships</button>}<br/>
                         {editing === "Relationships"
                             ? <input className='input' onChange={(e) => setRelationships(e.target.value)}></input>
                             : null}
@@ -527,7 +528,7 @@ const CharacterDetails = () => {
 
                         </div>
                         <div className="characterMarksInfoGear">
-                            <p>Gear:</p>
+                            <span>Gear:</span>
                             {editing === "Items"
                             ? <button className='custom-button' onClick={() => { setEditing("None"); addItem(gear, "Items") }}>Save Gear</button>
                             : <button className='custom-button' onClick={() => setEditing("Items")}>Edit Gear</button>}
