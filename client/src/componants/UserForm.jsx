@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import bcrypt from 'bcryptjs';
 
 const UserForm = () => {
 
@@ -12,18 +13,50 @@ const UserForm = () => {
         Password: '',
         ConfirmPassword: ''
     })
+
+    const [loginState, setLoginState] = useState({
+        Email: '',
+        Password: ''
+    })
+
     console.log(formState)
 
     const SubmitEvent = (e) => {
         e.preventDefault();
+        // check if the passwords match
+        if(formState.Password !== formState.ConfirmPassword){
+          console.log("Passwords do not match")
+          return;
+        }
+        // hash the password
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(formState.Password, salt);
+        // set the password to the hash
+        formState.Password = hash;
+        formState.ConfirmPassword = hash;
+        
         axios.post('http://localhost:8000/api/users', formState)
         .then((res) => {
             console.log(res.data._id + "User Created")
             Navigate('/characters/all/' + res.data._id)
         })
     }
+    const loginEvent = (e) => {
+      // get the user data from the database with loginState
+      // if the user exists, and the passwords match, navigate to the character select page
+      e.preventDefault();
+      axios.get('http://localhost:8000/api/users/' + loginState.Email)
+      .then((res) => {
+        console.log(res.data)
+        // if the user exists, and the passwords match, navigate to the character select page
+        // else, display an error message
+      })
+
+    } 
+
 
   return (
+    <div className='mainCharacterSelectContainer'>
     <div className='creationContainer'>
         <form action="" onSubmit={SubmitEvent}>
         <h1>Create User</h1>
@@ -49,6 +82,17 @@ const UserForm = () => {
         />
         <button>Submit</button>
         </form>
+    </div>
+    <div className="creationContainer">
+        <h1>Login</h1>
+        <form action="" onSubmit={loginEvent}>
+        <label htmlFor="Email">Email</label>
+        <input className='input' type="text" name='Email'/>
+        <label htmlFor="Password">Password</label>
+        <input className='input' type="text" name='Password'/>
+        <button>Login</button>
+        </form>
+    </div>
     </div>
   )
 }
