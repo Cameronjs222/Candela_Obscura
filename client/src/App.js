@@ -16,7 +16,7 @@ function App() {
       <header className="App-header">
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<SelectUser/>}></Route>
+            <Route path='/' element={<UserForm/>}></Route>
             <Route path='/characters/all/:userId' element={<SelectCharacter/>}></Route>
             <Route path='/characters/:charId/:userId' element={<CharacterDetails/>}></Route>
             <Route path='/characters/new/:userId' element={<CharacterCreation/>}></Route>
