@@ -18,7 +18,7 @@ const UserForm = () => {
         Email: '',
         Password: ''
     })
-
+    console.log(loginState)
     console.log(formState)
 
     const SubmitEvent = (e) => {
@@ -29,27 +29,31 @@ const UserForm = () => {
           return;
         }
         // hash the password
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(formState.Password, salt);
+        // const salt = bcrypt.genSaltSync(10);
+        // const hash = bcrypt.hashSync(formState.Password, salt);
         // set the password to the hash
-        formState.Password = hash;
-        formState.ConfirmPassword = hash;
-        
+        // formState.Password = hash;
+        // formState.ConfirmPassword = hash;
+
         axios.post('http://localhost:8000/api/users', formState)
         .then((res) => {
             console.log(res.data._id + "User Created")
-            Navigate('/characters/all/' + res.data._id)
+            // Navigate('/characters/all/' + res.data._id)
         })
     }
     const loginEvent = (e) => {
-      // get the user data from the database with loginState
-      // if the user exists, and the passwords match, navigate to the character select page
+      console.log(loginState)
       e.preventDefault();
-      axios.get('http://localhost:8000/api/users/' + loginState.Email)
+      axios.get('http://localhost:8000/api/users/email/' + loginState.Email)
       .then((res) => {
         console.log(res.data)
-        // if the user exists, and the passwords match, navigate to the character select page
-        // else, display an error message
+        // if(!bcrypt.compareSync(loginState.Password, res.data.Password)){
+        //   console.log("Passwords do not match")
+        //   return;
+        // }
+        // else {
+        //   Navigate('/characters/all/' + res.data._id)
+        // }
       })
 
     } 
@@ -87,9 +91,9 @@ const UserForm = () => {
         <h1>Login</h1>
         <form action="" onSubmit={loginEvent}>
         <label htmlFor="Email">Email</label>
-        <input className='input' type="text" name='Email'/>
+        <input className='input' type="text" name='Email' onChange={(e) => setLoginState({...loginState, Email: e.target.value})}/>
         <label htmlFor="Password">Password</label>
-        <input className='input' type="text" name='Password'/>
+        <input className='input' type="text" name='Password' onChange={(e) => setLoginState({...loginState, Password: e.target.value})}/>
         <button>Login</button>
         </form>
     </div>
