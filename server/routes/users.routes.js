@@ -10,6 +10,8 @@ app.post("/api/users", UsersController.createNewUser);
 
 app.get("/api/users/:_id", UsersController.findOneSingleUser);
 
+app.get("/api/users/email/:email", UsersController.findUserByEmail);
+
 app.patch("/api/users/:_id", UsersController.updateExistingUser);
 
 app.delete("/api/users/:_id", UsersController.deleteAnExistingUser);

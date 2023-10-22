@@ -22,7 +22,17 @@ const UserSchema = new mongoose.Schema({
 
         minLength: [2, "Email must be at least 3 characters long"],
 
-        unique: [true, "Store number already in use"]
+        // unique: [true, "Email is already in use"]
+
+    },
+
+    Password: {
+
+        type: String,
+
+        required: [true, "Please provide a password"],
+
+        minLength: [2, "Password must be at least 3 characters long"]
 
     },
 

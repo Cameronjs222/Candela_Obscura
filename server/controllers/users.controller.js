@@ -43,6 +43,7 @@ module.exports.findOneSingleUser = (req, res) => {
 
 
 module.exports.createNewUser = (req, res) => {
+    console.log(req.body)
 
     Users.create(req.body)
 
@@ -105,12 +106,12 @@ module.exports.deleteAnExistingUser = (req, res) => {
         });
 }
 
-// model.exports.findUserByEmail = (req, res) => {
-//     Users.findOne({ email: req.params.email })
-//         .then(user => {
-//             res.json(user)
-//         })
-//         .catch(err => {
-//             res.json({ message: 'Something went wrong', error: err })
-//         })
-// }
+module.exports.findUserByEmail = (req, res) => {
+    Users.findOne({ email: req.params.email })
+        .then(user => {
+            res.json(user)
+        })
+        .catch(err => {
+            res.json({ message: 'Something went wrong', error: err })
+        })
+}
